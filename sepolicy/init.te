@@ -1,0 +1,5 @@
+allow init vfat:dir { write };
+allow init vfat:dir { setattr };
+allow init vfat:file { open append };
+allow init vfat:file { write };
+allow init block_device:blk_file { setattr };

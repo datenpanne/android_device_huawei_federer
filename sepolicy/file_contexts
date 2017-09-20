@@ -1,0 +1,1 @@
+/sys/devices/virtual/graphics/fb0/idle_time     u:object_r:sysfs_graphics:s0
