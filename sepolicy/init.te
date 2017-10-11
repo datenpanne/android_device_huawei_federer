@@ -3,3 +3,7 @@ allow init vfat:dir { setattr };
 allow init vfat:file { open append };
 allow init vfat:file { write };
 allow init block_device:blk_file { setattr };
+allow init vfat:dir { read open search };
+allow init vfat:file { read getattr };
+#============= init ==============
+#allow init system_file:dir relabelfrom;

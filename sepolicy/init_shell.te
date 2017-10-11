@@ -1,0 +1,2 @@
+allow init_shell vfat:dir setattr;
+allow init_shell vfat:dir search;

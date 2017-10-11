@@ -1,0 +1,2 @@
+#============= vold ==============
+allow vold media_rw_data_file:dir { read open };
