@@ -1,0 +1,95 @@
+
+
+
+#============= fsck ==============
+allow fsck fsc_block_device:blk_file { read write getattr open ioctl };
+
+#============= qti_init_shell ==============
+allow qti_init_shell bluetooth_data_file:file { read getattr open };
+
+#============= system_server ==============
+allow system_server oeminfo_server:unix_stream_socket connectto;
+
+#============= untrusted_app ==============
+allow untrusted_app battery_service:service_manager find;
+allow untrusted_app device:dir { read open };
+allow untrusted_app recovery_cache_file:dir { read getattr open };
+allow untrusted_app recovery_cache_file:file getattr;
+allow untrusted_app zygote:dir search;
+allow untrusted_app zygote:file { read open };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        #============= fsck ==============
+allow fsck block_device:blk_file { read write ioctl open };
+
+            #============= init ==============
+allow init asec_apk_file:dir mounton;
+allow init block_device:blk_file setattr;
+allow init proc:dir write;
+allow init sysfs:lnk_file setattr;
+allow init system_file:file execute_no_trans;
+allow init vfat:dir setattr;
+allow init vfat:file { write open };
+
+        #============= kernel ==============
+allow kernel log_device:dir { write add_name };
+allow kernel log_device:file { read write create open };
+
+        #============= qti_init_shell ==============
+allow qti_init_shell btnvtool_exec:file { read getattr open execute execute_no_trans };
+
+            #============= rmt_storage ==============
+allow rmt_storage log_device:chr_file { write open };
+allow rmt_storage rootfs:file entrypoint;
+
+            #============= system_server ==============
+allow system_server dex2oat_exec:file { read execute open execute_no_trans };
+
+#============= themeservice_app ==============
+allow themeservice_app network_management_service:service_manager find;
+
+            #============= time_daemon ==============
+allow time_daemon init:unix_stream_socket connectto;
+allow time_daemon property_socket:sock_file write;
+
+
+[259, logd.auditd][    6.722855] type=1400 audit(22981.789:8): avc: denied { transition } for pid=278 comm="init" path="/sbin/test_diag" dev="rootfs" ino=5163 scontext=u:r:init:s0 tcontext=u:r:diag:s0 tclass=process permissive=1
+[259, logd.auditd][    6.723358] type=1400 audit(22981.789:9): avc: denied { entrypoint } for pid=278 comm="init" path="/sbin/test_diag" dev="rootfs" ino=5163 scontext=u:r:diag:s0 tcontext=u:object_r:rootfs:s0 tclass=file permissive=1
+[259, logd.auditd][    6.723476] type=1400 audit(22981.789:10): avc: denied { rlimitinh } for pid=278 comm="test_diag" scontext=u:r:init:s0 tcontext=u:r:diag:s0 tclass=process permissive=1
+[259, logd.auditd][    6.723548] type=1400 audit(22981.789:11): avc: denied { siginh } for pid=278 comm="test_diag" scontext=u:r:init:s0 tcontext=u:r:diag:s0 tclass=process permissive=1
+

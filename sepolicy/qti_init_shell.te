@@ -1,0 +1,8 @@
+allow qti_init_shell btnvtool_exec:file { read getattr open execute execute_no_trans };
+allow qti_init_shell ctl_default_prop:property_service set;
+allow qti_init_shell qmuxd_socket:dir { rw_file_perms create_file_perms search add_name };
+allow qti_init_shell qmuxd_socket:sock_file create_file_perms;
+allow qti_init_shell qmuxd:unix_stream_socket connectto;
+allow qti_init_shell bluetooth_data_file:file { read getattr open };
+allow qti_init_shell wifi_data_file:dir { add_name };
+allow qti_init_shell wifi_data_file:lnk_file { create };

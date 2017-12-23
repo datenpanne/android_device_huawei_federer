@@ -1,0 +1,2 @@
+allow mediaserver audiod:binder call;
+allow mediaserver sensorservice_service:service_manager find;
