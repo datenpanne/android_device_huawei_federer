@@ -245,6 +245,7 @@ int32_t QCameraPostProcessor::start(QCameraChannel *pSrcChannel)
         }
     }
 
+<<<<<<< HEAD
     if (m_pReprocChannel && m_parent->needDualReprocess()) {
         if (m_pDualReprocChannel != NULL) {
             delete m_pDualReprocChannel;
@@ -266,6 +267,8 @@ int32_t QCameraPostProcessor::start(QCameraChannel *pSrcChannel)
         }
     }
 
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     property_get("persist.camera.longshot.save", prop, "0");
     mUseSaveProc = atoi(prop) > 0 ? true : false;
 
@@ -533,7 +536,12 @@ int32_t QCameraPostProcessor::getJpegEncodingConfig(mm_jpeg_encode_params_t& enc
         thumb_stream->getFrameDimension(src_dim);
         encode_parm.thumb_dim.src_dim = src_dim;
 
+<<<<<<< HEAD
         if (!m_parent->needRotationReprocess()) {
+=======
+        if ((thumb_stream != main_stream) ||
+                (!m_parent->needRotationReprocess())) {
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
             encode_parm.thumb_rotation = m_parent->getJpegRotation();
         }
 
@@ -693,8 +701,12 @@ int32_t QCameraPostProcessor::processData(mm_camera_super_buf_t *frame)
     if (m_parent->needReprocess()) {
         if (!m_parent->isLongshotEnabled() ||
             (m_parent->isLongshotEnabled() &&
+<<<<<<< HEAD
              (m_parent->isCaptureShutterEnabled() ||
              m_parent->isLongshotSnapLimited()))) {
+=======
+             m_parent->isCaptureShutterEnabled())) {
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
             //play shutter sound
             m_parent->playShutter();
         }
@@ -866,9 +878,13 @@ int32_t QCameraPostProcessor::processJpegEvt(qcamera_jpeg_evt_payload_t *evt)
             (m_parent->getOutputImageCount() <
             m_parent->mParameters.UfOutputCount())) {
             jpeg_out  = (omx_jpeg_ouput_buf_t*) evt->out_data.buf_vaddr;
+<<<<<<< HEAD
             if (jpeg_out != NULL) {
                 jpeg_mem = (camera_memory_t *)jpeg_out->mem_hdl;
             }
+=======
+            jpeg_mem = (camera_memory_t *)jpeg_out->mem_hdl;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
             if (NULL != jpeg_mem) {
                 jpeg_mem->release(jpeg_mem);
                 jpeg_mem = NULL;
@@ -888,9 +904,13 @@ int32_t QCameraPostProcessor::processJpegEvt(qcamera_jpeg_evt_payload_t *evt)
             memcpy(jpeg_mem->data, evt->out_data.buf_vaddr, evt->out_data.buf_filled_len);
         } else {
             jpeg_out  = (omx_jpeg_ouput_buf_t*) evt->out_data.buf_vaddr;
+<<<<<<< HEAD
             if (jpeg_out != NULL) {
                 jpeg_mem = (camera_memory_t *)jpeg_out->mem_hdl;
             }
+=======
+            jpeg_mem = (camera_memory_t *)jpeg_out->mem_hdl;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
         }
 
         CDBG_HIGH("%s : Calling upperlayer callback to store JPEG image", __func__);
@@ -941,7 +961,10 @@ end:
  *==========================================================================*/
 int32_t QCameraPostProcessor::processPPData(mm_camera_super_buf_t *frame)
 {
+<<<<<<< HEAD
     ALOGE("QCameraPostProcessor::processPPData");
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     bool needSuperBufMatch = m_parent->mParameters.generateThumbFromMain();
     if (m_bInited == FALSE) {
         ALOGE("%s: postproc not initialized yet", __func__);
@@ -965,6 +988,7 @@ int32_t QCameraPostProcessor::processPPData(mm_camera_super_buf_t *frame)
             setYUVFrameInfo(frame);
         return processRawData(frame);
     }
+<<<<<<< HEAD
 #ifdef TARGET_TS_MAKEUP
     // find snapshot frame frame
     mm_camera_buf_def_t *pReprocFrame = NULL;
@@ -989,6 +1013,12 @@ int32_t QCameraPostProcessor::processPPData(mm_camera_super_buf_t *frame)
          !getMultipleStages() &&
          !m_parent->isCaptureShutterEnabled() &&
          !m_parent->isLongshotSnapLimited()) {
+=======
+
+    if (m_parent->isLongshotEnabled() &&
+         !getMultipleStages() &&
+         !m_parent->isCaptureShutterEnabled()) {
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
         m_parent->playShutter();
     }
 
@@ -1703,7 +1733,11 @@ int32_t QCameraPostProcessor::encodeData(qcamera_jpeg_data_t *jpeg_job_data,
                 NULL);
 
         mm_camera_buf_def_t *workBuf = main_frame;
+<<<<<<< HEAD
         if ((workBuf != NULL) && (workBuf->stream_type != CAM_STREAM_TYPE_VIDEO)) {
+=======
+        if (workBuf != NULL) {
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
             int workBufIndex = workBuf->buf_idx;
             QCameraMemory *workMem = (QCameraMemory *)workBuf->mem_info;
             camera_memory_t *camWorkMem = workMem->getMemory(workBufIndex, false);
@@ -1838,12 +1872,22 @@ int32_t QCameraPostProcessor::encodeData(qcamera_jpeg_data_t *jpeg_job_data,
             // we use the main stream/frame to encode thumbnail
             thumb_stream = main_stream;
             thumb_frame = main_frame;
+<<<<<<< HEAD
         }
         if (((90 == m_parent->getJpegRotation())
                 || (270 == m_parent->getJpegRotation()))
                 && (m_parent->needRotationReprocess())) {
             IMG_SWAP(jpg_job.encode_job.thumb_dim.dst_dim.width,
                     jpg_job.encode_job.thumb_dim.dst_dim.height);
+=======
+
+            if (((90 == m_parent->getJpegRotation())
+                    || (270 == m_parent->getJpegRotation()))
+                    && (m_parent->needRotationReprocess())) {
+                IMG_SWAP(jpg_job.encode_job.thumb_dim.dst_dim.width,
+                        jpg_job.encode_job.thumb_dim.dst_dim.height);
+            }
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
         }
 
         memset(&src_dim, 0, sizeof(cam_dimension_t));
@@ -1888,12 +1932,16 @@ int32_t QCameraPostProcessor::encodeData(qcamera_jpeg_data_t *jpeg_job_data,
     m_parent->mExifParams.sensor_params.sens_type = m_parent->getSensorType();
 
     jpg_job.encode_job.cam_exif_params = m_parent->mExifParams;
+<<<<<<< HEAD
     jpg_job.encode_job.cam_exif_params.debug_params =
             (mm_jpeg_debug_exif_params_t *) malloc (sizeof(mm_jpeg_debug_exif_params_t));
     if (!jpg_job.encode_job.cam_exif_params.debug_params) {
         ALOGE("Out of Memory. Allocation failed for 3A debug exif params");
         return NO_MEMORY;
     }
+=======
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     if (NULL != jpg_job.encode_job.p_metadata &&
         m_parent->mParameters.isMobicatEnabled() && jpeg_job_data->metadata != NULL) {
         memcpy(jpg_job.encode_job.p_metadata->
@@ -1901,6 +1949,7 @@ int32_t QCameraPostProcessor::encodeData(qcamera_jpeg_data_t *jpeg_job_data,
             jpg_job.encode_job.cam_exif_params.af_mobicat_params,
             sizeof(jpg_job.encode_job.cam_exif_params.af_mobicat_params));
 
+<<<<<<< HEAD
         if (m_parent->mExifParams.debug_params) {
             memcpy(jpg_job.encode_job.cam_exif_params.debug_params,
                     m_parent->mExifParams.debug_params, (sizeof(mm_jpeg_debug_exif_params_t)));
@@ -1942,6 +1991,44 @@ int32_t QCameraPostProcessor::encodeData(qcamera_jpeg_data_t *jpeg_job_data,
     CDBG_HIGH("[KPI Perf] %s : PROFILE_JPEG_JOB_START", __func__);
     ret = mJpegHandle.start_job(&jpg_job, &jobId);
     free(jpg_job.encode_job.cam_exif_params.debug_params);
+=======
+        /* Save a copy of 3A debug params */
+        jpg_job.encode_job.p_metadata->is_mobicat_ae_params_valid =
+            jpg_job.encode_job.cam_exif_params.ae_debug_params_valid;
+        jpg_job.encode_job.p_metadata->is_mobicat_awb_params_valid =
+            jpg_job.encode_job.cam_exif_params.awb_debug_params_valid;
+        jpg_job.encode_job.p_metadata->is_mobicat_af_params_valid =
+            jpg_job.encode_job.cam_exif_params.af_debug_params_valid;
+        jpg_job.encode_job.p_metadata->is_mobicat_asd_params_valid =
+            jpg_job.encode_job.cam_exif_params.asd_debug_params_valid;
+        jpg_job.encode_job.p_metadata->is_mobicat_stats_params_valid =
+            jpg_job.encode_job.cam_exif_params.stats_debug_params_valid;
+
+        if (jpg_job.encode_job.cam_exif_params.ae_debug_params_valid) {
+            jpg_job.encode_job.p_metadata->mobicat_ae_data =
+               jpg_job.encode_job.cam_exif_params.ae_debug_params;
+        }
+        if (jpg_job.encode_job.cam_exif_params.awb_debug_params_valid) {
+            jpg_job.encode_job.p_metadata->mobicat_awb_data =
+               jpg_job.encode_job.cam_exif_params.awb_debug_params;
+        }
+        if (jpg_job.encode_job.cam_exif_params.af_debug_params_valid) {
+            jpg_job.encode_job.p_metadata->mobicat_af_data =
+               jpg_job.encode_job.cam_exif_params.af_debug_params;
+        }
+        if (jpg_job.encode_job.cam_exif_params.asd_debug_params_valid) {
+            jpg_job.encode_job.p_metadata->mobicat_asd_data =
+               jpg_job.encode_job.cam_exif_params.asd_debug_params;
+        }
+        if (jpg_job.encode_job.cam_exif_params.stats_debug_params_valid) {
+            jpg_job.encode_job.p_metadata->mobicat_stats_buffer_data =
+               jpg_job.encode_job.cam_exif_params.stats_debug_params;
+        }
+    }
+
+    CDBG_HIGH("[KPI Perf] %s : PROFILE_JPEG_JOB_START", __func__);
+    ret = mJpegHandle.start_job(&jpg_job, &jobId);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     if (ret == NO_ERROR) {
         // remember job info
         jpeg_job_data->jobId = jobId;
@@ -2680,8 +2767,13 @@ int QCameraPostProcessor::getJpegMemory(omx_jpeg_ouput_buf_t *out_buf)
  *==========================================================================*/
 int QCameraPostProcessor::releaseJpegMemory(omx_jpeg_ouput_buf_t *out_buf)
 {
+<<<<<<< HEAD
     if (out_buf && out_buf->mem_hdl) {
         CDBG_HIGH("%s: releasing jpeg out buffer of size: %d", __func__, out_buf->size);
+=======
+    ALOGD("%s: releasing jpeg out buffer of size: %d", __func__, out_buf->size);
+    if(out_buf && out_buf->mem_hdl) {
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
         camera_memory_t *cam_mem = (camera_memory_t*)out_buf->mem_hdl;
         cam_mem->release(cam_mem);
         out_buf->mem_hdl = NULL;

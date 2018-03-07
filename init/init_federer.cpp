@@ -1,5 +1,10 @@
 /*
+<<<<<<< HEAD
    Copyright (c) 2016, The Linux Foundation. All rights reserved.
+=======
+   Copyright (c) 2014, The Linux Foundation. All rights reserved.
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
    met:
@@ -12,6 +17,10 @@
     * Neither the name of The Linux Foundation nor the names of its
       contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
    THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
    WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
@@ -25,10 +34,14 @@
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+<<<<<<< HEAD
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
 
 #include <iostream>
+=======
+#include <cstdlib>
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 #include <fstream>
 #include <string>
 
@@ -37,6 +50,7 @@
 #include "log.h"
 #include "util.h"
 
+<<<<<<< HEAD
 using namespace std;
 
 typedef struct {
@@ -126,5 +140,33 @@ void vendor_load_properties()
     property_set("ro.build.fingerprint", match->fingerprint);
     if (match->is_noril) {
         property_set("ro.radio.noril" , "yes");
+=======
+#define ISMATCH(a,b)    (!strncmp(a,b,PROP_VALUE_MAX))
+
+void vendor_load_properties()
+{
+    char platform[PROP_VALUE_MAX];
+    std::ifstream fin;
+    std::string buf;
+    int rc;
+
+    rc = property_get("ro.board.platform", platform);
+    if (!rc || !ISMATCH(platform, ANDROID_TARGET))
+        return;
+
+    fin.open("/proc/app_info");
+    while (getline(fin, buf))
+        if (buf.find("huawei_fac_product_name") != std::string::npos)
+            break;
+    fin.close();
+
+    /* FDR-A01 */
+    if (buf.find("FDR-A01") != std::string::npos) {
+        property_set("ro.product.model", "FDR-A01L");
+        property_set("ro.product.device", "HWFDR");
+        property_set("ro.build.product", "FDR");
+        property_set("ro.build.description", "FDR-user 5.1.1 HuaweiMediaPad C100B006 release-keys");
+        property_set("ro.build.fingerprint", "HUAWEI/FDR/HWFDR:5.1.1/HuaweiMediaPad/FDR-A01LC100B006:user/release-keys");
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     }
 }

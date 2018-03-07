@@ -15,7 +15,11 @@
 
 LOCAL_PATH := $(call my-dir)
 
+<<<<<<< HEAD
 ifeq ($(TARGET_DEVICE),federer)
+=======
+ifeq ($(TARGET_DEVICE),federer federer_wifi)
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 #include device/huawei/federer/symlinks.mk
 
@@ -48,6 +52,21 @@ $(KM_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 
 ALL_DEFAULT_INSTALLED_MODULES += $(KM_SYMLINKS)
 
+<<<<<<< HEAD
+=======
+IMS_LIBS := libimscamera_jni.so libimsmedia_jni.so
+
+IMS_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR_APPS)/ims/lib/arm64/,$(notdir $(IMS_LIBS)))
+$(IMS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "IMS lib link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /system/vendor/lib64/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(IMS_SYMLINKS)
+
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 MODEM_IMAGES := \
     modem.b00 modem.b01 modem.b02 modem.b03 modem.b04 modem.b05 \
     modem.b06 modem.b08 modem.b09 modem.b12 modem.b13 modem.b14 \

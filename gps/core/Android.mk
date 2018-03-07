@@ -15,6 +15,13 @@ else ifeq ($(BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET),true)
 LOCAL_CFLAGS += -DPDK_FEATURE_SET
 endif
 
+<<<<<<< HEAD
+=======
+ifeq ($(QCPATH),)
+LOCAL_CFLAGS += -DOSS_BUILD
+endif
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 LOCAL_SHARED_LIBRARIES := \
     libutils \
     libcutils \

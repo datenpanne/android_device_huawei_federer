@@ -27,7 +27,11 @@
 #
 #
 
+<<<<<<< HEAD
 #import /init.target-from-init.rc
+=======
+import /init.target-from-init.rc
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 import /init.qcom.power.rc
 
 on early-init
@@ -36,6 +40,7 @@ on early-init
     symlink /data/tombstones /tombstones
     mkdir /log 0770 system log
 
+<<<<<<< HEAD
     # create mountpoints
     mkdir /mnt 0775 root system
     setprop persist.service.hdb.enable true
@@ -74,6 +79,21 @@ on fs
     swapon_all fstab.qcom
     write /proc/sys/vm/swappiness 100
     write /proc/sys/vm/page-cluster 0
+=======
+on fs
+#    export LD_SHIM_LIBS /system/lib/libcamera_post_mediaserver.so|libshim_camera_post_mediaserver:/system/lib64/libcutils.so|libshim_cutils.so:/system/lib/libcutils.so|libshim_cutils.so:/system/vendor/lib64/liblocationservice.so|libshim_gps.so:/system/vendor/lib/libmmqjpeg_codec.so|libboringssl-compat.so:/system/lib64/libril.so|libshim_ril.so:/system/lib/hw/audio.primary.msm8916.so|libshim_sound_trigger.so:/system/vendor/lib/libmmqjpeg_codec.so|libboringssl-compat.so
+
+    export LD_SHIM_LIBS /system/lib64/libril.so|libshim_hwril.so:/system/lib64/libcutils.so|libshim_cutils.so:/system/lib/libcutils.so|libshim_cutils.so:/system/lib/hw/audio.primary.msm8916.so|libshim_sound_trigger.so
+#:/system/lib/hw/camera.msm8916.so|libshim_hwcamera.so
+#:/system/lib/hw/camera.vendor.msm8916.so|libshim_hwgui.so:/system/vendor/lib/libmmqjpeg_codec.so|libboringssl-compat.so
+#:/system/lib/hw/camera.vendor.msm8916.so|libsim_csensor.so
+
+    mount_all fstab.qcom
+
+    # Keeping following partitions outside fstab file. As user may not have
+    # these partition flashed on the device. Failure to mount any partition in fstab file
+    # results in failure to launch late-start class.
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
     mkdir /persist/data 0700 system system
     restorecon_recursive /persist
@@ -82,6 +102,7 @@ on fs
     mount vfat /dev/block/bootdevice/by-name/modem /firmware ro context=u:object_r:firmware_file:s0,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
     mkdir /log/sdlog 0775 system system
     write /log/sdlog/sd_err.log 0
+<<<<<<< HEAD
 
     mkdir /data/fpc 0700 system system
 
@@ -92,6 +113,9 @@ on late-init
     trigger post-fs-data
 
 
+=======
+    
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 on post-fs-data
     mkdir /data/tombstones 0771 system system
     mkdir /tombstones/modem 0771 system system
@@ -102,6 +126,7 @@ on post-fs-data
     mkdir /persist/data/tz 0700 system system
     mkdir /data/misc/dts 0770 media audio
 
+<<<<<<< HEAD
     # Create log dir to collect logs.
     mkdir /data/log 0751 system system
     mkdir /data/log/fac_log 0755 system system
@@ -241,6 +266,8 @@ on post-fs-data
     chown system system /sys/bus/i2c/devices/0-0052/module_tpcolor
     chown media media /sys/bus/platform/drivers/qcom,ois/0.qcom,ois/ois_pixel
 
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
@@ -248,11 +275,18 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     group camera system inet input graphics
 #    setenv LD_PRELOAD /vendor/lib/libqcamerasvr-c++.so
 
+<<<<<<< HEAD
 on property:ro.runmode=factory
     mkdir /data/img 0777 media media
     mkdir /data/camera 0777 camera camera
     mkdir /data/misp 0777 root root
     chmod 0777 /sys/bus/spi/devices/spi1.0/misp_config
+=======
+#enable zram
+on property:ro.config.zram=true
+    swapon_all fstab.qcom
+    write /proc/sys/vm/swappiness 100
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 # Allow usb charging to be disabled peristently
 on property:persist.usb.chgdisabled=1
@@ -261,15 +295,28 @@ on property:persist.usb.chgdisabled=1
 on property:persist.usb.chgdisabled=0
     write /sys/class/power_supply/battery/charging_enabled 1
 
+<<<<<<< HEAD
 on property:persist.sys.hlcharging=true
     write /sys/class/power_supply/battery/device/not_limit_chrg_flag 1
     mkdir system/etc/tp_test_parameters
+=======
+service qrngp /system/bin/qrngp -f
+   class main
+   user root
+   group root
+   oneshot
+   disabled
+
+on property:sys.boot_completed=1
+   start qrngp
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 service qseecomd /system/bin/qseecomd
    class core
    user root
    group root
 
+<<<<<<< HEAD
 service perfd /vendor/bin/perfd
    class main
    user root
@@ -277,6 +324,15 @@ service perfd /vendor/bin/perfd
    disabled
 
 service thermal-engine /vendor/bin/thermal-engine
+=======
+service perfd /system/vendor/bin/perfd
+   class main
+   user root
+   group system
+   disabled
+
+service thermal-engine /system/vendor/bin/thermal-engine
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
    class main
    user root
    socket thermal-send-client stream 0666 system system
@@ -294,6 +350,7 @@ service audiod /system/bin/audiod
    user system
    group system
 
+<<<<<<< HEAD
 service rmt_oeminfo /system/bin/rmt_oeminfo
     class core
     user root
@@ -316,6 +373,15 @@ service huawei_version /system/bin/huawei_version
     class core
     user root
     oneshot
+=======
+on boot
+    start rmt_storage
+    start test_diag
+    start rmt_oeminfo
+    start libqmi_oem_main
+    start oeminfo_server
+    insmod /system/lib/modules/adsprpc.ko
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 # access permission for secure touch
     chmod 0660 /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0020/secure_touch_enable
@@ -379,11 +445,19 @@ on property:sys.ims.DATA_DAEMON_STATUS=1
     start ims_rtp_daemon
     start imscmservice
 
+<<<<<<< HEAD
 on property:init.svc.surfaceflinger=stopped
     stop ppd
 
 on property:init.svc.surfaceflinger=running
     start ppd
+=======
+service rmt_oeminfo /sbin/rmt_oeminfo
+    class core
+    user root
+    disabled
+    seclabel u:r:oeminfo:s0
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 on charger-fs
     mount ext4 /dev/block/bootdevice/by-name/userdata /data rw
@@ -404,6 +478,16 @@ on charger
     load_all_props
     usb_init_setting
     start qcom-post-boot
+<<<<<<< HEAD
 
 on property:hw.accel.calib="true"
     chmod 0664 /dev/input/event*
+=======
+    start chargemonitor
+
+service dts_configurator /system/bin/dts_configurator
+    class main
+    user system
+    group system
+    oneshot
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e

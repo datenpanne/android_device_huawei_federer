@@ -237,7 +237,10 @@ public:
     static const char KEY_QC_MANUAL_WB_VALUE[];
     static const char KEY_QC_CURRENT_EXPOSURE_TIME[];
     static const char KEY_QC_CURRENT_ISO[];
+<<<<<<< HEAD
     static const char KEY_QC_CACHE_VIDEO_BUFFERS[];
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
     static const char KEY_INTERNAL_PERVIEW_RESTART[];
 
@@ -314,7 +317,10 @@ public:
 
     //Longshot
     static const char KEY_QC_LONGSHOT_SUPPORTED[];
+<<<<<<< HEAD
     static const char KEY_QC_MAX_LONGSHOT_SNAP[];
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
     //livesnap support for 4K2K video resolutions
     static const char KEY_QC_4K2K_LIVESNAP_SUPPORTED[];
@@ -530,11 +536,15 @@ public:
     static const char CDS_MODE_AUTO[];
 
     static const char KEY_SELECTED_AUTO_SCENE[];
+<<<<<<< HEAD
 #ifdef TARGET_TS_MAKEUP
     static const char KEY_TS_MAKEUP[];
     static const char KEY_TS_MAKEUP_WHITEN[];
     static const char KEY_TS_MAKEUP_CLEAN[];
 #endif
+=======
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     enum {
         CAMERA_ORIENTATION_UNKNOWN = 0,
         CAMERA_ORIENTATION_PORTRAIT = 1,
@@ -595,10 +605,13 @@ public:
                                               // no change in parameters value
     uint32_t getJpegQuality();
     uint32_t getJpegRotation();
+<<<<<<< HEAD
     void setFocusState(cam_autofocus_state_t focusState) { mFocusState = focusState; };
     cam_autofocus_state_t getFocusState() { return mFocusState; };
     uint32_t getJpegExifRotation();
     bool useJpegExifRotation();
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     int32_t getEffectValue();
     int32_t getFlashValue();
     int32_t getSupportedFlashModes();
@@ -611,7 +624,10 @@ public:
     int32_t getExifLongitude(rat_t *longitude, char *lonRef);
     int32_t getExifAltitude(rat_t *altitude, char *altRef);
     int32_t getExifGpsDateTimeStamp(char *gpsDateStamp, uint32_t bufLen, rat_t *gpsTimeStamp);
+<<<<<<< HEAD
     bool isVideoBuffersCached();
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     int32_t updateFocusDistances(cam_focus_distances_info_t *focusDistances);
 
     bool isAEBracketEnabled();
@@ -634,7 +650,10 @@ public:
     bool isMobicatEnabled();
 
     cam_focus_mode_type getFocusMode() const {return mFocusMode;};
+<<<<<<< HEAD
     bool isAFRunning();
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     int32_t setNumOfSnapshot();
     int32_t adjustPreviewFpsRange(cam_fps_range_t *fpsRange);
     bool isJpegPictureFormat() {return (mPictureFormat == CAM_FORMAT_JPEG);};
@@ -667,13 +686,19 @@ public:
     uint8_t getNumOfExtraBuffersForImageProc();
     uint8_t getNumOfExtraBuffersForVideo();
     uint8_t getNumOfExtraBuffersForPreview();
+<<<<<<< HEAD
     int getNumOfBuffersForLongshotLimitedMode();
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     bool needThumbnailReprocess(uint32_t *pFeatureMask);
     inline bool isUbiFocusEnabled() {return m_bAFBracketingOn;};
     inline bool isChromaFlashEnabled() {return m_bChromaFlashOn;};
     inline bool isSeeMoreEnabled() {return m_bSeeMoreOn;};
     inline bool isTruePortraitEnabled() {return m_bTruePortraitOn;};
+<<<<<<< HEAD
     inline bool isLowMemoryDevice() {return m_bIsLowMemoryDevice;};
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     inline uint32_t TpMaxMetaSize() {
         return m_pCapability->true_portrait_settings_need.meta_max_size;};
     inline uint32_t TpHeaderSize() {
@@ -683,6 +708,10 @@ public:
     bool isOptiZoomEnabled();
     bool isDifferentFlipZSL();
     int32_t commitAFBracket(cam_af_bracketing_t afBracket);
+<<<<<<< HEAD
+=======
+    int32_t commitMTFBracket(cam_af_bracketing_t mtfBracket);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     int32_t commitFlashBracket(cam_flash_bracketing_t flashBracket);
     int32_t set3ALock(const char *lockStr);
     int32_t setAndCommitZoom(int zoom_level);
@@ -693,7 +722,14 @@ public:
     inline uint8_t UfOutputCount() {
         return m_pCapability->ubifocus_af_bracketing_need.output_count;};
     inline bool generateThumbFromMain() {return isUbiFocusEnabled() ||
+<<<<<<< HEAD
             isChromaFlashEnabled() || isOptiZoomEnabled() || isDifferentFlipZSL() || isHDREnabled();}
+=======
+            isChromaFlashEnabled() || isOptiZoomEnabled() || isDifferentFlipZSL();}
+    cam_af_bracketing_t m_MTFBracketInfo;
+    int32_t updateMTFInfo(const int32_t lenPos);
+    uint8_t m_currNumBufMTF;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     void  updateCurrentFocusPosition(cam_focus_pos_info_t &cur_pos_info);
     void  updateAEInfo(cam_ae_params_t &ae_params);
     bool isDisplayFrameNeeded() { return m_bDisplayFrame; };
@@ -701,9 +737,12 @@ public:
     bool isAdvCamFeaturesEnabled() {return isUbiFocusEnabled() ||
             isChromaFlashEnabled() || isOptiZoomEnabled() || isHDREnabled();}
     int32_t setIntEvent(cam_int_evt_params_t params);
+<<<<<<< HEAD
     uint8_t getLongshotStages();
     inline bool isLongshotSnapsLimited() {return m_bIsLongshotLimited;};
     inline int getMaxLongshotNum() {return m_nMaxLongshotNum;};
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 private:
     int32_t setPreviewSize(const QCameraParameters& );
@@ -768,7 +807,10 @@ private:
     int32_t setFaceRecognition(const QCameraParameters& );
     int32_t setFlip(const QCameraParameters& );
     int32_t setBurstNum(const QCameraParameters& params);
+<<<<<<< HEAD
     int32_t setMaxLongshotNum(const QCameraParameters& params);
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     int32_t setSnapshotFDReq(const QCameraParameters& );
     int32_t setStatsDebugMask();
     int32_t setISPDebugMask();
@@ -779,7 +821,11 @@ private:
     int32_t setMobicat(const QCameraParameters& params);
     bool UpdateHFRFrameRate(const QCameraParameters& params);
     int32_t setLongshotParam(const QCameraParameters& params);
+<<<<<<< HEAD
     int32_t setCacheVideoBuffers(const QCameraParameters& params);
+=======
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     int32_t setAutoExposure(const char *autoExp);
     int32_t setPreviewFpsRange(int min_fps,int max_fps,
             int vid_min_fps,int vid_max_fps);
@@ -827,7 +873,11 @@ private:
     int32_t setWaveletDenoise(const char *wnrStr);
     int32_t setFaceRecognition(const char *faceRecog, uint32_t maxFaces);
     int32_t setTintlessValue(const char *tintStr);
+<<<<<<< HEAD
     int32_t setCacheVideoBuffers(const char *cacheVideoBufStr);
+=======
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
     int32_t parseGains(const char *gainStr, double &r_gain,
                        double &g_gain, double &b_gain);
@@ -862,7 +912,10 @@ private:
     // ops to tempororily update parameter entries and commit
     int32_t updateParamEntry(const char *key, const char *value);
     int32_t commitParamChanges();
+<<<<<<< HEAD
     void updateViewAngles();
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
     // Map from strings to values
     static const cam_dimension_t THUMBNAIL_SIZES_MAP[];
@@ -952,10 +1005,13 @@ private:
     int32_t mFlashDaemonValue;
     bool m_bTruePortraitOn;
     bool m_bSensorHDREnabled;             // if HDR is enabled
+<<<<<<< HEAD
     bool m_bIsLowMemoryDevice;
     bool m_bIsLongshotLimited;
     int m_nMaxLongshotNum;
     cam_autofocus_state_t mFocusState;
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 };
 
 }; // namespace qcamera

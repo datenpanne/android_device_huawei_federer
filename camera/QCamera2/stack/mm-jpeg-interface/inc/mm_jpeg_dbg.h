@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2012-2015, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -31,7 +35,10 @@
 #define __MM_JPEG_DBG_H__
 
 #include "cam_types.h"
+<<<<<<< HEAD
 #define LOG_DEBUG 1
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 /* Choose debug log level. This will not affect the error logs
    0: turns off CDBG and CDBG_HIGH logs

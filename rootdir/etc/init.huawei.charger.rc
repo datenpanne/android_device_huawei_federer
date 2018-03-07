@@ -1,0 +1,144 @@
+import /init.${ro.usb.config.file}.rc
+
+on early-init
+    # Set init and its forked children's oom_adj.
+    write /proc/1/oom_score_adj -1000
+    start ueventd
+    mount debugfs debugfs /sys/kernel/debug
+
+on init
+    export PATH /sbin:/system/bin
+    export ANDROID_ROOT /system
+    export ANDROID_DATA /data
+    export EXTERNAL_STORAGE /sdcard
+
+    symlink /system/etc /etc
+
+    symlink /system/vendor /vendor
+    mkdir /system
+    mkdir /data
+    mkdir /firmware
+    mkdir /log
+    mkdir /firmware 0771 system system
+    mkdir /persist
+    wait /dev/block/bootdevice/by-name/persist
+    mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev barrier=1
+    write /proc/sys/kernel/panic_on_oops 1
+    chown system log /log
+    chmod 0770 /log
+    write /proc/sys/vm/max_map_count 1000000
+    write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
+
+on charger-fs
+    mount_all fstab.charger
+
+on charger
+    wait /dev/block/bootdevice/by-name/system
+    mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
+    chown root system /sys/class/power_supply/bms/current_now
+    chown root system /sys/class/power_supply/bms/voltage_ocv
+    chmod 0664 /sys/class/power_supply/bms/current_now
+    chmod 0664 /sys/class/power_supply/bms/voltage_ocv
+    start vm_bms
+    class_start charger
+    start vold
+
+on property:sys.userdata_is_ready=1
+    load_all_props
+    usb_init_setting
+    start qcom-post-boot
+
+# /* adb reboot */
+on property:sys.powerctl=*
+   powerctl ${sys.powerctl}
+
+service ueventd /sbin/ueventd
+    critical
+    seclabel u:r:ueventd:s0
+
+service charger /charger
+    class charger
+    group system
+    seclabel u:r:healthd:s0
+
+service adbd /sbin/adbd --root_seclabel=u:r:su:s0
+    disabled
+    socket adbd stream 660 system system
+    seclabel u:r:adbd:s0
+
+
+# /* control cpu core */
+service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
+    class late_start
+    user root
+    disabled
+    oneshot
+
+# /* mount decrypt data */
+on property:vold.decrypt=trigger_default_encryption
+    start defaultcrypto
+
+on nonencrypted
+    trigger data_ready
+
+on data_ready
+    setprop sys.userdata_is_ready 1
+
+on post-fs-data
+    mkdir /data/log/android_logs 0755 system system
+    mkdir /data/log/charge_monitor 0755 system system
+    setprop vold.post_fs_data_done 1
+
+on property:vold.decrypt=trigger_restart_framework
+    trigger data_ready
+
+on property:vold.decrypt=trigger_post_fs_data
+    trigger post-fs-data
+
+service vold /system/bin/vold \
+        --blkid_context=u:r:blkid:s0 --blkid_untrusted_context=u:r:blkid_untrusted:s0 \
+        --fsck_context=u:r:fsck:s0 --fsck_untrusted_context=u:r:fsck_untrusted:s0
+    class core
+    socket vold stream 0660 root mount
+    socket cryptd stream 0660 root mount
+    ioprio be 2
+
+service defaultcrypto /system/bin/vdc --wait cryptfs mountdefaultencrypted
+    disabled
+    oneshot
+
+on property:persist.sys.huawei.debug.on=1
+    start chargelogcat
+    start kmsglogcat
+    start chargelog
+    start chargemonitor
+
+on property:persist.sys.huawei.debug.on=0
+    stop chargelogcat
+    stop kmsglogcat
+    stop chargelog
+    stop chargemonitor
+
+service chargelogcat /system/bin/chargelogcat -r 4096 -n 5 -z 5 -t 5 -p /data/log/android_logs/
+    disabled
+    seclabel u:r:chargelogcat:s0
+
+service kmsglogcat /sbin/kmsgcat -r 4096 -z 5 -n 8 -f /data/log/android_logs/kmsgcat-log
+    disabled
+    seclabel u:r:kmsgcat:s0
+
+service chargelog  /sbin/chargelog.sh 2 51200
+    class late_start
+    root charger
+    disabled
+    seclabel u:r:chargelog:s0
+
+service chargemonitor /system/bin/chargemonitor
+    class late_start
+    user system
+    group system
+
+service vm_bms /system/bin/vm_bms
+    user root
+    group root
+    disabled

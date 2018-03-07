@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 #
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 # Copyright (C) 2016 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,9 +15,29 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+<<<<<<< HEAD
 #
 
 def FullOTA_InstallEnd(info):
     info.script.Mount("/system");
     info.script.AppendExtra('assert(run_program("/tmp/install/bin/device_check.sh") == 0);');
     info.script.Unmount("/system");
+=======
+
+import re
+
+def FullOTA_Assertions(info):
+  AddTrustZoneAssertion(info, info.input_zip)
+
+def IncrementalOTA_Assertions(info):
+  AddTrustZoneAssertion(info, info.input_zip)
+
+def AddTrustZoneAssertion(info, input_zip):
+  android_info = info.input_zip.read("OTA/android-info.txt")
+  m = re.search(r'require\s+version-trustzone\s*=\s*(\S+)', android_info)
+  if m:
+    versions = m.group(1).split('|')
+    if len(versions) and '*' not in versions:
+      cmd = 'assert(federer.verify_trustzone(' + ','.join(['"%s"' % tz for tz in versions]) + ') == "1");'
+      info.script.AppendExtra(cmd)
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e

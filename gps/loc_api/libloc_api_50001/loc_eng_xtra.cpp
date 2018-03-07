@@ -124,6 +124,7 @@ int loc_eng_xtra_init (loc_eng_data_s_type &loc_eng_data,
     loc_eng_xtra_data_s_type *xtra_module_data_ptr;
     ENTRY_LOG();
 
+<<<<<<< HEAD
     if(!loc_eng_data.adapter->mSupportsTimeInjection
        || loc_eng_data.adapter->hasNativeXtraClient()) {
         LOC_LOGD("XTRA is already supported. disable it here.\n");
@@ -131,6 +132,8 @@ int loc_eng_xtra_init (loc_eng_data_s_type &loc_eng_data,
         return 1;
     }
 
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     if(callbacks == NULL) {
         LOC_LOGE("loc_eng_xtra_init: failed, cb is NULL");
     } else {

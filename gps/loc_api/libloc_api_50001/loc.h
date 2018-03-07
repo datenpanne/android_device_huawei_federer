@@ -57,8 +57,11 @@ typedef struct {
     loc_ext_parser location_ext_parser;
     loc_ext_parser sv_ext_parser;
     gps_request_utc_time request_utc_time_cb;
+<<<<<<< HEAD
     gnss_set_system_info set_system_info_cb;
     gnss_sv_status_callback gnss_sv_status_cb;
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 } LocCallbacks;
 
 #ifdef __cplusplus

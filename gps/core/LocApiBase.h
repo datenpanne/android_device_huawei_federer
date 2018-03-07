@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2011-2014, 2016 The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -44,7 +48,10 @@ int decodeAddress(char *addr_string, int string_size,
                   const char *data, int data_size);
 
 #define MAX_ADAPTERS          10
+<<<<<<< HEAD
 #define MAX_FEATURE_LENGTH    100
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 #define TO_ALL_ADAPTERS(adapters, call)                                \
     for (int i = 0; i < MAX_ADAPTERS && NULL != (adapters)[i]; i++) {  \
@@ -82,7 +89,10 @@ class LocApiBase {
     ContextBase *mContext;
     LocAdapterBase* mLocAdapters[MAX_ADAPTERS];
     uint64_t mSupportedMsg;
+<<<<<<< HEAD
     uint8_t mFeaturesSupported[MAX_FEATURE_LENGTH];
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 protected:
     virtual enum loc_api_adapter_err
@@ -132,8 +142,12 @@ public:
     void reportDataCallClosed();
     void requestNiNotify(GpsNiNotification &notify, const void* data);
     void saveSupportedMsgList(uint64_t supportedMsgList);
+<<<<<<< HEAD
     void reportGnssMeasurementData(GnssData &gnssMeasurementData);
     void saveSupportedFeatureList(uint8_t *featureList);
+=======
+    void reportGpsMeasurementData(GpsData &gpsMeasurementData);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
     // downward calls
     // All below functions are to be defined by adapter specific modules:
@@ -175,8 +189,11 @@ public:
     virtual enum loc_api_adapter_err
         setSUPLVersion(uint32_t version);
     virtual enum loc_api_adapter_err
+<<<<<<< HEAD
         setNMEATypes (uint32_t typesMask);
     virtual enum loc_api_adapter_err
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
         setLPPConfig(uint32_t profile);
     virtual enum loc_api_adapter_err
         setSensorControlConfig(int sensorUsage, int sensorProvider);
@@ -203,9 +220,15 @@ public:
                                int gyroBatchesPerSecHigh,
                                int algorithmConfig);
     virtual enum loc_api_adapter_err
+<<<<<<< HEAD
         setAGLONASSProtocol(unsigned long aGlonassProtocol);
     virtual enum loc_api_adapter_err
         setLPPeProtocol(unsigned long lppeCP, unsigned long lppeUP);
+=======
+        setExtPowerConfig(int isBatteryCharging);
+    virtual enum loc_api_adapter_err
+        setAGLONASSProtocol(unsigned long aGlonassProtocol);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     virtual enum loc_api_adapter_err
         getWwanZppFix(GpsLocation & zppLoc);
     virtual enum loc_api_adapter_err
@@ -219,6 +242,7 @@ public:
     virtual void installAGpsCert(const DerEncodedCertificate* pData,
                                  size_t length,
                                  uint32_t slotBitMask);
+<<<<<<< HEAD
     inline virtual void setInSession(bool inSession) {
 
         (void)inSession;
@@ -228,6 +252,11 @@ public:
         // confirm if msgID is not larger than the number of bits in
         // mSupportedMsg
         if ((uint64_t)msgID > (sizeof(mSupportedMsg) << 3)) {
+=======
+    inline virtual void setInSession(bool inSession) {}
+    inline bool isMessageSupported (LocCheckingMessagesID msgID) const {
+        if (msgID > (sizeof(mSupportedMsg) << 3)) {
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
             return false;
         } else {
             uint32_t messageChecker = 1 << msgID;
@@ -261,11 +290,14 @@ public:
       Check if the modem support the service
      */
     virtual bool gnssConstellationConfig();
+<<<<<<< HEAD
 
     /*
        Check if a feature is supported
       */
     bool isFeatureSupported(uint8_t featureVal);
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 };
 
 typedef LocApiBase* (getLocApi_t)(const MsgTask* msgTask,

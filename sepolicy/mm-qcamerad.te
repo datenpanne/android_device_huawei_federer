@@ -1,4 +1,13 @@
 allow mm-qcamerad system_data_file:dir w_dir_perms;
 allow mm-qcamerad dsm_device:chr_file rw_file_perms;
+<<<<<<< HEAD
 
 #allow mm-qcamerad system_file:file execmod;
+=======
+allow mm-qcamerad system_data_file:dir { write remove_name add_name };
+allow mm-qcamerad system_data_file:sock_file unlink;
+
+allow mm-qcamerad system_file:file execmod;
+allow mm-qcamerad system_data_file:sock_file unlink;
+allow mm-qcamerad sensors_socket:sock_file read;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e

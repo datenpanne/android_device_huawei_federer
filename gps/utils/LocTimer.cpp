@@ -183,7 +183,11 @@ class LocTimerDelegate : public LocRankable {
         : mClient(NULL), mLock(NULL), mFutureTime(delay), mContainer(NULL) {}
     inline ~LocTimerDelegate() { if (mLock) { mLock->drop(); mLock = NULL; } }
 public:
+<<<<<<< HEAD
     LocTimerDelegate(LocTimer& client, struct timespec& futureTime, LocTimerContainer* container);
+=======
+    LocTimerDelegate(LocTimer& client, struct timespec& futureTime, bool wakeOnExpire);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     void destroyLocked();
     // LocRankable virtual method
     virtual int ranks(LocRankable& rankable);
@@ -472,6 +476,7 @@ bool LocTimerPollTask::run() {
 /***************************LocTimerDelegate methods***************************/
 
 inline
+<<<<<<< HEAD
 LocTimerDelegate::LocTimerDelegate(LocTimer& client,
                                    struct timespec& futureTime,
                                    LocTimerContainer* container)
@@ -479,6 +484,13 @@ LocTimerDelegate::LocTimerDelegate(LocTimer& client,
       mLock(mClient->mLock->share()),
       mFutureTime(futureTime),
       mContainer(container) {
+=======
+LocTimerDelegate::LocTimerDelegate(LocTimer& client, struct timespec& futureTime, bool wakeOnExpire)
+    : mClient(&client),
+      mLock(mClient->mLock->share()),
+      mFutureTime(futureTime),
+      mContainer(LocTimerContainer::get(wakeOnExpire)) {
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     // adding the timer into the container
     mContainer->add(*this);
 }
@@ -507,6 +519,7 @@ int LocTimerDelegate::ranks(LocRankable& rankable) {
     LocTimerDelegate* timer = (LocTimerDelegate*)(&rankable);
     if (timer) {
         // larger time ranks lower!!!
+<<<<<<< HEAD
         // IOW, if input obj has bigger tv_sec/tv_nsec, this obj outRanks higher
         rank = timer->mFutureTime.tv_sec - mFutureTime.tv_sec;
         if(0 == rank)
@@ -514,6 +527,10 @@ int LocTimerDelegate::ranks(LocRankable& rankable) {
             //rank against tv_nsec for msec accuracy
             rank = (int)(timer->mFutureTime.tv_nsec - mFutureTime.tv_nsec);
         }
+=======
+        // IOW, if input obj has bigger tv_sec, this obj outRanks higher
+        rank = timer->mFutureTime.tv_sec - mFutureTime.tv_sec;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     }
     return rank;
 }
@@ -558,6 +575,7 @@ bool LocTimer::start(unsigned int timeOutInMs, bool wakeOnExpire) {
             futureTime.tv_sec += futureTime.tv_nsec / 1000000000;
             futureTime.tv_nsec %= 1000000000;
         }
+<<<<<<< HEAD
 
         LocTimerContainer* container;
         container = LocTimerContainer::get(wakeOnExpire);
@@ -565,6 +583,10 @@ bool LocTimer::start(unsigned int timeOutInMs, bool wakeOnExpire) {
             mTimer = new LocTimerDelegate(*this, futureTime, container);
             // if mTimer is non 0, success should be 0; or vice versa
         }
+=======
+        mTimer = new LocTimerDelegate(*this, futureTime, wakeOnExpire);
+        // if mTimer is non 0, success should be 0; or vice versa
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
         success = (NULL != mTimer);
     }
     mLock->unlock();

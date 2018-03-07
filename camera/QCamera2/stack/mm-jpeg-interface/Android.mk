@@ -2,9 +2,12 @@ OLD_LOCAL_PATH := $(LOCAL_PATH)
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
+<<<<<<< HEAD
 LOCAL_CLANG_CFLAGS += \
         -Wno-error=unused-variable
 
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 LOCAL_CFLAGS+= -D_ANDROID_
 LOCAL_CFLAGS += -Wall -Wextra -Werror -Wno-unused-parameter
 

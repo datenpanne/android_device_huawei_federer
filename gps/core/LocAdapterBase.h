@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2011-2014,2016 The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -78,6 +82,7 @@ public:
         mLocApi->updateEvtMask();
     }
 
+<<<<<<< HEAD
     inline bool isFeatureSupported(uint8_t featureVal) {
         return mLocApi->isFeatureSupported(featureVal);
     }
@@ -94,6 +99,14 @@ public:
 
         (void)posMode;
     }
+=======
+    // This will be overridden by the individual adapters
+    // if necessary.
+    inline virtual void setUlpProxy(UlpProxyBase* ulp) {}
+    virtual void handleEngineUpEvent();
+    virtual void handleEngineDownEvent();
+    inline virtual void setPositionModeInt(LocPosMode& posMode) {}
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     virtual void startFixInt() {}
     virtual void stopFixInt() {}
     virtual void getZppInt() {}
@@ -121,7 +134,11 @@ public:
                                  const void* data);
     inline virtual bool isInSession() { return false; }
     ContextBase* getContext() const { return mContext; }
+<<<<<<< HEAD
     virtual void reportGnssMeasurementData(GnssData &gnssMeasurementData);
+=======
+    virtual void reportGpsMeasurementData(GpsData &gpsMeasurementData);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 };
 
 } // namespace loc_core

@@ -46,26 +46,38 @@ protected:
     inline virtual ~LocAdapterProxyBase() {
         delete mLocAdapterBase;
     }
+<<<<<<< HEAD
+=======
+    ContextBase* getContext() const {
+        return mLocAdapterBase->getContext();
+    }
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     inline void updateEvtMask(LOC_API_ADAPTER_EVENT_MASK_T event,
                               loc_registration_mask_status isEnabled) {
         mLocAdapterBase->updateEvtMask(event,isEnabled);
     }
 
 public:
+<<<<<<< HEAD
     inline ContextBase* getContext() const {
         return mLocAdapterBase->getContext();
     }
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     inline virtual void handleEngineUpEvent() {};
     inline virtual void handleEngineDownEvent() {};
     inline virtual bool reportPosition(UlpLocation &location,
                                        GpsLocationExtended &locationExtended,
                                        enum loc_sess_status status,
                                        LocPosTechMask loc_technology_mask) {
+<<<<<<< HEAD
 
         (void)location;
         (void)locationExtended;
         (void)status;
         (void)loc_technology_mask;
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
         return false;
     }
 };

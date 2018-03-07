@@ -35,6 +35,7 @@
 #include <LocApiBase.h>
 #include <LBSProxyBase.h>
 
+<<<<<<< HEAD
 #define MAX_XTRA_SERVER_URL_LENGTH 256
 
 /* GPS.conf support */
@@ -96,6 +97,8 @@ typedef struct
     uint32_t       SENSOR_PROVIDER;
 } loc_sap_cfg_s_type;
 
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 namespace loc_core {
 
 class LocAdapterBase;
@@ -119,7 +122,10 @@ public:
     inline LocApiProxyBase* getLocApiProxy() { return mLocApiProxy; }
     inline bool hasAgpsExtendedCapabilities() { return mLBSProxy->hasAgpsExtendedCapabilities(); }
     inline bool hasCPIExtendedCapabilities() { return mLBSProxy->hasCPIExtendedCapabilities(); }
+<<<<<<< HEAD
     inline bool hasNativeXtraClient() { return mLBSProxy->hasNativeXtraClient(); }
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     inline void modemPowerVote(bool power) const { return mLBSProxy->modemPowerVote(power); }
     inline void requestUlp(LocAdapterBase* adapter,
                            unsigned long capabilities) {
@@ -129,12 +135,15 @@ public:
         return mLBSProxy->getIzatDevId();
     }
     inline void sendMsg(const LocMsg *msg) { getMsgTask()->sendMsg(msg); }
+<<<<<<< HEAD
 
     static loc_gps_cfg_s_type mGps_conf;
     static loc_sap_cfg_s_type mSap_conf;
 
     static uint32_t getCarrierCapabilities();
 
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 };
 
 } // namespace loc_core

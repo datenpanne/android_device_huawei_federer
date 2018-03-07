@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2012-2015, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -379,10 +383,13 @@ int mm_app_stream_initbuf(cam_frame_len_offset_t *frame_offset_info,
         }
         return -1;
     }
+<<<<<<< HEAD
     if (stream->num_of_bufs > MM_CAMERA_MAX_NUM_FRAMES) {
         CDBG_ERROR("%s: more stream buffers per stream than allowed", __func__);
         return -1;
     }
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
     rc = mm_app_alloc_bufs(&stream->s_bufs[0],
                            frame_offset_info,
@@ -2526,7 +2533,11 @@ EXIT:
 }
 
 int mm_camera_lib_set_preview_usercb(
+<<<<<<< HEAD
    mm_camera_lib_handle *handle, cam_stream_user_cb cb)
+=======
+   mm_camera_lib_handle *handle, prev_callback cb)
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 {
     if (handle->test_obj.user_preview_cb != NULL) {
         CDBG_ERROR("%s, already set preview callbacks\n", __func__);
@@ -2551,6 +2562,7 @@ int mm_app_set_preview_fps_range(mm_camera_test_obj_t *test_obj,
 
     return rc;
 }
+<<<<<<< HEAD
 
 int mm_app_set_params_impl(mm_camera_test_obj_t *test_obj,
                       cam_intf_parm_type_t param_type,
@@ -2657,3 +2669,5 @@ int mm_app_set_metadata_usercb(mm_camera_test_obj_t *test_obj,
 }
 
 
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e

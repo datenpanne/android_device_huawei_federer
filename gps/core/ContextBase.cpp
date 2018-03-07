@@ -40,6 +40,7 @@
 
 namespace loc_core {
 
+<<<<<<< HEAD
 loc_gps_cfg_s_type ContextBase::mGps_conf {0};
 loc_sap_cfg_s_type ContextBase::mSap_conf {0};
 
@@ -61,6 +62,8 @@ uint32_t ContextBase::getCarrierCapabilities() {
     return capabilities;
 }
 
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 LBSProxyBase* ContextBase::getLBSProxy(const char* libName)
 {
     LBSProxyBase* proxy = NULL;

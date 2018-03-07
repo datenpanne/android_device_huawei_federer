@@ -1168,6 +1168,10 @@ OMX_ERRORTYPE mm_jpeg_session_config_common(mm_jpeg_job_session_t *p_session)
  **/
 OMX_BOOL mm_jpeg_session_abort(mm_jpeg_job_session_t *p_session)
 {
+<<<<<<< HEAD
+=======
+  OMX_ERRORTYPE ret = OMX_ErrorNone;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
   int rc = 0;
 
   CDBG("%s:%d] E", __func__, __LINE__);
@@ -1854,6 +1858,7 @@ uint32_t mm_jpeg_new_client(mm_jpeg_obj *my_obj)
   return client_hdl;
 }
 
+<<<<<<< HEAD
 /** mm_jpeg_check_resolution_change:
  *
  *  Arguments:
@@ -1897,6 +1902,8 @@ static int32_t mm_jpeg_check_resolution_change(mm_jpeg_obj *my_obj,
   return 0;
 }
 
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 /** mm_jpeg_start_job:
  *
  *  Arguments:
@@ -1922,6 +1929,7 @@ int32_t mm_jpeg_start_job(mm_jpeg_obj *my_obj,
   uint8_t client_idx = 0;
   mm_jpeg_job_q_node_t* node = NULL;
   mm_jpeg_job_session_t *p_session = NULL;
+<<<<<<< HEAD
   mm_jpeg_encode_job_t *p_jobparams  = NULL;
   uint32_t work_bufs_need;
   uint32_t work_buf_size = 0, i = 0;
@@ -1940,6 +1948,18 @@ int32_t mm_jpeg_start_job(mm_jpeg_obj *my_obj,
   session_idx = GET_SESSION_IDX(p_jobparams->session_id);
   client_idx = GET_CLIENT_IDX(p_jobparams->session_id);
   CDBG_HIGH("%s:%d] session_idx %d client idx %d", __func__, __LINE__,
+=======
+  mm_jpeg_encode_job_t *p_jobparams  = &job->encode_job;
+  uint32_t work_bufs_need;
+  uint32_t work_buf_size, i;
+
+  *job_id = 0;
+
+  /* check if valid session */
+  session_idx = GET_SESSION_IDX(p_jobparams->session_id);
+  client_idx = GET_CLIENT_IDX(p_jobparams->session_id);
+  CDBG("%s:%d] session_idx %d client idx %d", __func__, __LINE__,
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     session_idx, client_idx);
 
   if ((session_idx >= MM_JPEG_MAX_SESSION) ||
@@ -1956,6 +1976,7 @@ int32_t mm_jpeg_start_job(mm_jpeg_obj *my_obj,
   p_session->work_buffer.ion_info_fd.fd = p_jobparams->work_buf.fd;
   p_session->work_buffer.p_pmem_fd      = p_jobparams->work_buf.fd;
 
+<<<<<<< HEAD
   prev_width = my_obj->prev_w;
   prev_height = my_obj->prev_h;
 
@@ -2014,6 +2035,27 @@ int32_t mm_jpeg_start_job(mm_jpeg_obj *my_obj,
      my_obj->ionBuffer[i].size = CEILING32(work_buf_size);
      CDBG_HIGH("%s: Picture size %d x %d, WorkBufSize = %zu",__func__,
          curr_width, curr_height, my_obj->ionBuffer[i].size);
+=======
+  work_bufs_need = my_obj->num_sessions + NUM_OMX_SESSIONS;
+  if (work_bufs_need > MM_JPEG_CONCURRENT_SESSIONS_COUNT) {
+    work_bufs_need = MM_JPEG_CONCURRENT_SESSIONS_COUNT;
+  }
+  if (p_session->work_buffer.addr) {
+    work_bufs_need--;
+    CDBG_HIGH("%s:%d] HAL passed the work buffer of size = %d; don't alloc internally",
+        __func__, __LINE__, p_session->work_buffer.size);
+  } else
+      p_session->work_buffer = my_obj->ionBuffer[0];
+
+  CDBG_ERROR("%s:%d] >>>> Work bufs need %d, %d", __func__, __LINE__,
+    work_bufs_need, my_obj->work_buf_cnt);
+  work_buf_size = CEILING64(my_obj->max_pic_w) *
+      CEILING64(my_obj->max_pic_h) * 3 / 2;
+  for (i = my_obj->work_buf_cnt; i < work_bufs_need; i++) {
+     my_obj->ionBuffer[i].size = CEILING32(work_buf_size);
+     CDBG_HIGH("%s: Max picture size %d x %d, WorkBufSize = %zu",__func__,
+         my_obj->max_pic_w, my_obj->max_pic_h, my_obj->ionBuffer[i].size);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
      my_obj->ionBuffer[i].addr = (uint8_t *)buffer_allocate(&my_obj->ionBuffer[i], 1);
      my_obj->work_buf_cnt++;
@@ -2523,11 +2565,14 @@ int32_t mm_jpeg_destroy_session_unlocked(mm_jpeg_obj *my_obj,
   }
 
   session_id = p_session->sessionId;
+<<<<<<< HEAD
   if ((GET_SESSION_IDX(session_id) >= MM_JPEG_MAX_SESSION)
     ||(GET_CLIENT_IDX(session_id) >= MAX_JPEG_CLIENT_NUM)) {
     CDBG_ERROR("%s:%d] Invalid Session or Client id", __func__, __LINE__);
     return rc;
   }
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
   /* abort job if in todo queue */
   CDBG("%s:%d] abort todo jobs", __func__, __LINE__);

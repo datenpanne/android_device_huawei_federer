@@ -146,7 +146,10 @@ typedef enum {
     QCAMERA_INTERNAL_EVT_AWB_UPDATE,         // awb update result
     QCAMERA_INTERNAL_EVT_AE_UPDATE,          // ae update result
     QCAMERA_INTERNAL_EVT_FOCUS_POS_UPDATE,   // focus position update result
+<<<<<<< HEAD
     QCAMERA_INTERNAL_EVT_RESET_FRAME_ID,     // reset frame id
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     QCAMERA_INTERNAL_EVT_MAX
 } qcamera_internal_evt_type_t;
 
@@ -162,7 +165,10 @@ typedef struct {
         cam_awb_params_t awb_data;
         cam_ae_params_t ae_data;
         cam_focus_pos_info_t focus_pos;
+<<<<<<< HEAD
         uint32_t reset_frame_idx;
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     };
 } qcamera_sm_internal_evt_payload_t;
 
@@ -177,7 +183,10 @@ public:
     bool isPreviewRunning(); // check if preview is running
     bool isCaptureRunning(); // check if image capture is running
     bool isNonZSLCaptureRunning(); // check if image capture is running in non ZSL mode
+<<<<<<< HEAD
     void releaseThread();
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 private:
     typedef enum {

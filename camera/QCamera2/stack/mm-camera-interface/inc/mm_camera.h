@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2012-2014,2016 The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -45,7 +49,11 @@
 #define MM_CAMERA_CHANNEL_POLL_THREAD_MAX 1
 
 #define MM_CAMERA_DEV_NAME_LEN 32
+<<<<<<< HEAD
 #define MM_CAMERA_DEV_OPEN_TRIES 20
+=======
+#define MM_CAMERA_DEV_OPEN_TRIES 2
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 #define MM_CAMERA_DEV_OPEN_RETRY_SLEEP 20
 #define THREAD_NAME_SIZE 15
 
@@ -362,12 +370,15 @@ typedef struct {
     void *user_data;
 } mm_channel_bundle_t;
 
+<<<<<<< HEAD
 typedef enum {
     MM_CHANNEL_BRACKETING_STATE_OFF,
     MM_CHANNEL_BRACKETING_STATE_WAIT_GOOD_FRAME_IDX,
     MM_CHANNEL_BRACKETING_STATE_ACTIVE,
 } mm_channel_bracketing_state_t;
 
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 typedef struct mm_channel {
     uint32_t my_hdl;
     mm_channel_state_type_t state;
@@ -404,7 +415,11 @@ typedef struct mm_channel {
     uint8_t needLEDFlash;
     uint8_t previewSkipCnt;
 
+<<<<<<< HEAD
     mm_channel_bracketing_state_t bracketingState;
+=======
+    uint8_t need3ABracketing;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     uint8_t isFlashBracketingEnabled;
     uint8_t isZoom1xFrameRequested;
     char threadName[THREAD_NAME_SIZE];
@@ -461,7 +476,10 @@ typedef struct {
     char video_dev_name[MM_CAMERA_MAX_NUM_SENSORS][MM_CAMERA_DEV_NAME_LEN];
     mm_camera_obj_t *cam_obj[MM_CAMERA_MAX_NUM_SENSORS];
     struct camera_info info[MM_CAMERA_MAX_NUM_SENSORS];
+<<<<<<< HEAD
     uint8_t is_yuv[MM_CAMERA_MAX_NUM_SENSORS]; // 1=CAM_SENSOR_YUV, 0=CAM_SENSOR_RAW
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 } mm_camera_ctrl_t;
 
 typedef enum {

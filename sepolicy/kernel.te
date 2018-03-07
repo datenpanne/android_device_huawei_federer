@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 allow kernel log_device:dir search;
 allow kernel log_device:dir write;
 allow kernel log_device:dir add_name;
@@ -7,4 +8,8 @@ allow kernel log_device:file { read write open };
 # ashmem shrinker causes this denial from kswapd
 allow kernel untrusted_app:fd use;
 
+=======
+allow kernel log_device:dir { write add_name };
+allow kernel log_device:file { read write create open };
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 allow kernel untrusted_app_tmpfs:file write;

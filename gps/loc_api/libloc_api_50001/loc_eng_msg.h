@@ -289,11 +289,19 @@ struct LocEngGetZpp : public LocMsg {
     void send() const;
 };
 
+<<<<<<< HEAD
 struct LocEngReportGnssMeasurement : public LocMsg {
     void* mLocEng;
     const GnssData mGnssData;
     LocEngReportGnssMeasurement(void* locEng,
                                GnssData &gnssData);
+=======
+struct LocEngReportGpsMeasurement : public LocMsg {
+    void* mLocEng;
+    const GpsData mGpsData;
+    LocEngReportGpsMeasurement(void* locEng,
+                               GpsData &gpsData);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     virtual void proc() const;
     void locallog() const;
     virtual void log() const;

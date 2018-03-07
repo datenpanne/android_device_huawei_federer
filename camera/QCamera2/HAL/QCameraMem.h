@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2012-2016, The Linux Foundataion. All rights reserved.
+=======
+/* Copyright (c) 2012-2015, The Linux Foundataion. All rights reserved.
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -40,9 +44,12 @@ extern "C" {
 #include <mm_camera_interface.h>
 }
 
+<<<<<<< HEAD
 //OFFSET, SIZE, USAGE, TIMESTAMP, FORMAT
 #define VIDEO_METADATA_NUM_INTS 5
 
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 namespace qcamera {
 
 class QCameraMemoryPool;
@@ -195,6 +202,7 @@ public:
     virtual void deallocate();
     virtual camera_memory_t *getMemory(uint32_t index, bool metadata) const;
     virtual int getMatchBufIndex(const void *opaque, bool metadata) const;
+<<<<<<< HEAD
     native_handle_t *updateNativeHandle(uint32_t index, bool metadata = true);
     int closeNativeHandle(const void *data, bool metadata);
     static int closeNativeHandle(const void *data);
@@ -204,6 +212,13 @@ private:
     uint8_t mMetaBufCount;
     native_handle_t *mNativeHandle[MM_CAMERA_MAX_NUM_FRAMES];
 };
+=======
+
+private:
+    camera_memory_t *mMetadata[MM_CAMERA_MAX_NUM_FRAMES];
+};
+;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 // Gralloc Memory is acquired from preview window
 class QCameraGrallocMemory : public QCameraMemory {

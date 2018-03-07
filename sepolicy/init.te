@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 allow init block_device:blk_file write;
 allow init mpctl_socket:sock_file write;
 allow init self:socket read;
@@ -19,3 +20,14 @@ allow init vfat:dir search;
 allow init oem_block_device:blk_file write;
 allow init gesture_sysfs:file setattr;
 allow init fingerprint_sysfs:file setattr;
+=======
+allow init asec_apk_file:dir mounton;
+allow init block_device:blk_file setattr;
+allow init proc:dir write;
+allow init sysfs:lnk_file setattr;
+allow init vfat:dir setattr;
+allow init vfat:file { write open };
+allow init diag:process { transition rlimitinh siginh };
+allow init property_socket:sock_file { write };
+allow init vfat:dir search;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e

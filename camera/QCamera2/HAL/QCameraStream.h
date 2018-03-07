@@ -114,7 +114,11 @@ public:
     uint32_t mDumpSkipCnt;
 
     void cond_wait();
+<<<<<<< HEAD
     void cond_signal(bool forceExit = false);
+=======
+    void cond_signal();
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 private:
     uint32_t mCamHandle;

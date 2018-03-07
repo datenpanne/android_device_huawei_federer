@@ -32,7 +32,13 @@ TARGET_2ND_CPU_VARIANT := cortex-a53
 
 TARGET_BOARD_SUFFIX := _64
 TARGET_USES_64_BIT_BINDER := true
+<<<<<<< HEAD
 TARGET_BOARD_PLATFORM := msm8916
+=======
+
+TARGET_BOARD_PLATFORM := msm8916
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno405
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := msm8916
@@ -40,7 +46,11 @@ TARGET_NO_BOOTLOADER := true
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80000000
+<<<<<<< HEAD
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk androidboot.selinux=permissive
+=======
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_DTBTOOL_ARGS := -2
@@ -50,12 +60,18 @@ TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_USES_UNCOMPRESSED_KERNEL := true
+<<<<<<< HEAD
 TARGET_KERNEL_SOURCE := kernel/huawei/t2-common/
 TARGET_KERNEL_CONFIG := msm-fdr_defconfig
 
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
+=======
+TARGET_KERNEL_SOURCE := kernel/huawei/federer/
+TARGET_KERNEL_CONFIG := msm-fdr_defconfig
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 # Audio
 AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
 AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := true
@@ -63,11 +79,15 @@ AUDIO_FEATURE_HUAWEI_SOUND_PARAM_PATH := true
 AUDIO_FEATURE_ENABLED_NEW_SAMPLE_RATE := false
 BOARD_USES_ALSA_AUDIO := true
 USE_CUSTOM_AUDIO_POLICY := 1
+<<<<<<< HEAD
 USE_XML_AUDIO_POLICY_CONF := 1
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
+<<<<<<< HEAD
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 
 # Bootanimation
@@ -87,6 +107,38 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
 
+=======
+BLUETOOTH_HCI_USE_MCT := true
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
+
+# Bootanimation
+TARGET_BOOTANIMATION_PRELOAD := true
+TARGET_BOOTANIMATION_TEXTURE_CACHE := true
+
+# Camera
+#COMMON_GLOBAL_CFLAGS += -DCAMERA_VENDOR_L_COMPAT
+#BOARD_CAMERA_SENSORS := imx219_liteon_pad gc2355_ofilm_ohw2f03_pad
+#TARGET_USE_VENDOR_CAMERA_EXT := true
+USE_DEVICE_SPECIFIC_CAMERA := true
+
+# Charger
+BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_DISABLE_INIT_BLANK := true
+BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
+
+# CNE
+TARGET_LDPRELOAD := libNimsWrap.so
+
+ifeq ($(HOST_OS),linux)
+    ifeq ($(TARGET_BUILD_VARIANT),user)
+        ifeq ($(WITH_DEXPREOPT),)
+            WITH_DEXPREOPT := true
+            WITH_DEXPREOPT_BOOT_IMG_ONLY ?= true
+        endif
+    endif
+endif
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 # Display
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
@@ -101,6 +153,7 @@ TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 USE_OPENGL_RENDERER := true
 
+<<<<<<< HEAD
 # FM
 #AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
 #BOARD_HAVE_QCOM_FM := true
@@ -110,17 +163,30 @@ USE_OPENGL_RENDERER := true
 EXTENDED_FONT_FOOTPRINT := true
 # Flags
 #BOARD_NO_SECURE_DISCARD := true
+=======
+# Fonts
+EXTENDED_FONT_FOOTPRINT := true
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 # GPS
 TARGET_GPS_HAL_PATH := $(DEVICE_PATH)/gps
 TARGET_NO_RPC := true
 
+<<<<<<< HEAD
+=======
+# Init
+TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
 # Partitions
 TARGET_USERIMAGES_USE_EXT4 := true
+<<<<<<< HEAD
 TARGET_USERIMAGES_USE_F2FS := true
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
 # /proc/partitions * 2 * BLOCK_SIZE (512) = size in bytes
@@ -133,8 +199,12 @@ BOARD_PERSISTIMAGE_PARTITION_SIZE := 67108864
 BOARD_FLASH_BLOCK_SIZE := 131072 # blockdev --getbsz /dev/block/mmcblk0p19
 
 # Power
+<<<<<<< HEAD
 TARGET_POWERHAL_VARIANT := qcom
 TARGET_POWERHAL_SET_INTERACTIVE_EXT := $(DEVICE_PATH)/power/power_ext.c
+=======
+TARGET_POWERHAL_VARIANT := federer
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
@@ -144,6 +214,7 @@ BOARD_USES_QC_TIME_SERVICES := true
 BOARD_USES_QCOM_HARDWARE := true
 
 # Recovery
+<<<<<<< HEAD
 TARGET_RECOVERY_DEVICE_DIRS += $(DEVICE_PATH)
 #RECOVERY_VARIANT := twrp
 ifneq ($(RECOVERY_VARIANT),twrp)
@@ -161,13 +232,24 @@ TW_INPUT_BLACKLIST := "accelerometer\x0alis3dh-accel"
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 BOARD_SUPPRESS_SECURE_ERASE := true
 endif
+=======
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
+#TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/etc/twrp.fstab
+TARGET_RECOVERY_PIXEL_FORMAT := "RGB_565"
+TARGET_RECOVERY_DENSITY := hdpi
+TARGET_USERIMAGES_USE_EXT4 := true
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 # Release
 #TARGET_BOARD_INFO_FILE := $(DEVICE_PATH)/board-info.txt
 
 #Release tools
 #TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_federer
+<<<<<<< HEAD
 TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)/releasetools
+=======
+#TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)/releasetools
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 # RIL
 TARGET_RIL_VARIANT := caf
@@ -179,16 +261,23 @@ BOARD_SEPOLICY_DIRS += \
     device/huawei/federer/sepolicy
 
 # Vendor Init
+<<<<<<< HEAD
 TARGET_INIT_VENDOR_LIB := libinit_federer
 
 # Vold
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 
+=======
+TARGET_UNIFIED_DEVICE := true
+TARGET_INIT_VENDOR_LIB := libinit_federer
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 # Wifi
 BOARD_HAS_QCOM_WLAN     := true
 BOARD_HAS_QCOM_WLAN_SDK := true
 BOARD_HOSTAPD_DRIVER    := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_qcwcn
+<<<<<<< HEAD
 
 BOARD_WLAN_DEVICE       := qcwcn
 
@@ -206,5 +295,21 @@ WPA_SUPPLICANT_VERSION  := VER_0_8_X
 #TARGET_USES_QCOM_WCNSS_QMI := true
 TARGET_USES_WCNSS_CTRL  := true
 
+=======
+BOARD_WLAN_DEVICE       := qcwcn
+BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
+WIFI_DRIVER_FW_PATH_AP  := "ap"
+WIFI_DRIVER_FW_PATH_STA := "sta"
+WPA_SUPPLICANT_VERSION  := VER_0_8_X
+TARGET_PROVIDES_WCNSS_QMI := true
+TARGET_USES_QCOM_WCNSS_QMI := true
+TARGET_USES_WCNSS_CTRL  := true
+
+# Vold
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
+
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 # inherit from the proprietary version
 -include vendor/huawei/federer/BoardConfigVendor.mk

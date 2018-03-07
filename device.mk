@@ -29,7 +29,11 @@ PRODUCT_CHARACTERISTICS := \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/android.software.app_widgets.xml:system/etc/permissions/android.software.app_widgets.xml \
+<<<<<<< HEAD
     frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
+=======
+    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     frameworks/native/data/etc/android.hardware.opengles.aep.xml:system/etc/permissions/android.hardware.opengles.aep.xml
 
 # Screen density
@@ -56,6 +60,7 @@ PRODUCT_PACKAGES += \
     libqcomvoiceprocessing \
     tinymix
 
+<<<<<<< HEAD
 # Audio configuration
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml \
@@ -68,6 +73,15 @@ PRODUCT_COPY_FILES += \
     $(TOPDIR)frameworks/av/services/audiopolicy/config/default_volume_tables.xml:/system/etc/default_volume_tables.xml \
     $(TOPDIR)frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:/system/etc/r_submix_audio_policy_configuration.xml \
     $(TOPDIR)frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:/system/etc/usb_audio_policy_configuration.xml
+=======
+
+# Audio configuration
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/audio/aanc_tuning_mixer.txt:system/etc/aanc_tuning_mixer.txt \
+    $(LOCAL_PATH)/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
+    $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
+    $(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths_skuk.xml
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml
@@ -86,15 +100,29 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     init.qcom.bt.sh
 
+<<<<<<< HEAD
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml
+=======
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
+    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8916 \
+<<<<<<< HEAD
     libmm-qcamera \
+=======
+    libmm-camera \
+    libmmcamera_interface \
+    libmmcamera_interface2 \
+    libmmjpeg_interface \
+    libqomx_core \
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     Snap
 
 PRODUCT_COPY_FILES += \
@@ -105,11 +133,29 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
    camera2.portability.force_api=1
 
 
+<<<<<<< HEAD
 # Compat symbols
 PRODUCT_PACKAGES += \
     libshim_cutils \
     libshim_hwril \
     libshim_sound_trigger
+=======
+# Compatibility
+PRODUCT_PACKAGES += \
+    libshim_hwcamera \
+    libshim_cutils \
+    libshim_hwril \
+    libshim_sound_trigger \
+    libboringssl-compat \
+    libstlport
+
+
+# CNE
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    persist.cne.feature=0 \
+#    persist.dpm.feature=3
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 # Display
 PRODUCT_PACKAGES += \
@@ -122,8 +168,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
 
+<<<<<<< HEAD
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/calib_fdr.cfg:system/etc/calib_fdr.cfg
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 # Filesystem
 PRODUCT_PACKAGES += \
@@ -133,15 +182,44 @@ PRODUCT_PACKAGES += \
 # FM
 #PRODUCT_PACKAGES += \
 #    FMRadio \
+<<<<<<< HEAD
 #    libfmjni
+=======
+#    libfmjni \
+#    qcom.fmradio
+#    init.qcom.fm.sh
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8916
 
 PRODUCT_COPY_FILES += \
+<<<<<<< HEAD
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
 
+=======
+    $(LOCAL_PATH)/gps/flp.conf:system/etc/flp.conf \
+    $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf \
+    $(LOCAL_PATH)/gps/izat.conf:system/etc/izat.conf \
+    $(LOCAL_PATH)/gps/quipc.conf:system/etc/quipc.conf \
+    $(LOCAL_PATH)/gps/sap.conf:system/etc/sap.conf
+
+# Properties
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.gps.qc_nlp_in_use=1 \
+    persist.loc.nlp_name=com.qualcomm.location \
+    ro.gps.agps_provider=1
+
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/perm/imscm.xml:system/etc/permissions/imscm.xml
+#    $(LOCAL_PATH)/configs/ims/ims.xml:system/etc/permissions/ims.xml \
+#    $(LOCAL_PATH)/configs/ims/qti_permissions.xml:system/etc/permissions/qti_permissions.xml
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 # IRSC
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
@@ -154,11 +232,23 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/synaptics_dsx.kl:system/usr/keylayout/synaptics_dsx.kl \
     $(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
 
+<<<<<<< HEAD
+=======
+# Keyhandler
+PRODUCT_PACKAGES += \
+    CMActions \
+    com.cyanogenmod.keyhandler
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 # Keystore
 PRODUCT_PACKAGES += \
     keystore.msm8916
 
+<<<<<<< HEAD
 # Light
+=======
+# Lights
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 PRODUCT_PACKAGES += \
     lights.msm8916
 
@@ -183,24 +273,37 @@ PRODUCT_PACKAGES += \
     libOmxQcelp13Enc \
     libOmxVdec \
     libOmxVenc \
+<<<<<<< HEAD
     libstagefrighthw
 
 # Properties
 #PRODUCT_PROPERTY_OVERRIDES += \
 #    drm.service.enabled=1 \
 #    vidc.enc.narrow.searchrange=1
+=======
+    libstagefrighthw \
+    qcmediaplayer
+
+PRODUCT_BOOT_JARS += \
+    qcmediaplayer
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 # Power HAL
 PRODUCT_PACKAGES += \
     power.msm8916
 
+<<<<<<< HEAD
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/msm_irqbalance.conf:system/vendor/etc/msm_irqbalance.conf
 
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
     init.class_main.sh \
+<<<<<<< HEAD
     init.qcom.opengles.sh \
     init.qcom.rc \
     init.qcom.power.rc \
@@ -216,6 +319,23 @@ PRODUCT_PACKAGES += \
 #    init.qcom.syspart_fixup.sh \
 #    init.qcom.bms.sh \
 #    init.qcom.class_core.sh \     init.qcom.sh \
+=======
+    init.huawei.charger.rc \
+    init.qcom.bms.sh \
+    init.qcom.class_core.sh \
+    init.qcom.rc \
+    init.qcom.sh \
+    init.qcom.power.rc \
+    init.qcom.power.sh \
+    init.qcom.syspart_fixup.sh \
+    init.qcom.usb.rc \
+    init.qcom.usb.sh \
+    iinit.usb.configfs.rc \
+    init.target-from-init.rc \
+    init.target.rc \
+    ueventd.qcom.rc \
+    init.qcom.early_boot.sh
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 # RIL
 PRODUCT_PACKAGES += \
@@ -223,6 +343,7 @@ PRODUCT_PACKAGES += \
     libxml2
 
 PRODUCT_COPY_FILES += \
+<<<<<<< HEAD
     $(LOCAL_PATH)/configs/data/dsi_config.xml:system/etc/data/dsi_config.xml \
     $(LOCAL_PATH)/configs/data/netmgr_config.xml:system/etc/data/netmgr_config.xml \
     $(LOCAL_PATH)/configs/data/qmi_config.xml:system/etc/data/qmi_config.xml
@@ -235,6 +356,22 @@ PRODUCT_COPY_FILES += \
 # Script
 PRODUCT_COPY_FILES += \
      $(LOCAL_PATH)/releasetools/device_check.sh:install/bin/device_check.sh
+=======
+    $(LOCAL_PATH)/configs/dsi_config.xml:system/etc/data/dsi_config.xml \
+    $(LOCAL_PATH)/configs/netmgr_config.xml:system/etc/data/netmgr_config.xml \
+    $(LOCAL_PATH)/configs/qmi_config.xml:system/etc/data/qmi_config.xml
+
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+    frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
+
+# Sensor HAL
+#PRODUCT_PACKAGES += \
+#    calmodule.cfg \
+#    libcalmodule_common \
+#    sensors.msm8916
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
@@ -243,7 +380,11 @@ PRODUCT_COPY_FILES += \
 
 # Thermal
 PRODUCT_COPY_FILES += \
+<<<<<<< HEAD
     $(LOCAL_PATH)/configs/thermal-engine.conf:system/etc/thermal-engine-8939.conf
+=======
+    $(LOCAL_PATH)/configs/thermal-engine.conf:system/etc/thermal-engine.conf
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 # USB
 PRODUCT_PACKAGES += \
@@ -255,35 +396,53 @@ PRODUCT_COPY_FILES += \
 
 
 # Wifi
+<<<<<<< HEAD
 # Properties
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.disableWifiApFirmwareReload=true \
     wifi.interface=wlan0
 
 # Wifi
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 PRODUCT_PACKAGES += \
     libqsap_sdk \
     libQWiFiSoftApCfg \
     libwpa_client \
+<<<<<<< HEAD
     wcnss_service
 
 PRODUCT_PACKAGES += \
     hostapd \
     wpa_supplicant \
     wpa_supplicant.conf
+=======
+    libwcnss_qmi \
+    hostapd \
+    dhcpcd.conf \
+    wpa_supplicant \
+    wpa_supplicant.conf \
+    wcnss_service
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/hostapd.accept:system/etc/hostapd/hostapd.accept \
     $(LOCAL_PATH)/configs/hostapd.conf:system/etc/hostapd/hostapd_default.conf \
     $(LOCAL_PATH)/configs/hostapd.deny:system/etc/hostapd/hostapd.deny \
     $(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+<<<<<<< HEAD
     $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini
+=======
+    $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/lowi.conf:system/etc/lowi.conf
 
 PRODUCT_COPY_FILES += \
+<<<<<<< HEAD
     $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
     $(LOCAL_PATH)/wifi/WCNSS_wlan_dictionary.dat:system/etc/wifi/WCNSS_wlan_dictionary.dat \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
@@ -292,6 +451,16 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_hw_wlan_nv.bin:system/etc/wifi/nvbin/msm8916_239_0x04_0x01_0x00_nv.bin \
     $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/wifi/nvbin/WCNSS_cfg.dat
+=======
+    $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
+    $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
+    $(LOCAL_PATH)/wifi/WCNSS_wlan_dictionary.dat:system/etc/wifi/WCNSS_wlan_dictionary.dat \
+    $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
+# Test
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/wifi/WCNSS_hw_wlan_nv.bin:system/etc/firmware/wifi/WCNSS_hw_wlan_nv.bin
+#    $(LOCAL_PATH)/wifi/WCNSS_hw_wlan_nv_t2_a01l_va.bin:system/etc/firmware/wifi/WCNSS_hw_wlan_nv_t2_a01l_va.bin
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \

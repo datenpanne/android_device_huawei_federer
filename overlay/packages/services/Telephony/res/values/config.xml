@@ -18,10 +18,13 @@
     <!-- Show enabled lte option for lte device -->
     <bool name="config_enabled_lte">true</bool>
 
+<<<<<<< HEAD
     <!-- Determine whether calls to mute the microphone in PhoneUtils
                   are routed through the android.media.AudioManager class (true) or through
          the com.android.internal.telephony.Phone interface (false). -->
     <bool name="send_mic_mute_to_AudioManager">true</bool>
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     <bool name="allow_emergency_numbers_in_call_log">true</bool>
 
     <!-- For this option to exist and work, the parameter name must be defined -->

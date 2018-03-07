@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2011-2014,2016 The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -132,7 +136,10 @@ LocApiBase::LocApiBase(const MsgTask* msgTask,
     mMask(0), mSupportedMsg(0), mContext(context)
 {
     memset(mLocAdapters, 0, sizeof(mLocAdapters));
+<<<<<<< HEAD
     memset(mFeaturesSupported, 0, sizeof(mFeaturesSupported));
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 }
 
 LOC_API_ADAPTER_EVENT_MASK_T LocApiBase::getEvtMask()
@@ -237,18 +244,26 @@ void LocApiBase::reportPosition(UlpLocation &location,
     LOC_LOGV("flags: %d\n  source: %d\n  latitude: %f\n  longitude: %f\n  "
              "altitude: %f\n  speed: %f\n  bearing: %f\n  accuracy: %f\n  "
              "timestamp: %lld\n  rawDataSize: %d\n  rawData: %p\n  "
+<<<<<<< HEAD
              "Session status: %d\n Technology mask: %u\n "
              "SV used in fix (gps/glo/bds/gal) : (%x/%x/%x/%x)",
+=======
+             "Session status: %d\n Technology mask: %u",
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
              location.gpsLocation.flags, location.position_source,
              location.gpsLocation.latitude, location.gpsLocation.longitude,
              location.gpsLocation.altitude, location.gpsLocation.speed,
              location.gpsLocation.bearing, location.gpsLocation.accuracy,
              location.gpsLocation.timestamp, location.rawDataSize,
+<<<<<<< HEAD
              location.rawData, status, loc_technology_mask,
              locationExtended.gnss_sv_used_ids.gps_sv_used_ids_mask,
              locationExtended.gnss_sv_used_ids.glo_sv_used_ids_mask,
              locationExtended.gnss_sv_used_ids.bds_sv_used_ids_mask,
              locationExtended.gnss_sv_used_ids.gal_sv_used_ids_mask);
+=======
+             location.rawData, status, loc_technology_mask);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     // loop through adapters, and deliver to all adapters.
     TO_ALL_LOCADAPTERS(
         mLocAdapters[i]->reportPosition(location,
@@ -264,6 +279,7 @@ void LocApiBase::reportSv(GnssSvStatus &svStatus,
                   void* svExt)
 {
     // print the SV info before delivering
+<<<<<<< HEAD
     LOC_LOGV("num sv: %d", svStatus.num_svs);
     for (int i = 0; i < svStatus.num_svs && i < GNSS_MAX_SVS; i++) {
         LOC_LOGV("   %03d:   %02d    %d    %f    %f    %f   0x%02X",
@@ -274,6 +290,20 @@ void LocApiBase::reportSv(GnssSvStatus &svStatus,
                  svStatus.gnss_sv_list[i].elevation,
                  svStatus.gnss_sv_list[i].azimuth,
                  svStatus.gnss_sv_list[i].flags);
+=======
+    LOC_LOGV("num sv: %d\n  ephemeris mask: %dxn  almanac mask: %x\n  gps/glo/bds in use"
+             " mask: %x/%x/%x\n      sv: prn         snr       elevation      azimuth",
+             svStatus.num_svs, svStatus.ephemeris_mask,
+             svStatus.almanac_mask, svStatus.gps_used_in_fix_mask,
+             svStatus.glo_used_in_fix_mask, svStatus.bds_used_in_fix_mask);
+    for (int i = 0; i < svStatus.num_svs && i < GPS_MAX_SVS; i++) {
+        LOC_LOGV("   %d:   %d    %f    %f    %f",
+                 i,
+                 svStatus.sv_list[i].prn,
+                 svStatus.sv_list[i].snr,
+                 svStatus.sv_list[i].elevation,
+                 svStatus.sv_list[i].azimuth);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     }
     // loop through adapters, and deliver to all adapters.
     TO_ALL_LOCADAPTERS(
@@ -362,21 +392,31 @@ void LocApiBase::saveSupportedMsgList(uint64_t supportedMsgList)
     mSupportedMsg = supportedMsgList;
 }
 
+<<<<<<< HEAD
 void LocApiBase::saveSupportedFeatureList(uint8_t *featureList)
 {
     memcpy((void *)mFeaturesSupported, (void *)featureList, sizeof(mFeaturesSupported));
 }
 
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 void* LocApiBase :: getSibling()
     DEFAULT_IMPL(NULL)
 
 LocApiProxyBase* LocApiBase :: getLocApiProxy()
     DEFAULT_IMPL(NULL)
 
+<<<<<<< HEAD
 void LocApiBase::reportGnssMeasurementData(GnssData &gnssMeasurementData)
 {
     // loop through adapters, and deliver to all adapters.
     TO_ALL_LOCADAPTERS(mLocAdapters[i]->reportGnssMeasurementData(gnssMeasurementData));
+=======
+void LocApiBase::reportGpsMeasurementData(GpsData &gpsMeasurementData)
+{
+    // loop through adapters, and deliver to all adapters.
+    TO_ALL_LOCADAPTERS(mLocAdapters[i]->reportGpsMeasurementData(gpsMeasurementData));
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 }
 
 enum loc_api_adapter_err LocApiBase::
@@ -455,10 +495,13 @@ enum loc_api_adapter_err LocApiBase::
 DEFAULT_IMPL(LOC_API_ADAPTER_ERR_SUCCESS)
 
 enum loc_api_adapter_err LocApiBase::
+<<<<<<< HEAD
     setNMEATypes (uint32_t typesMask)
 DEFAULT_IMPL(LOC_API_ADAPTER_ERR_SUCCESS)
 
 enum loc_api_adapter_err LocApiBase::
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     setLPPConfig(uint32_t profile)
 DEFAULT_IMPL(LOC_API_ADAPTER_ERR_SUCCESS)
 
@@ -494,12 +537,21 @@ enum loc_api_adapter_err LocApiBase::
 DEFAULT_IMPL(LOC_API_ADAPTER_ERR_SUCCESS)
 
 enum loc_api_adapter_err LocApiBase::
+<<<<<<< HEAD
     setAGLONASSProtocol(unsigned long aGlonassProtocol)
 DEFAULT_IMPL(LOC_API_ADAPTER_ERR_SUCCESS)
 
 enum loc_api_adapter_err LocApiBase::
         setLPPeProtocol(unsigned long lppeCP, unsigned long lppeUP)
     DEFAULT_IMPL(LOC_API_ADAPTER_ERR_SUCCESS)
+=======
+    setExtPowerConfig(int isBatteryCharging)
+DEFAULT_IMPL(LOC_API_ADAPTER_ERR_SUCCESS)
+
+enum loc_api_adapter_err LocApiBase::
+    setAGLONASSProtocol(unsigned long aGlonassProtocol)
+DEFAULT_IMPL(LOC_API_ADAPTER_ERR_SUCCESS)
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 enum loc_api_adapter_err LocApiBase::
    getWwanZppFix(GpsLocation& zppLoc)
@@ -563,6 +615,7 @@ bool LocApiBase::
     gnssConstellationConfig()
 DEFAULT_IMPL(false)
 
+<<<<<<< HEAD
 bool LocApiBase::
     isFeatureSupported(uint8_t featureVal)
 {
@@ -573,4 +626,6 @@ bool LocApiBase::
     return ((mFeaturesSupported[arrayIndex] >> bitPos ) & 0x1);
 }
 
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 } // namespace loc_core

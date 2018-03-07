@@ -40,6 +40,7 @@
 #include "QCamera2HWI.h"
 #include "QCameraParameters.h"
 
+<<<<<<< HEAD
 #define PI 3.14159265
 #define ASPECT_TOLERANCE 0.001
 #define CAMERA_DEFAULT_LONGSHOT_STAGES 4
@@ -48,6 +49,9 @@
    This is derived for 3FPS of snapshot frame rate, 1.5FPS of burst frame rate and
    2 buffers for ISP ping-pong*/
 #define MIN_LONGSHOT_LIMITED_BUFFERS 9
+=======
+#define ASPECT_TOLERANCE 0.001
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 namespace qcamera {
 // Parameter keys to communicate between camera application and driver.
@@ -167,14 +171,20 @@ const char QCameraParameters::KEY_QC_MANUAL_WB_VALUE[] = "manual-wb-value";
 const char QCameraParameters::KEY_INTERNAL_PERVIEW_RESTART[] = "internal-restart";
 const char QCameraParameters::KEY_QC_LONG_SHOT[] = "long-shot";
 const char QCameraParameters::KEY_QC_LONGSHOT_SUPPORTED[] = "longshot-supported";
+<<<<<<< HEAD
 const char QCameraParameters::KEY_QC_MAX_LONGSHOT_SNAP[] = "max-longshot-snap";
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 const char QCameraParameters::KEY_QC_4K2K_LIVESNAP_SUPPORTED[] = "4k2k-video-snapshot-supported";
 const char QCameraParameters::KEY_QC_ZSL_HDR_SUPPORTED[] = "zsl-hdr-supported";
 const char QCameraParameters::KEY_QC_AUTO_HDR_SUPPORTED[] = "auto-hdr-supported";
 
 const char QCameraParameters::WHITE_BALANCE_MANUAL[] = "manual";
 const char QCameraParameters::FOCUS_MODE_MANUAL_POSITION[] = "manual";
+<<<<<<< HEAD
 const char QCameraParameters::KEY_QC_CACHE_VIDEO_BUFFERS[] = "cache-video-buffers";
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 // Values for effect settings.
 const char QCameraParameters::EFFECT_EMBOSS[] = "emboss";
@@ -389,11 +399,14 @@ const char QCameraParameters::KEY_QC_WB_CCT_MODE[] = "color-temperature";
 const char QCameraParameters::KEY_QC_WB_GAIN_MODE[] = "rbgb-gains";
 
 
+<<<<<<< HEAD
 #ifdef TARGET_TS_MAKEUP
 const char QCameraParameters::KEY_TS_MAKEUP[] = "tsmakeup";
 const char QCameraParameters::KEY_TS_MAKEUP_WHITEN[] = "tsmakeup_whiten";
 const char QCameraParameters::KEY_TS_MAKEUP_CLEAN[] = "tsmakeup_clean";
 #endif
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 static const char* portrait = "portrait";
 static const char* landscape = "landscape";
 
@@ -681,6 +694,10 @@ const QCameraParameters::QCameraMap<int>
     { TRUE_PORTRAIT_ON,  1 }
 };
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 const QCameraParameters::QCameraMap<cam_cds_mode_type_t>
         QCameraParameters::CDS_MODES_MAP[] = {
     { CDS_MODE_OFF, CAM_CDS_MODE_OFF },
@@ -754,11 +771,15 @@ QCameraParameters::QCameraParameters()
       mFlashValue(CAM_FLASH_MODE_OFF),
       mFlashDaemonValue(CAM_FLASH_MODE_OFF),
       m_bTruePortraitOn(false),
+<<<<<<< HEAD
       m_bSensorHDREnabled(false),
       m_bIsLowMemoryDevice(false),
       m_bIsLongshotLimited(false),
       m_nMaxLongshotNum(-1),
       mFocusState(CAM_AF_NOT_FOCUSED)
+=======
+      m_bSensorHDREnabled(false)
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 {
     char value[PROPERTY_VALUE_MAX];
     // TODO: may move to parameter instead of sysprop
@@ -770,7 +791,11 @@ QCameraParameters::QCameraParameters()
     // For thermal mode, it should be set as system property
     // because system property applies to all applications, while
     // parameters only apply to specific app.
+<<<<<<< HEAD
     property_get("persist.camera.thermal.mode", value, "fps");
+=======
+    property_get("persist.camera.thermal.mode", value, "frameskip");
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     if (!strcmp(value, "frameskip")) {
         m_ThermalMode = QCAMERA_THERMAL_ADJUST_FRAMESKIP;
     } else {
@@ -781,7 +806,19 @@ QCameraParameters::QCameraParameters()
 
     memset(&m_LiveSnapshotSize, 0, sizeof(m_LiveSnapshotSize));
     memset(&m_default_fps_range, 0, sizeof(m_default_fps_range));
+<<<<<<< HEAD
     memset(&m_hfrFpsRange, 0, sizeof(m_hfrFpsRange));
+=======
+    memset(&m_MTFBracketInfo, 0, sizeof(m_MTFBracketInfo));
+    memset(&m_hfrFpsRange, 0, sizeof(m_hfrFpsRange));
+
+    // init focus steps to -1, invalid steps
+    for (int i = 0; i < MAX_AF_BRACKETING_VALUES; i++) {
+       m_MTFBracketInfo.focus_steps[i] = -1;
+    }
+
+    m_currNumBufMTF = 0;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 }
 
 /*===========================================================================
@@ -840,17 +877,33 @@ QCameraParameters::QCameraParameters(const String8 &params)
     mFlashValue(CAM_FLASH_MODE_OFF),
     mFlashDaemonValue(CAM_FLASH_MODE_OFF),
     m_bTruePortraitOn(false),
+<<<<<<< HEAD
     m_bSensorHDREnabled(false),
     m_bIsLowMemoryDevice(false),
     m_bIsLongshotLimited(false),
     m_nMaxLongshotNum(-1),
     mFocusState(CAM_AF_NOT_FOCUSED)
+=======
+    m_bSensorHDREnabled(false)
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 {
     memset(&m_LiveSnapshotSize, 0, sizeof(m_LiveSnapshotSize));
     m_pTorch = NULL;
     m_bReleaseTorchCamera = false;
+<<<<<<< HEAD
     memset(&m_default_fps_range, 0, sizeof(m_default_fps_range));
     memset(&m_hfrFpsRange, 0, sizeof(m_hfrFpsRange));
+=======
+    m_currNumBufMTF = 0;
+    memset(&m_default_fps_range, 0, sizeof(m_default_fps_range));
+    memset(&m_hfrFpsRange, 0, sizeof(m_hfrFpsRange));
+    memset(&m_MTFBracketInfo, 0, sizeof(m_MTFBracketInfo));
+
+    // init focus steps to -1, invalid steps
+    for (int i = 0; i < MAX_AF_BRACKETING_VALUES; i++) {
+       m_MTFBracketInfo.focus_steps[i] = -1;
+    }
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 }
 
 /*===========================================================================
@@ -1252,11 +1305,18 @@ int32_t QCameraParameters::setPictureSize(const QCameraParameters& params)
                     (width != old_width || height != old_height)) {
                     m_bNeedRestart = true;
                 }
+<<<<<<< HEAD
                 // set the new value
                 CDBG_HIGH("%s: Requested picture size %d x %d", __func__, width, height);
                 CameraParameters::setPictureSize(width, height);
                 // Update View angles based on Picture Aspect ratio
                 updateViewAngles();
+=======
+
+                // set the new value
+                CDBG_HIGH("%s: Requested picture size %d x %d", __func__, width, height);
+                CameraParameters::setPictureSize(width, height);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
                 return NO_ERROR;
             }
         }
@@ -1273,11 +1333,17 @@ int32_t QCameraParameters::setPictureSize(const QCameraParameters& params)
 
             // set the new value
             char val[32];
+<<<<<<< HEAD
             snprintf(val, sizeof(val), "%dx%d", width, height);
             CDBG_HIGH("%s: picture size requested %s", __func__, val);
             updateParamEntry(KEY_PICTURE_SIZE, val);
             // Update View angles based on Picture Aspect ratio
             updateViewAngles();
+=======
+            sprintf(val, "%dx%d", width, height);
+            CDBG_HIGH("%s: picture size requested %s", __func__, val);
+            updateParamEntry(KEY_PICTURE_SIZE, val);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
             return NO_ERROR;
         }
     }
@@ -1286,6 +1352,7 @@ int32_t QCameraParameters::setPictureSize(const QCameraParameters& params)
 }
 
 /*===========================================================================
+<<<<<<< HEAD
  * FUNCTION   : updateViewAngles
  *
  * DESCRIPTION: Update the Horizontal & Vertical based on the Aspect ratio of Preview and
@@ -1344,6 +1411,8 @@ void QCameraParameters::updateViewAngles()
 }
 
 /*===========================================================================
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
  * FUNCTION   : setVideoSize
  *
  * DESCRIPTION: set video size from user setting
@@ -1598,6 +1667,7 @@ int32_t QCameraParameters::setJpegThumbnailSize(const QCameraParameters& params)
     int height = params.getInt(KEY_JPEG_THUMBNAIL_HEIGHT);
 
     CDBG("requested jpeg thumbnail size %d x %d", width, height);
+<<<<<<< HEAD
     int sizes_cnt = sizeof(THUMBNAIL_SIZES_MAP) / sizeof(cam_dimension_t);
     // Validate thumbnail size
     for (int i = 0; i < sizes_cnt; i++) {
@@ -1610,6 +1680,12 @@ int32_t QCameraParameters::setJpegThumbnailSize(const QCameraParameters& params)
     }
     ALOGE("%s: error: setting jpeg thumbnail size (%d, %d)", __func__, width, height);
     return BAD_VALUE;
+=======
+
+    set(KEY_JPEG_THUMBNAIL_WIDTH, width);
+    set(KEY_JPEG_THUMBNAIL_HEIGHT, height);
+    return NO_ERROR;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 }
 
 /*===========================================================================
@@ -1994,7 +2070,11 @@ int32_t  QCameraParameters::setFocusPosition(const QCameraParameters& params)
     const char *type = params.get(KEY_QC_MANUAL_FOCUS_POS_TYPE);
     const char *prev_type = get(KEY_QC_MANUAL_FOCUS_POS_TYPE);
 
+<<<<<<< HEAD
     if ((pos != NULL) && (type != NULL) && (focus_str != NULL)) {
+=======
+    if ((pos != NULL) && (type != NULL)) {
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
         if (prev_pos  == NULL || (strcmp(pos, prev_pos) != 0) ||
             prev_type == NULL || (strcmp(type, prev_type) != 0) ||
             prev_focus_str == NULL || (strcmp(focus_str, prev_focus_str) != 0)) {
@@ -2296,7 +2376,11 @@ int32_t  QCameraParameters::setManualWhiteBalance(const QCameraParameters& param
     const char *type = params.get(KEY_QC_MANUAL_WB_TYPE);
     const char *prev_type = get(KEY_QC_MANUAL_WB_TYPE);
 
+<<<<<<< HEAD
     if ((value != NULL) && (type != NULL) && (wb_str != NULL)) {
+=======
+    if ((value != NULL) && (type != NULL)) {
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
         if (prev_value  == NULL || (strcmp(value, prev_value) != 0) ||
             prev_type == NULL || (strcmp(type, prev_type) != 0) ||
             prev_wb_str == NULL || (strcmp(wb_str, prev_wb_str) != 0)) {
@@ -2999,8 +3083,12 @@ int32_t QCameraParameters::setMeteringAreas(const QCameraParameters& params)
 
         const char *prev_str = get(KEY_METERING_AREAS);
         if (prev_str == NULL ||
+<<<<<<< HEAD
             strcmp(str, prev_str) != 0 ||
             (m_bNeedRestart == true)) {
+=======
+            strcmp(str, prev_str) != 0) {
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
             return setMeteringAreas(str);
         }
     }
@@ -3239,6 +3327,55 @@ int32_t QCameraParameters::setTouchAFAEC(const QCameraParameters& params)
 }
 
 /*===========================================================================
+<<<<<<< HEAD
+=======
+ * FUNCTION   : updateMTFInfo
+ *
+ * DESCRIPTION: update lens position selected by user
+ *
+ * PARAMETERS :
+ *   @lensPos : current lens position to add into array
+ *
+ * RETURN     : int32_t type of status
+ *              NO_ERROR  -- success
+ *              none-zero failure code
+ *==========================================================================*/
+
+int32_t QCameraParameters::updateMTFInfo(const int32_t lensPos)
+{
+   int i;
+   CDBG_HIGH("%s: current lens position is: %d, burst count = %d",
+           __func__, lensPos, m_MTFBracketInfo.burst_count);
+   if (m_MTFBracketInfo.burst_count >= MAX_AF_BRACKETING_VALUES) {
+       return BAD_VALUE;
+   }
+   if (m_MTFBracketInfo.burst_count == 0) {
+       m_MTFBracketInfo.focus_steps[0] = lensPos;
+   } else {
+      for (i = 0; i < m_MTFBracketInfo.burst_count; i++) {
+         if (lensPos > m_MTFBracketInfo.focus_steps[i]) {
+            for (int j = m_MTFBracketInfo.burst_count; j > i; j--) {
+               m_MTFBracketInfo.focus_steps[j] = m_MTFBracketInfo.focus_steps[j-1];
+            }
+            m_MTFBracketInfo.focus_steps[i] = lensPos;
+            break;
+         }
+      }
+      if (m_MTFBracketInfo.burst_count == i) {
+          m_MTFBracketInfo.focus_steps[i] = lensPos;
+      }
+   }
+   for (int i = 0; i < MAX_AF_BRACKETING_VALUES; i++) {
+      CDBG_HIGH("%s: current focus_step[%d] = %d", __func__, i,
+          m_MTFBracketInfo.focus_steps[i]);
+   }
+
+   m_MTFBracketInfo.burst_count++;
+   return NO_ERROR;
+}
+
+/*===========================================================================
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
  * FUNCTION   : setChromaFlash
  *
  * DESCRIPTION: set chroma flash from user setting
@@ -3496,19 +3633,28 @@ int32_t QCameraParameters::setNumOfSnapshot()
                 nExpnum = 0;
                 const char *str_val = get(KEY_QC_CAPTURE_BURST_EXPOSURE);
                 if ((str_val != NULL) && (strlen(str_val) > 0)) {
+<<<<<<< HEAD
                     char *prop = (char *) calloc(1, strlen(str_val) + 1);
                     if (NULL == prop) {
                         ALOGE("%s: No memory for prop", __func__);
                         return NO_MEMORY;
                     }
                     strlcpy(prop, str_val, strlen(str_val) + 1);
+=======
+                    char prop[PROPERTY_VALUE_MAX];
+                    memset(prop, 0, sizeof(prop));
+                    strcpy(prop, str_val);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
                     char *saveptr = NULL;
                     char *token = strtok_r(prop, ",", &saveptr);
                     while (token != NULL) {
                         token = strtok_r(NULL, ",", &saveptr);
                         nExpnum++;
                     }
+<<<<<<< HEAD
                     free(prop);
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
                 }
                 if (nExpnum == 0) {
                     nExpnum = 1;
@@ -3823,6 +3969,7 @@ int32_t QCameraParameters::setBurstNum(const QCameraParameters& params)
         set(KEY_QC_SNAPSHOT_BURST_NUM, nBurstNum);
     }
     m_nBurstNum = (uint8_t)nBurstNum;
+<<<<<<< HEAD
 
     return NO_ERROR;
 }
@@ -3858,6 +4005,8 @@ int32_t QCameraParameters::setMaxLongshotNum(const QCameraParameters& params)
             }
        }
     }
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     return NO_ERROR;
 }
 
@@ -4045,11 +4194,17 @@ int32_t QCameraParameters::updateParameters(QCameraParameters& params,
     if ((rc = setVideoHDR(params)))                     final_rc = rc;
     if ((rc = setVtEnable(params)))                     final_rc = rc;
     if ((rc = setBurstNum(params)))                     final_rc = rc;
+<<<<<<< HEAD
     if ((rc = setMaxLongshotNum(params)))               final_rc = rc;
     if ((rc = setSnapshotFDReq(params)))                final_rc = rc;
     if ((rc = setTintlessValue(params)))                final_rc = rc;
     if ((rc = setCDSMode(params)))                      final_rc = rc;
     if ((rc = setCacheVideoBuffers(params)))            final_rc = rc;
+=======
+    if ((rc = setSnapshotFDReq(params)))                final_rc = rc;
+    if ((rc = setTintlessValue(params)))                final_rc = rc;
+    if ((rc = setCDSMode(params)))                      final_rc = rc;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
     // update live snapshot size after all other parameters are set
     if ((rc = setLiveSnapshotSize(params)))             final_rc = rc;
@@ -4068,6 +4223,7 @@ int32_t QCameraParameters::updateParameters(QCameraParameters& params,
 
     if ((rc = updateFlash(false)))                      final_rc = rc;
     if ((rc = setSensorDebugMask()))                    final_rc = rc;
+<<<<<<< HEAD
 #ifdef TARGET_TS_MAKEUP
     if (params.get(KEY_TS_MAKEUP) != NULL) {
         set(KEY_TS_MAKEUP,params.get(KEY_TS_MAKEUP));
@@ -4082,6 +4238,8 @@ int32_t QCameraParameters::updateParameters(QCameraParameters& params,
         final_rc = rc;
     }
 #endif
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 UPDATE_PARAM_DONE:
     needRestart = m_bNeedRestart;
     return final_rc;
@@ -4445,6 +4603,7 @@ int32_t QCameraParameters::initDefaultParameters()
             m_pCapability->supported_effects_cnt,
             EFFECT_MODES_MAP,
             PARAM_MAP_SIZE(EFFECT_MODES_MAP));
+<<<<<<< HEAD
 
     if (m_pCapability->supported_effects_cnt > 0) {
         set(KEY_SUPPORTED_EFFECTS, effectValues);
@@ -4452,6 +4611,9 @@ int32_t QCameraParameters::initDefaultParameters()
         ALOGE("Color effects are not available");
         set(KEY_SUPPORTED_EFFECTS, EFFECT_NONE);
     }
+=======
+    set(KEY_SUPPORTED_EFFECTS, effectValues);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     setEffect(EFFECT_NONE);
 
     // Set WhiteBalance
@@ -4810,6 +4972,7 @@ int32_t QCameraParameters::initDefaultParameters()
     CDBG_HIGH("%s: totalram = %ld, freeram = %ld ", __func__, info.totalram,
         info.freeram);
     if (info.totalram > TOTAL_RAM_SIZE_512MB) {
+<<<<<<< HEAD
         set(KEY_QC_ZSL_HDR_SUPPORTED, VALUE_TRUE);
     } else {
         m_bIsLowMemoryDevice = true;
@@ -4821,6 +4984,17 @@ int32_t QCameraParameters::initDefaultParameters()
     set(KEY_QC_4K2K_LIVESNAP_SUPPORTED, VALUE_FALSE);
     //Set video buffers as uncached by default
     set(KEY_QC_CACHE_VIDEO_BUFFERS, VALUE_DISABLE);
+=======
+        set(KEY_QC_LONGSHOT_SUPPORTED, VALUE_TRUE);
+        set(KEY_QC_ZSL_HDR_SUPPORTED, VALUE_TRUE);
+    } else {
+        set(KEY_QC_LONGSHOT_SUPPORTED, VALUE_FALSE);
+        set(KEY_QC_ZSL_HDR_SUPPORTED, VALUE_FALSE);
+    }
+
+    // Livesnapshot is not supported for 4K2K video resolutions
+    set(KEY_QC_4K2K_LIVESNAP_SUPPORTED, VALUE_FALSE);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
     int32_t rc = commitParameters();
     if (rc == NO_ERROR) {
@@ -4903,12 +5077,15 @@ TRANS_INIT_DONE:
  *==========================================================================*/
 void QCameraParameters::deinit()
 {
+<<<<<<< HEAD
     if (NULL != m_pParamHeap) {
         m_pParamHeap->deallocate();
         delete m_pParamHeap;
         m_pParamHeap = NULL;
         m_pParamBuf = NULL;
     }
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     if (!m_bInited) {
         return;
     }
@@ -4924,6 +5101,15 @@ void QCameraParameters::deinit()
         m_pCamOpsTbl = NULL;
     }
     m_pCapability = NULL;
+<<<<<<< HEAD
+=======
+    if (NULL != m_pParamHeap) {
+        m_pParamHeap->deallocate();
+        delete m_pParamHeap;
+        m_pParamHeap = NULL;
+        m_pParamBuf = NULL;
+    }
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
     m_AdjustFPS = NULL;
 
@@ -5103,7 +5289,12 @@ int32_t QCameraParameters::setPreviewFpsRange(int min_fps,
                 __func__, min_fps, max_fps, vid_min_fps, vid_max_fps);
 
     if(fixedFpsValue != 0) {
+<<<<<<< HEAD
       min_fps = max_fps = vid_min_fps = vid_max_fps = (int)fixedFpsValue*1000;
+=======
+      min_fps = (int)fixedFpsValue*1000;
+      max_fps = (int)fixedFpsValue*1000;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     }
     snprintf(str, sizeof(str), "%d,%d", min_fps, max_fps);
     CDBG("%s: Setting preview fps range %s", __func__, str);
@@ -5120,12 +5311,19 @@ int32_t QCameraParameters::setPreviewFpsRange(int min_fps,
             __func__, min_fps, max_fps, vid_min_fps, vid_max_fps);
 
     if ( NULL != m_AdjustFPS ) {
+<<<<<<< HEAD
         if (m_ThermalMode == QCAMERA_THERMAL_ADJUST_FPS) {
             m_AdjustFPS->recalcFPSRange(min_fps, max_fps, fps_range);
             CDBG_HIGH("%s: Thermal adjusted Preview fps range %3.2f,%3.2f, %3.2f, %3.2f",
                   __func__, fps_range.min_fps, fps_range.max_fps,
                   fps_range.video_min_fps, fps_range.video_max_fps);
         }
+=======
+        m_AdjustFPS->recalcFPSRange(min_fps, max_fps, fps_range);
+        CDBG_HIGH("%s: Thermal adjusted Preview fps range %3.2f,%3.2f, %3.2f, %3.2f",
+              __func__, fps_range.min_fps, fps_range.max_fps,
+              fps_range.video_min_fps, fps_range.video_max_fps);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     }
 
     return AddSetParmEntryToBatch(m_pParamBuf,
@@ -5209,7 +5407,11 @@ int32_t QCameraParameters::setEffect(const char *effect)
 int32_t QCameraParameters::setBrightness(int brightness)
 {
     char val[16];
+<<<<<<< HEAD
     snprintf(val, sizeof(val), "%d", brightness);
+=======
+    sprintf(val, "%d", brightness);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     updateParamEntry(KEY_QC_BRIGHTNESS, val);
 
     int32_t value = brightness;
@@ -5381,7 +5583,11 @@ void  QCameraParameters::updateCurrentFocusPosition(cam_focus_pos_info_t &cur_po
 int32_t QCameraParameters::setSharpness(int sharpness)
 {
     char val[16];
+<<<<<<< HEAD
     snprintf(val, sizeof(val), "%d", sharpness);
+=======
+    sprintf(val, "%d", sharpness);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     updateParamEntry(KEY_QC_SHARPNESS, val);
     CDBG("%s: Setting sharpness %s", __func__, val);
 
@@ -5407,7 +5613,11 @@ int32_t QCameraParameters::setSharpness(int sharpness)
 int32_t QCameraParameters::setSkinToneEnhancement(int sceFactor)
 {
     char val[16];
+<<<<<<< HEAD
     snprintf(val, sizeof(val), "%d", sceFactor);
+=======
+    sprintf(val, "%d", sceFactor);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     updateParamEntry(KEY_QC_SCE_FACTOR, val);
     CDBG("%s: Setting skintone enhancement %s", __func__, val);
 
@@ -5433,7 +5643,11 @@ int32_t QCameraParameters::setSkinToneEnhancement(int sceFactor)
 int32_t QCameraParameters::setSaturation(int saturation)
 {
     char val[16];
+<<<<<<< HEAD
     snprintf(val, sizeof(val), "%d", saturation);
+=======
+    sprintf(val, "%d", saturation);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     updateParamEntry(KEY_QC_SATURATION, val);
     CDBG("%s: Setting saturation %s", __func__, val);
 
@@ -5459,7 +5673,11 @@ int32_t QCameraParameters::setSaturation(int saturation)
 int32_t QCameraParameters::setContrast(int contrast)
 {
     char val[16];
+<<<<<<< HEAD
     snprintf(val, sizeof(val), "%d", contrast);
+=======
+    sprintf(val, "%d", contrast);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     updateParamEntry(KEY_QC_CONTRAST, val);
     CDBG("%s: Setting contrast %s", __func__, val);
 
@@ -5665,7 +5883,11 @@ int32_t QCameraParameters::setFaceRecognition(const char *faceRecog,
 int32_t QCameraParameters::setZoom(int zoom_level)
 {
     char val[16];
+<<<<<<< HEAD
     snprintf(val, sizeof(val), "%d", zoom_level);
+=======
+    sprintf(val, "%d", zoom_level);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     updateParamEntry(KEY_ZOOM, val);
 
     return AddSetParmEntryToBatch(m_pParamBuf,
@@ -6223,7 +6445,11 @@ int32_t QCameraParameters::setLensShadeValue(const char *lensShadeStr)
 int32_t QCameraParameters::setExposureCompensation(int expComp)
 {
     char val[16];
+<<<<<<< HEAD
     snprintf(val, sizeof(val), "%d", expComp);
+=======
+    sprintf(val, "%d", expComp);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     updateParamEntry(KEY_EXPOSURE_COMPENSATION, val);
 
     // Don't need to pass step as part of setParameter because
@@ -6334,6 +6560,7 @@ int32_t QCameraParameters::parseGains(const char *gainStr, double &r_gain,
         ALOGE("%s: No memory for gains", __func__);
         return NO_MEMORY;
     }
+<<<<<<< HEAD
     strlcpy(gains, gainStr, strlen(gainStr) + 1);
     char *token = strtok_r(gains, ",", &saveptr);
     if (NULL == token) {
@@ -6358,6 +6585,17 @@ int32_t QCameraParameters::parseGains(const char *gainStr, double &r_gain,
 on_error:
     free(gains);
     return UNKNOWN_ERROR;
+=======
+    strcpy(gains, gainStr);
+    char *token = strtok_r(gains, ",", &saveptr);
+    r_gain = atof(token);
+    token = strtok_r(NULL, ",", &saveptr);
+    g_gain = atof(token);
+    token = strtok_r(NULL, ",", &saveptr);
+    b_gain = atof(token);
+    free(gains);
+    return NO_ERROR;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 }
 
 
@@ -7003,6 +7241,38 @@ int32_t QCameraParameters::commitAFBracket(cam_af_bracketing_t afBracket)
 }
 
 /*===========================================================================
+<<<<<<< HEAD
+=======
+ * FUNCTION   : commitMTFBracket
+ *
+ * DESCRIPTION: commit multi-touch focus Bracket.
+ *
+ * PARAMETERS :
+ *   @mtfBracket : AF bracketing configuration
+ *
+ * RETURN     : int32_t type of status
+ *              NO_ERROR  -- success
+ *              none-zero failure code
+ *==========================================================================*/
+int32_t QCameraParameters::commitMTFBracket(cam_af_bracketing_t mtfBracket)
+{
+    int32_t rc = NO_ERROR;
+    if (initBatchUpdate(m_pParamBuf) < 0 ) {
+        ALOGE("%s:Failed to initialize group update table", __func__);
+        return BAD_TYPE;
+    }
+
+
+    rc = commitSetBatch();
+    if (rc != NO_ERROR) {
+        ALOGE("%s:Failed to commit batch", __func__);
+    }
+
+    return rc;
+}
+
+/*===========================================================================
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
  * FUNCTION   : commitFlashBracket
  *
  * DESCRIPTION: commit Flash Bracket.
@@ -7268,6 +7538,7 @@ int32_t QCameraParameters::setHDRAEBracket(cam_exp_bracketing_t hdrBracket)
 }
 
 /*===========================================================================
+<<<<<<< HEAD
  * FUNCTION   : setCacheVideoBuffers
  *
  * DESCRIPTION: set cache video buffers value
@@ -7339,6 +7610,8 @@ int32_t QCameraParameters::setCacheVideoBuffers(const QCameraParameters& params)
 }
 
 /*===========================================================================
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
  * FUNCTION   : restoreAEBracket
  *
  * DESCRIPTION: restores client AE bracketing configuration after HDR is done
@@ -7393,10 +7666,13 @@ int32_t QCameraParameters::updateFlash(bool commitSettings)
 
     if (value != mFlashDaemonValue) {
 
+<<<<<<< HEAD
         if (isAFRunning()) {
             CDBG("%s: AF is running, cancel AF before changing flash mode ", __func__);
             m_pCamOpsTbl->ops->cancel_auto_focus(m_pCamOpsTbl->camera_handle);
         }
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
         ALOGV("%s: Setting Flash value %d", __func__, value);
         rc = AddSetParmEntryToBatch(m_pParamBuf,
                                       CAM_INTF_PARM_LED_MODE,
@@ -7678,16 +7954,28 @@ int32_t QCameraParameters::getStreamRotation(cam_stream_type_t streamType,
     case CAM_STREAM_TYPE_VIDEO:
            switch(rotationParam) {
             case 90:
+<<<<<<< HEAD
                featureConfig.feature_mask |= CAM_QCOM_FEATURE_ROTATION;
+=======
+               featureConfig.feature_mask |= CAM_QCOM_FEATURE_CPP;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
                featureConfig.rotation = ROTATE_90;
                swapDim = 1;
                break;
             case 180:
+<<<<<<< HEAD
                featureConfig.feature_mask |= CAM_QCOM_FEATURE_ROTATION;
                featureConfig.rotation = ROTATE_180;
                break;
             case 270:
                featureConfig.feature_mask |= CAM_QCOM_FEATURE_ROTATION;
+=======
+               featureConfig.feature_mask |= CAM_QCOM_FEATURE_CPP;
+               featureConfig.rotation = ROTATE_180;
+               break;
+            case 270:
+               featureConfig.feature_mask |= CAM_QCOM_FEATURE_CPP;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
                featureConfig.rotation = ROTATE_270;
                swapDim = 1;
               break;
@@ -8015,9 +8303,12 @@ uint8_t QCameraParameters::getZSLQueueDepth()
     if (qdepth < 0) {
         qdepth = 2;
     }
+<<<<<<< HEAD
     if (isLowMemoryDevice()) {
         qdepth = 1;
     }
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     return (uint8_t)qdepth;
 }
 
@@ -8036,6 +8327,7 @@ uint8_t QCameraParameters::getZSLBackLookCount()
     if (look_back < 0) {
         look_back = 2;
     }
+<<<<<<< HEAD
     if (isLowMemoryDevice()) {
         look_back = 1;
     }
@@ -8059,6 +8351,11 @@ bool QCameraParameters::isVideoBuffersCached()
     bool bcachedMem = cached_mem;
     return bcachedMem;
 }
+=======
+    return (uint8_t)look_back;
+}
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 /*===========================================================================
  * FUNCTION   : getZSLMaxUnmatchedFrames
  *
@@ -8176,19 +8473,28 @@ uint8_t QCameraParameters::getBurstCountForAdvancedCapture()
       burstCount = 0;
       const char *str_val = m_AEBracketingClient.values;
       if ((str_val != NULL) && (strlen(str_val) > 0)) {
+<<<<<<< HEAD
           char *prop = (char *) calloc(1, strlen(str_val) + 1);
           if (NULL == prop) {
               ALOGE("%s: No memory for prop", __func__);
               return NO_MEMORY;
           }
           strlcpy(prop, str_val, strlen(str_val) + 1);
+=======
+          char prop[PROPERTY_VALUE_MAX];
+          memset(prop, 0, sizeof(prop));
+          strcpy(prop, str_val);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
           char *saveptr = NULL;
           char *token = strtok_r(prop, ",", &saveptr);
           while (token != NULL) {
               token = strtok_r(NULL, ",", &saveptr);
               burstCount++;
           }
+<<<<<<< HEAD
           free(prop);
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
       }
     }
 
@@ -8285,6 +8591,7 @@ uint32_t QCameraParameters::getJpegQuality()
  * RETURN     : rotation value
  *==========================================================================*/
 uint32_t QCameraParameters::getJpegRotation() {
+<<<<<<< HEAD
     int rotation = 0;
 
     //If exif rotation is set, do not rotate captured image
@@ -8293,11 +8600,17 @@ uint32_t QCameraParameters::getJpegRotation() {
         if (rotation < 0) {
             rotation = 0;
         }
+=======
+    int rotation = getInt(KEY_ROTATION);
+    if (rotation < 0) {
+        rotation = 0;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     }
     return (uint32_t)rotation;
 }
 
 /*===========================================================================
+<<<<<<< HEAD
  * FUNCTION   : getJpegExifRotation
  *
  * DESCRIPTION: get exif rotation value
@@ -8338,6 +8651,8 @@ bool QCameraParameters::useJpegExifRotation() {
 }
 
 /*===========================================================================
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
  * FUNCTION   : getEffectValue
  *
  * DESCRIPTION: get effect value
@@ -8556,7 +8871,11 @@ int32_t QCameraParameters::getExifGpsProcessingMethod(char *gpsProcessingMethod,
     if(str != NULL) {
         memcpy(gpsProcessingMethod, ExifAsciiPrefix, EXIF_ASCII_PREFIX_SIZE);
         count = EXIF_ASCII_PREFIX_SIZE;
+<<<<<<< HEAD
         strlcpy(gpsProcessingMethod + EXIF_ASCII_PREFIX_SIZE, str, strlen(str)+1);
+=======
+        strncpy(gpsProcessingMethod + EXIF_ASCII_PREFIX_SIZE, str, strlen(str));
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
         count += (uint32_t)strlen(str);
         gpsProcessingMethod[count++] = '\0'; // increase 1 for the last NULL char
         return NO_ERROR;
@@ -9631,10 +9950,13 @@ int32_t QCameraReprocScaleParam::setScaleSizeTbl(size_t scale_cnt,
         return BAD_VALUE;
     }
 
+<<<<<<< HEAD
     if (mNeedScaleCnt > MAX_SCALE_SIZES_CNT) {
         mNeedScaleCnt = MAX_SCALE_SIZES_CNT;
     }
 
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     if(mNeedScaleCnt + org_cnt > MAX_SIZES_CNT){
         ALOGE("%s: picture size list exceed the max count.", __func__);
         return BAD_VALUE;
@@ -10053,6 +10375,7 @@ bool QCameraParameters::isMobicatEnabled()
 bool QCameraParameters::needThumbnailReprocess(uint32_t *pFeatureMask)
 {
     if (isUbiFocusEnabled() || isChromaFlashEnabled() ||
+<<<<<<< HEAD
             isOptiZoomEnabled() ||
             (isHDREnabled() && !isHDRThumbnailProcessNeeded()) || isDifferentFlipZSL()) {
         *pFeatureMask &= ~CAM_QCOM_FEATURE_CHROMA_FLASH;
@@ -10069,6 +10392,15 @@ bool QCameraParameters::needThumbnailReprocess(uint32_t *pFeatureMask)
         else {
             return true;
         }
+=======
+            isOptiZoomEnabled()) {
+        *pFeatureMask &= ~CAM_QCOM_FEATURE_CHROMA_FLASH;
+        *pFeatureMask &= ~CAM_QCOM_FEATURE_UBIFOCUS;
+        *pFeatureMask &= ~CAM_QCOM_FEATURE_OPTIZOOM;
+        return false;
+    } else {
+        return true;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     }
 }
 
@@ -10143,6 +10475,7 @@ uint8_t QCameraParameters::getNumOfExtraBuffersForPreview()
     return numOfBufs;
 }
 
+<<<<<<< HEAD
 /*===========================================================================
  * FUNCTION   : getNumOfBuffersForLongshotLimitedMode
  *
@@ -10204,4 +10537,6 @@ bool QCameraParameters::isAFRunning()
     return isAFInProgress;
 }
 
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 }; // namespace qcamera

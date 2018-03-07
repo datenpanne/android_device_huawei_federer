@@ -1,14 +1,25 @@
 type signinfolistener, domain;
 type signinfolistener_exec, exec_type, file_type;
 
+<<<<<<< HEAD
+=======
+allow signinfolistener rootfs:file entrypoint;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 allow signinfolistener tee_device:chr_file rw_file_perms;
 allow signinfolistener fingerprintd:dir r_dir_perms;
 allow signinfolistener fingerprintd:file r_file_perms;
 
+<<<<<<< HEAD
 allow signinfolistener ion_device:chr_file rw_file_perms;
 
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 # It read /data/system/packages.xml which I am afraid to relabel, so let's let it do
 # crazy reading of system data files.
 allow signinfolistener system_data_file:file r_file_perms;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 init_daemon_domain(signinfolistener)

@@ -1,0 +1,7 @@
+        avc: denied { transition } for path="/sbin/test_diag" dev="rootfs" ino=1408 scontext=u:r:init:s0 tcontext=u:r:diag:s0 tclass=process permissive=1
+                vc: denied { entrypoint } for path="/sbin/test_diag" dev="rootfs" ino=1408 scontext=u:r:diag:s0 tcontext=u:object_r:rootfs:s0 tclass=file permissive=1
+
+
+        01-05 04:08:13.807   321   321 I test_diag: type=1400 audit(0.0:10): avc: denied { rlimitinh } for scontext=u:r:init:s0 tcontext=u:r:diag:s0 tclass=process permissive=1
+            01-05 04:08:13.807   321   321 I test_diag: type=1400 audit(0.0:11): avc: denied { siginh } for scontext=u:r:init:s0 tcontext=u:r:diag:s0 tclass=process permissive=1
+

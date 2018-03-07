@@ -6,6 +6,7 @@ ro.config.max_starting_bg=8
 ro.qc.sdk.audio.fluencetype=fluence
 ro.qc.sdk.audio.ssr=false
 tunnel.audio.encode = false
+<<<<<<< HEAD
 
 persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=false
@@ -15,6 +16,15 @@ use.voice.path.for.pcm.voip=true
 av.offload.enable=true
 audio.offload.buffer.size.kb=64
 audio.offload.min.duration.secs=30
+=======
+av.offload.enable=true
+persist.audio.fluence.voicecall=true
+persist.audio.fluence.voicerec=false
+persist.audio.fluence.speaker=true
+audio.offload.buffer.size.kb=64
+audio.offload.min.duration.secs=30
+use.voice.path.for.pcm.voip=true
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 audio.offload.pcm.enable=false
 audio.offload.disable=1
 audio.offload.gapless.enabled=true
@@ -24,6 +34,7 @@ voice.playback.conc.disabled=false
 voice.record.conc.disabled=false
 voice.voip.conc.disabled=true
 
+<<<<<<< HEAD
 # Bluetooth
 qcom.bluetooth.soc=smd
 ro.bluetooth.dun=true
@@ -38,6 +49,8 @@ ro.qualcomm.bluetooth.opp=true
 ro.qualcomm.bluetooth.pbap=true
 ro.qualcomm.bt.hci_transport=smd
 
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 # cabl
 ro.qualcomm.cabl=0
 
@@ -45,6 +58,24 @@ ro.qualcomm.cabl=0
 persist.camera.hal.debug=0
 ro.hwcamera.clearbuffer.need=true
 ro.hwcamera.voicereg.threshold=38,31,-10
+<<<<<<< HEAD
+=======
+ro.hwcamera.fastcapture=false
+ro.config.camera_target_track=true
+ro.config.hw_auto_scene=true
+ro.config.hw_burst_snapshot=true
+ro.config.hw_camera_bestShot=true
+ro.config.hw_camera_davinci=true
+ro.config.hw_camera_hdr=true
+ro.config.hw_camera_mfd=true
+ro.config.hw_camera_omron=true
+ro.config.hw_camera_refocus=true
+ro.config.hw_camera_zsl=true
+ro.config.hw_manual_focus=true
+ro.config.hw_photo_beauty=true
+ro.config.hw_video_beauty=false
+ro.config.hw_camera_docbeauty=true
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 ro.config.mimetype_pad=true
 
 # Dexopt - limit to 4 cores
@@ -63,10 +94,20 @@ persist.demo.hdmirotationlock=false
 debug.mdpcomp.idletime=600
 debug.enable.sglscale=1
 ro.config.immediate_brightness=true
+<<<<<<< HEAD
 #ro.frp.pst=/dev/block/bootdevice/by-name/config
 ro.qcom.ad=1
 ro.qcom.ad.calib.data=/system/etc/calib_fdr.cfg
 ro.qcom.ad.sensortype=2
+=======
+ro.frp.pst=/dev/block/bootdevice/by-name/config
+ro.qcom.ad=1
+ro.qcom.ad.calib.data=/system/etc/calib_fdr.cfg
+#ro.config.hw_smart_backlight=1
+ro.qcom.ad.sensortype=2
+#ro.config.landscape.orientation=true
+#persist.panel.orientation=90
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 # DS2 dap
 #audio.dolby.ds2.enabled=true
@@ -126,6 +167,10 @@ ro.huawei.lte=true
 persist.radio.force_nw_search=1
 ro.config.eons_always_ap=false
 persist.radio.msgtunnel.start=false
+<<<<<<< HEAD
+=======
+ro.cdma.home.operator.numeric=46003
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 ro.config.nostore_nw_sel_mode=true
 ro.multi.rild=true
 persist.data.netmgrd.qos.enable=true
@@ -156,7 +201,11 @@ ro.hw.setsystemtime=true
 persist.sys.startup_resumetime=1
 
 # OpenGLES
+<<<<<<< HEAD
 #ro.opengles.version=196609
+=======
+ro.opengles.version=196609
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 persist.hwc.mdpcomp.enable=true
 debug.mdpcomp.logs=0
@@ -181,5 +230,10 @@ mm.enable.qcom_parser=3315315
 # Log
 log.tag.VM_BMS=WARN
 
+<<<<<<< HEAD
 # Storage
 ro.sys.sdcardfs=true
+=======
+# WiFi
+wifi.interface=wlan0
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e

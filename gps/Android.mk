@@ -1,6 +1,9 @@
 #
 # Copyright (C) 2016 The CyanogenMod Project
+<<<<<<< HEAD
 # Copyright (C) 2018 The LineageOS Project
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
