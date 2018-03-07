@@ -204,9 +204,12 @@ typedef struct{
                                            * such as CAM_QCOM_FEATURE_SUPPORTED_FACE_DETECTION*/
     cam_padding_info_t padding_info;      /* padding information from PP */
     uint32_t min_num_pp_bufs;             /* minimum number of buffers needed by postproc module */
+<<<<<<< HEAD
+=======
     uint32_t min_required_pp_mask;        /* min required pp feature masks for ZSL.
                                            * depends on hardware limitation, i.e. for 8974,
                                            * sharpness is required for all ZSL snapshot frames */
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
     /* capabilities specific to HAL 3 */
 
@@ -321,6 +324,11 @@ typedef struct{
     cam_af_bracketing_t  mtf_af_bracketing_parm;
     /* Sensor type information */
     cam_sensor_type_t sensor_type;
+<<<<<<< HEAD
+
+    uint8_t vendor_magic[16];
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 } cam_capability_t;
 
 typedef enum {

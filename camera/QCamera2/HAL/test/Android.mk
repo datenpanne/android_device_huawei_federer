@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+ifeq (0,1)
+
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 LOCAL_PATH:= $(call my-dir)
 
 include $(CLEAR_VARS)
@@ -52,3 +57,7 @@ LOCAL_CFLAGS += -O0
 
 include $(BUILD_EXECUTABLE)
 
+<<<<<<< HEAD
+endif
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e

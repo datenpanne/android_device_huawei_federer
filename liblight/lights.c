@@ -14,6 +14,11 @@
  * limitations under the License.
  */
 
+<<<<<<< HEAD
+#include <cutils/log.h>
+
+#include <stdint.h>
+=======
 
 // #define LOG_NDEBUG 0
 
@@ -21,6 +26,7 @@
 
 #include <stdint.h>
 #include <stdlib.h>
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 #include <string.h>
 #include <unistd.h>
 #include <errno.h>
@@ -28,6 +34,11 @@
 #include <pthread.h>
 #include <malloc.h>
 
+<<<<<<< HEAD
+#include <linux/msm_mdp.h>
+
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 #include <sys/ioctl.h>
 #include <sys/types.h>
 
@@ -40,10 +51,19 @@
  */
 #define LIGHTS_SUPPORT_BATTERY 1
 
+<<<<<<< HEAD
+#define DEFAULT_LOW_PERSISTENCE_MODE_BRIGHTNESS 0x4F
+
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 static pthread_once_t g_init = PTHREAD_ONCE_INIT;
 static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
 static pthread_mutex_t g_lcd_lock = PTHREAD_MUTEX_INITIALIZER;
 static struct light_state_t g_notification;
+<<<<<<< HEAD
+static int g_last_backlight_mode = BRIGHTNESS_MODE_USER;
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 #if LIGHTS_SUPPORT_BATTERY
 static struct light_state_t g_battery;
 #endif
@@ -72,6 +92,12 @@ char const*const BLUE_TIMER_FILE
 char const*const RGB_LOCK_FILE
         = "/sys/class/leds/red/rgb_start";
 
+<<<<<<< HEAD
+char const*const DISPLAY_FB_DEV_PATH
+        = "/dev/graphics/fb0";
+
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 enum led_type {
     LED_NOTIFICATION = 0,
     LED_BATTERY,
@@ -152,13 +178,50 @@ set_light_backlight(struct light_device_t* dev,
 {
     int err = 0;
     int brightness = rgb_to_brightness(state);
+<<<<<<< HEAD
+    unsigned int lpEnabled = state->brightnessMode == BRIGHTNESS_MODE_LOW_PERSISTENCE;
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
     if(!dev) {
         return -1;
     }
 
     pthread_mutex_lock(&g_lcd_lock);
+<<<<<<< HEAD
+
+    // If we're not in lp mode and it has been enabled or if we are in lp mode
+    // and it has been disabled send an ioctl to the display with the update
+    if ((g_last_backlight_mode != state->brightnessMode && lpEnabled) ||
+            (!lpEnabled && g_last_backlight_mode == BRIGHTNESS_MODE_LOW_PERSISTENCE)) {
+        int fd = -1;
+        fd = open(DISPLAY_FB_DEV_PATH, O_RDWR);
+        if (fd >= 0) {
+            if ((err = ioctl(fd, MSMFB_SET_PERSISTENCE_MODE, &lpEnabled)) != 0) {
+                ALOGE("%s: Failed in ioctl call to %s: %s\n", __FUNCTION__, DISPLAY_FB_DEV_PATH,
+                        strerror(errno));
+                err = -1;
+            }
+            close(fd);
+
+            brightness = DEFAULT_LOW_PERSISTENCE_MODE_BRIGHTNESS;
+        } else {
+            ALOGE("%s: Failed to open %s: %s\n", __FUNCTION__, DISPLAY_FB_DEV_PATH,
+                    strerror(errno));
+            err = -1;
+        }
+    }
+
+
+    g_last_backlight_mode = state->brightnessMode;
+
+    if (!err) {
+        err = write_int(LCD_FILE, brightness);
+    }
+
+=======
     err = write_int(LCD_FILE, brightness);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     pthread_mutex_unlock(&g_lcd_lock);
     return err;
 }
@@ -270,7 +333,39 @@ set_light_notifications(struct light_device_t* dev,
     }
 
     pthread_mutex_lock(&g_lock);
+<<<<<<< HEAD
+
+    unsigned int brightness;
+    unsigned int color;
+    unsigned int rgb[3];
+
     g_notification = *state;
+
+    // If a brightness has been applied by the user
+    brightness = (g_notification.color & 0xFF000000) >> 24;
+    if (brightness > 0 && brightness < 0xFF) {
+
+        // Retrieve each of the RGB colors
+        color = g_notification.color & 0x00FFFFFF;
+        rgb[0] = (color >> 16) & 0xFF;
+        rgb[1] = (color >> 8) & 0xFF;
+        rgb[2] = color & 0xFF;
+
+        // Apply the brightness level
+        if (rgb[0] > 0)
+            rgb[0] = (rgb[0] * brightness) / 0xFF;
+        if (rgb[1] > 0)
+            rgb[1] = (rgb[1] * brightness) / 0xFF;
+        if (rgb[2] > 0)
+            rgb[2] = (rgb[2] * brightness) / 0xFF;
+
+        // Update with the new color
+        g_notification.color = (rgb[0] << 16) + (rgb[1] << 8) + rgb[2];
+    }
+
+=======
+    g_notification = *state;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     set_speaker_light_locked(dev, &g_notification, LED_NOTIFICATION);
     pthread_mutex_unlock(&g_lock);
     return 0;
@@ -321,7 +416,11 @@ static int open_lights(const struct hw_module_t* module, char const* name,
     memset(dev, 0, sizeof(*dev));
 
     dev->common.tag = HARDWARE_DEVICE_TAG;
+<<<<<<< HEAD
+    dev->common.version = LIGHTS_DEVICE_API_VERSION_2_0;
+=======
     dev->common.version = 0;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     dev->common.module = (struct hw_module_t*)module;
     dev->common.close = (int (*)(struct hw_device_t*))close_lights;
     dev->set_light = set_light;

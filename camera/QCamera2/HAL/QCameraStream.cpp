@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+/* Copyright (c) 2012-2015, The Linux Foundataion. All rights reserved.
+=======
 /* Copyright (c) 2012-2014, The Linux Foundataion. All rights reserved.
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 *
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the following conditions are
@@ -467,7 +471,11 @@ int32_t QCameraStream::calcOffset(cam_stream_info_t *streamInfo)
     int32_t rc = 0;
 
     cam_dimension_t dim = streamInfo->dim;
+<<<<<<< HEAD
+    if (streamInfo->pp_config.feature_mask & CAM_QCOM_FEATURE_ROTATION &&
+=======
     if (streamInfo->pp_config.feature_mask & CAM_QCOM_FEATURE_CPP &&
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
             streamInfo->stream_type != CAM_STREAM_TYPE_VIDEO) {
         if (streamInfo->pp_config.rotation == ROTATE_90 ||
                 streamInfo->pp_config.rotation == ROTATE_270) {
@@ -479,8 +487,14 @@ int32_t QCameraStream::calcOffset(cam_stream_info_t *streamInfo)
 
     switch (streamInfo->stream_type) {
     case CAM_STREAM_TYPE_PREVIEW:
+<<<<<<< HEAD
+        rc = mm_stream_calc_offset_preview(streamInfo,
+                &dim,
+                &mPaddingInfo,
+=======
         rc = mm_stream_calc_offset_preview(streamInfo->fmt,
                 &dim,
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
                 &streamInfo->buf_planes);
         break;
     case CAM_STREAM_TYPE_POSTVIEW:
@@ -1119,6 +1133,17 @@ int32_t QCameraStream::releaseBuffs()
 {
     int rc = NO_ERROR;
 
+<<<<<<< HEAD
+    if (mBufAllocPid != 0) {
+        cond_signal(true);
+        CDBG_HIGH("%s: wait for buf allocation thread dead", __func__);
+        pthread_join(mBufAllocPid, NULL);
+        mBufAllocPid = 0;
+        CDBG_HIGH("%s: return from buf allocation thread", __func__);
+    }
+
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     if (NULL != mBufDefs) {
         for (uint32_t i = 0; i < mNumBufs; i++) {
             rc = unmapBuf(CAM_MAPPING_BUF_TYPE_STREAM_BUF, i, -1);
@@ -1135,6 +1160,10 @@ int32_t QCameraStream::releaseBuffs()
     if (!mStreamBufsAcquired && mStreamBufs != NULL) {
         mStreamBufs->deallocate();
         delete mStreamBufs;
+<<<<<<< HEAD
+        mStreamBufs = NULL;
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     }
 
     return rc;
@@ -1194,11 +1223,21 @@ void *QCameraStream::BufAllocRoutine(void *data)
  * DESCRIPTION: signal if flag "wait_for_cond" is set
  *
  *==========================================================================*/
+<<<<<<< HEAD
+void QCameraStream::cond_signal(bool forceExit)
+=======
 void QCameraStream::cond_signal()
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 {
     pthread_mutex_lock(&m_lock);
     if(wait_for_cond == TRUE){
         wait_for_cond = FALSE;
+<<<<<<< HEAD
+        if (forceExit) {
+            mNumBufsNeedAlloc = 0;
+        }
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
         pthread_cond_signal(&m_cond);
     }
     pthread_mutex_unlock(&m_lock);
@@ -1237,6 +1276,10 @@ int32_t QCameraStream::putBufs(mm_camera_map_unmap_ops_tbl_t *ops_tbl)
     int rc = NO_ERROR;
 
     if (mBufAllocPid != 0) {
+<<<<<<< HEAD
+        cond_signal(true);
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
         CDBG_HIGH("%s: wait for buf allocation thread dead", __func__);
         pthread_join(mBufAllocPid, NULL);
         mBufAllocPid = 0;
@@ -1255,6 +1298,10 @@ int32_t QCameraStream::putBufs(mm_camera_map_unmap_ops_tbl_t *ops_tbl)
     if ( !mStreamBufsAcquired ) {
         mStreamBufs->deallocate();
         delete mStreamBufs;
+<<<<<<< HEAD
+        mStreamBufs = NULL;
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     }
 
     return rc;

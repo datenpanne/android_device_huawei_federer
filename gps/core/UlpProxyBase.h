@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+/* Copyright (c) 2013-2016, The Linux Foundation. All rights reserved.
+=======
 /* Copyright (c) 2013-2015, The Linux Foundation. All rights reserved.
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -30,12 +34,18 @@
 #define ULP_PROXY_BASE_H
 
 #include <gps_extended.h>
+<<<<<<< HEAD
+
+struct FlpExtLocation_s;
+struct FlpExtBatchOptions;
+=======
 #ifndef OSS_BUILD
 #include "fused_location_extended.h"
 #else
 struct FlpExtLocation;
 struct FlpExtBatchOptions;
 #endif
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 namespace loc_core {
 
@@ -62,11 +72,50 @@ public:
                                        void* locationExt,
                                        enum loc_sess_status status,
                                        LocPosTechMask loc_technology_mask) {
+<<<<<<< HEAD
+        (void)location;
+        (void)locationExtended;
+        (void)locationExt;
+        (void)status;
+        (void)loc_technology_mask;
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
         return false;
     }
     inline virtual bool reportSv(GnssSvStatus &svStatus,
                                  GpsLocationExtended &locationExtended,
                                  void* svExt) {
+<<<<<<< HEAD
+        (void)svStatus;
+        (void)locationExtended;
+        (void)svExt;
+        return false;
+    }
+    inline virtual bool reportStatus(GpsStatusValue status) {
+
+        (void)status;
+        return false;
+    }
+    inline virtual void setAdapter(LocAdapterBase* adapter) {
+
+        (void)adapter;
+    }
+    inline virtual void setCapabilities(unsigned long capabilities) {
+
+        (void)capabilities;
+    }
+    inline virtual bool reportBatchingSession(FlpExtBatchOptions &options,
+                                              bool active) {
+
+        (void)options;
+        (void)active;
+        return false;
+    }
+    inline virtual bool reportPositions(const struct FlpExtLocation_s* locations,
+                                        int32_t number_of_locations) {
+        (void)locations;
+        (void)number_of_locations;
+=======
         return false;
     }
     inline virtual bool reportStatus(GpsStatusValue status) {
@@ -80,6 +129,7 @@ public:
     }
     inline virtual bool reportPositions(const FlpExtLocation* locations,
                                         int32_t number_of_locations) {
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
         return false;
     }
 };

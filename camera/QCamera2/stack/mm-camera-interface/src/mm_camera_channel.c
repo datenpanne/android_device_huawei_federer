@@ -220,7 +220,11 @@ static void mm_channel_process_stream_buf(mm_camera_cmdcb_t * cmd_cb,
 
         if (ch_obj->pending_cnt > 0
             && (ch_obj->needLEDFlash == TRUE ||
+<<<<<<< HEAD
+                MM_CHANNEL_BRACKETING_STATE_OFF != ch_obj->bracketingState)
+=======
                 ch_obj->need3ABracketing == TRUE)
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
             && (ch_obj->manualZSLSnapshot == FALSE)
             && ch_obj->startZSlSnapshotCalled == FALSE) {
 
@@ -235,7 +239,11 @@ static void mm_channel_process_stream_buf(mm_camera_cmdcb_t * cmd_cb,
             mm_camera_stop_zsl_snapshot(ch_obj->cam_obj);
             ch_obj->startZSlSnapshotCalled = FALSE;
             ch_obj->needLEDFlash = FALSE;
+<<<<<<< HEAD
+            ch_obj->bracketingState = MM_CHANNEL_BRACKETING_STATE_OFF;
+=======
             ch_obj->need3ABracketing = FALSE;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
         }
     } else if (MM_CAMERA_CMD_TYPE_START_ZSL == cmd_cb->cmd_type) {
             ch_obj->manualZSLSnapshot = TRUE;
@@ -266,9 +274,15 @@ static void mm_channel_process_stream_buf(mm_camera_cmdcb_t * cmd_cb,
                 if (start) {
                     CDBG_HIGH("%s:%d] need AE bracketing, start zsl snapshot",
                         __func__, __LINE__);
+<<<<<<< HEAD
+                    ch_obj->bracketingState = MM_CHANNEL_BRACKETING_STATE_WAIT_GOOD_FRAME_IDX;
+                } else {
+                    ch_obj->bracketingState = MM_CHANNEL_BRACKETING_STATE_OFF;
+=======
                     ch_obj->need3ABracketing = TRUE;
                 } else {
                     ch_obj->need3ABracketing = FALSE;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
                 }
             }
                 break;
@@ -327,6 +341,10 @@ static void mm_channel_process_stream_buf(mm_camera_cmdcb_t * cmd_cb,
                     ch_obj->previewSkipCnt = MM_CAMERA_POST_FLASH_PREVIEW_SKIP_CNT;
                     mm_camera_stop_zsl_snapshot(ch_obj->cam_obj);
                     ch_obj->startZSlSnapshotCalled = FALSE;
+<<<<<<< HEAD
+                    ch_obj->bracketingState = MM_CHANNEL_BRACKETING_STATE_OFF;
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
                 }
             }
 
@@ -2055,7 +2073,11 @@ int32_t mm_channel_handle_metadata(
                 }
                 queue->expected_frame_id =
                     metadata->good_frame_idx_range.min_frame_idx;
+<<<<<<< HEAD
+            } else if ((MM_CHANNEL_BRACKETING_STATE_WAIT_GOOD_FRAME_IDX == ch_obj->bracketingState) &&
+=======
             } else if (ch_obj->need3ABracketing &&
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
                        !metadata->is_good_frame_idx_range_valid) {
                    /* Flush unwanted frames */
                    mm_channel_superbuf_flush_matched(ch_obj, queue);
@@ -2080,7 +2102,11 @@ int32_t mm_channel_handle_metadata(
                  }
                  queue->expected_frame_id =
                      metadata->good_frame_idx_range.min_frame_idx;
+<<<<<<< HEAD
+                 ch_obj->bracketingState = MM_CHANNEL_BRACKETING_STATE_ACTIVE;
+=======
                  ch_obj->need3ABracketing = FALSE;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
             }
         }
         CDBG("%s: queue->expected_frame_id = %d", __func__, queue->expected_frame_id);

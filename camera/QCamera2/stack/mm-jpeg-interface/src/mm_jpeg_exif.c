@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+/* Copyright (c) 2012-2015, The Linux Foundation. All rights reserved.
+=======
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are

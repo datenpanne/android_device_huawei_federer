@@ -27,7 +27,10 @@ vendor/lib/soundfx/libqcreverb.so
 vendor/lib/soundfx/libqcvirt.so
 
 # Audio configuration
+<<<<<<< HEAD
+=======
 etc/sws/sws_config.txt
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 etc/sound_param/federer/Headset_cal.acdb
 etc/sound_param/federer/Bluetooth_cal.acdb
 etc/sound_param/federer/Speaker_cal.acdb
@@ -45,12 +48,21 @@ bin/vm_bms
 # Bluetooth
 bin/btnvtool
 bin/hci_qcomm_init
+<<<<<<< HEAD
+=======
 lib64/libbtaddr.so
 lib64/libbtpower.so
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 vendor/lib64/libbtnv.so
 
 # Camera
 bin/mm-qcamera-daemon
+<<<<<<< HEAD
+vendor/lib/libmmcamera_ov5648_hq_pad.so
+vendor/lib/libmmcamera_ov5648_gz_pad.so
+vendor/lib/libjpegdhw.so
+vendor/lib/libjpegehw.so|
+=======
 lib/libmm-qcamera.so
 lib/libmmcamera_interface.so
 lib/libmmjpeg_interface.so
@@ -128,6 +140,7 @@ vendor/lib64/libmmcamera_s5k5e2_ofilm_ohw5f02.so
 vendor/lib64/libmmcamera_s5k9a1_liteon.so
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegehw.so
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 vendor/lib/libmmcamera2_c2d_module.so
 vendor/lib/libmmcamera2_cpp_module.so
 vendor/lib/libmmcamera2_frame_algorithm.so
@@ -250,6 +263,15 @@ vendor/lib/libmmcamera_truly_cm7700_eeprom.so
 vendor/lib/libmmcamera_wavelet_lib.so
 vendor/lib/libmmipl.so
 vendor/lib/libmmjpeg.so
+<<<<<<< HEAD
+vendor/lib/liboemcamera.so
+vendor/lib/libqomx_jpegenc.so
+
+# Camera autofocus
+vendor/lib/libactuator_ov13850_qtech_pad.so
+vendor/lib/libactuator_ov13850_qtech_pad_camcorder.so
+vendor/lib/libactuator_ov13850_qtech_pad_camera.so
+=======
 vendor/lib/libmmqjpeg_codec.so
 vendor/lib/liboemcamera.so
 vendor/lib/libqomx_jpegenc.so
@@ -339,6 +361,7 @@ vendor/lib64/libactuator_s5k4e1_liteon_13p1.so
 vendor/lib64/libactuator_s5k5e2_foxconn_hc0806_camcorder.so
 vendor/lib64/libactuator_s5k5e2_foxconn_hc0806_camera.so
 vendor/lib64/libactuator_s5k5e2_foxconn_hc0806.so
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 vendor/lib/libactuator_a3907_camcorder.so
 vendor/lib/libactuator_a3907_camera.so
 vendor/lib/libactuator_a3907.so
@@ -461,6 +484,9 @@ vendor/lib/libactuator_s5k5e2_foxconn_hc0806_camera.so
 vendor/lib/libactuator_s5k5e2_foxconn_hc0806.so
 
 # Camera chromatix
+<<<<<<< HEAD
+lib/libchromatix_imx135_liveshot.so
+=======
 lib64/libchromatix_imx135_liveshot.so
 lib/libchromatix_imx135_liveshot.so
 vendor/lib64/libchromatix_ar1335_sunny_f13m01f_common.so
@@ -474,10 +500,13 @@ vendor/lib64/libchromatix_gc2355_ofilm_ohw2f03_pad_common.so
 vendor/lib64/libchromatix_gc2355_ofilm_ohw2f03_pad_default_video.so
 vendor/lib64/libchromatix_gc2355_ofilm_ohw2f03_pad_preview.so
 vendor/lib64/libchromatix_gc2355_ofilm_ohw2f03_preview.so
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 vendor/lib/libchromatix_hi545_hq_pad_common.so
 vendor/lib/libchromatix_hi545_hq_pad_default_video.so
 vendor/lib/libchromatix_hi545_hq_pad_preview.so
 vendor/lib/libchromatix_hi545_hq_pad_snapshot.so
+<<<<<<< HEAD
+=======
 vendor/lib64/libchromatix_imx214_common.so
 vendor/lib64/libchromatix_imx214_default_video.so
 vendor/lib64/libchromatix_imx214_foxconn_10m30fps.so
@@ -655,6 +684,7 @@ vendor/lib64/libchromatix_ov5648_foxconn_kivi_preview.so
 vendor/lib64/libchromatix_ov5648_foxconn_kivi_snapshot.so
 vendor/lib64/libchromatix_ov5648_foxconn_preview.so
 vendor/lib64/libchromatix_ov5648_foxconn_snapshot.so
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 vendor/lib/libchromatix_ov5648_gz_pad_common.so
 vendor/lib/libchromatix_ov5648_gz_pad_default_video.so
 vendor/lib/libchromatix_ov5648_gz_pad_preview.so
@@ -663,6 +693,8 @@ vendor/lib/libchromatix_ov5648_hq_pad_common.so
 vendor/lib/libchromatix_ov5648_hq_pad_default_video.so
 vendor/lib/libchromatix_ov5648_hq_pad_preview.so
 vendor/lib/libchromatix_ov5648_hq_pad_snapshot.so
+<<<<<<< HEAD
+=======
 vendor/lib64/libchromatix_ov5648_ofilm_ohw5f03_ale_common.so
 vendor/lib64/libchromatix_ov5648_ofilm_ohw5f03_ale_default_video.so
 vendor/lib64/libchromatix_ov5648_ofilm_ohw5f03_ale_preview.so
@@ -818,6 +850,7 @@ vendor/lib64/libchromatix_s5k9a1_liteon_common.so
 vendor/lib64/libchromatix_s5k9a1_liteon_default_video.so
 vendor/lib64/libchromatix_s5k9a1_liteon_liveshot.so
 vendor/lib64/libchromatix_s5k9a1_liteon_preview.so
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 vendor/lib/libchromatix_ar1335_sunny_f13m01f_common.so
 vendor/lib/libchromatix_ar1335_sunny_f13m01f_default_video.so
 vendor/lib/libchromatix_ar1335_sunny_f13m01f_liveshot.so
@@ -1402,6 +1435,102 @@ etc/firmware/cpp_firmware_v1_1_6.fw
 etc/firmware/cpp_firmware_v1_2_0.fw
 etc/firmware/cpp_firmware_v1_4_0.fw
 
+<<<<<<< HEAD
+# DRM
+bin/qseecomd
+lib/libdrmdecrypt.so
+vendor/lib64/libdrmfs.so
+vendor/lib64/libdrmtime.so
+vendor/lib64/libQSEEComAPI.so
+vendor/lib64/librpmb.so
+vendor/lib64/libssd.so
+vendor/lib/libwvm.so
+vendor/lib/libwvdrm_L1.so
+vendor/lib/libWVStreamControlAPI_L1.so
+vendor/lib/drm/libdrmwvmplugin.so
+vendor/lib/mediadrm/libwvdrmengine.so
+
+# GPS - from crackling
+-lib64/libloc_api_v02.so|ca97a81ea91ca5c7d8dd8c9a9054121ce1446b8a
+-lib/libloc_api_v02.so|74df1667c42701ef550ba73db6c5ae63542913ac
+vendor/lib64/hw/flp.default.so|03784211a3d7c144c0bc6f86b50d1cc5eb97f8c5
+vendor/lib64/libflp.so|33793c405cf39858854c8023dec4b4e0d9d79ff0
+vendor/lib64/libgeofence.so|23cb999eb444971170ff60873392706cf003ed23
+vendor/lib64/libizat_core.so|8d911c3ebf57e5179a3e37b610c055787d8d90bd
+vendor/lib64/liblbs_core.so|07a6b4bb7ae17e2bc26376a9b6eeb70126a50b0d
+vendor/lib/hw/flp.default.so|c281157957565dc35f7e1731b2c71a71a532a821
+vendor/lib/libflp.so|776aae670ffc63b1fbe27420729ee7bd9a6fbb0e
+vendor/lib/libgeofence.so|bd34516de3c933d81267822716235c358ab6695d
+vendor/lib/libizat_core.so|8a948e4f2aa38463050c6399f04ecb38564689d6
+vendor/lib/liblbs_core.so|10caf0d54768114cd471c33a1e2dc6385d3c7707
+
+# Graphics - from crackling
+vendor/lib64/egl/eglsubAndroid.so|1043fd1935186ef1d54328e17bbbce810ba8e8fa
+vendor/lib64/egl/eglSubDriverAndroid.so|951e33adb393a0acab1b260846e8364bad3a5453
+vendor/lib64/egl/libEGL_adreno.so|1c16185c27b4c143fee1fb42c650cb67a098f459
+vendor/lib64/egl/libESXEGL_adreno.so|2c1bed968825848bf976b5c1b5dbb547bf7fee83
+vendor/lib64/egl/libESXGLESv1_CM_adreno.so|d96ef62da1b5d2fb1b3a1dde020b04b9262e55ed
+vendor/lib64/egl/libESXGLESv2_adreno.so|39dfe0771d2803f12a9392948e624ef24baa3226
+vendor/lib64/egl/libGLESv1_CM_adreno.so|989b37ecbd527cd2eebf0a75c3f866135ef4cabb
+vendor/lib64/egl/libGLESv2_adreno.so|65e308bfebd1cda65f75e0c20fb52fc4c8e6e8a9
+vendor/lib64/egl/libq3dtools_adreno.so|38f331fbb2226a965454adf8743d3e8d96d3bf08
+vendor/lib64/egl/libQTapGLES.so|501a56719ca4751a31ed129aa40c01efd456436a
+vendor/lib64/egl/libRBEGL_adreno.so|206683ef320adeefca152f295f3f50962cdc4a9a
+vendor/lib64/egl/libRBGLESv1_CM_adreno.so|c06b86bb8498e075264ac89335fd4855f520ecb6
+vendor/lib64/egl/libRBGLESv2_adreno.so|3b148a5690527cdd36fa148bd429a4416ed9ce25
+vendor/lib64/libadreno_utils.so|783e04277c34666d35f0303f8eca769fd77982bc
+vendor/lib64/libC2D2.so|dffd5298977b3c4c1e86b54ce878da1afa869824
+vendor/lib64/libc2d30-a3xx.so|4e927e5d50737dc3ec8c8605b49ac053649fe8d1
+vendor/lib64/libc2d30-a4xx.so|797424c2a010602ab5a45d25ebc187403dd15fb9
+vendor/lib64/libCB.so|781f60c2ae5d81a9062319e66b36234c0802320b
+vendor/lib64/libgsl.so|cb907d63bc1ea324090c2f5e3328b474c10ea16d
+vendor/lib64/libllvm-glnext.so|3b36887cbbe812661a8eaeeedcb3b2e65d731e7c
+vendor/lib64/libllvm-qcom.so|17356e4dd8c60e847ec96893cf5e73fb076f2c0a
+vendor/lib64/libOpenCL.so|9c1b3a8182d3a54d37f4fe875132b7738edcbec6
+vendor/lib64/librs_adreno_sha1.so|581ce2ccd2cec714b235ac21a27c875c1754c875
+vendor/lib64/librs_adreno.so|a529eaeed785049313c4ea09ebeff8dffdd5bf88
+vendor/lib64/libRSDriver_adreno.so|a4cb02110531c6c6d4f38a126f9fdaa5b023ea0c
+vendor/lib64/libsc-a3xx.so|7c65bbae865b7dc70a4ab8b5fecb0e160db1a087
+vendor/lib64/libscale.so|56b3c898de4c72dfcd483ed90bf9176b8b8edc70
+vendor/lib/egl/eglsubAndroid.so|b164a3a31ec30498babb25f731e0a8225be8d0aa
+vendor/lib/egl/eglSubDriverAndroid.so|6f5ae2f50bae4917173bc1f23eedbb932e068994
+vendor/lib/egl/libEGL_adreno.so|c30e4b0741e48c424aea23bf74dbf0e8b3a99369
+vendor/lib/egl/libESXEGL_adreno.so|7fb1078f65d5ccec000e90466e347308d7faa98b
+vendor/lib/egl/libESXGLESv1_CM_adreno.so|817a1ecda830c46c170b2733b2fbc26f97b04180
+vendor/lib/egl/libESXGLESv2_adreno.so|61ba345a1eff7ef153269dd88399e32950173d0f
+vendor/lib/egl/libGLESv1_CM_adreno.so|629e554170807f47a6790d559952ede06df0c9a6
+vendor/lib/egl/libGLESv2_adreno.so|70c7d8a44042fd0a9280c8ed2e9e738c3f14b0c3
+vendor/lib/egl/libq3dtools_adreno.so|4c3a394cd397e05b0794aa1bb16531da4c03855d
+vendor/lib/egl/libQTapGLES.so|900229ff94bbc44722d0df2a685b8ad2fbf1c51e
+vendor/lib/egl/libRBEGL_adreno.so|8c33769c191c889179f76663b8be63d300d26606
+vendor/lib/egl/libRBGLESv1_CM_adreno.so|8c8491f0f4decb8658af866e32fc083322095f20
+vendor/lib/egl/libRBGLESv2_adreno.so|4bd77c04fc435de9d198da0233513dda6e557dab
+vendor/lib/libadreno_utils.so|522db7791ef53fc0747fc66274e3d9d01ac7b406
+vendor/lib/libC2D2.so|cea171dbb9aa813fb1d2255a8816cd67555bfded
+vendor/lib/libc2d30-a3xx.so|39569008421b7841f567c0a4525638d81d32ffe7
+vendor/lib/libc2d30-a4xx.so|f9afec859c654cb646a27af8f9e16e8a8c412055
+vendor/lib/libCB.so|7c0a1a9363e7e212aa67e0f9aed2acee65d4ec39
+vendor/lib/libgsl.so|252cd2ec1006268a45df66bdce947e647d1efe5b
+vendor/lib/libllvm-glnext.so|2e5785200004df231403074c0f6d7d87bf395745
+vendor/lib/libllvm-qcom.so|77f2a0adf9c36291a02055be3fcd1cf5fa82a113
+vendor/lib/libOpenCL.so|9c3f63df298c155a526d075c9d2643d01b59f98a
+vendor/lib/librs_adreno_sha1.so|3289659eb1307377b20fb33ca4b8d42e15532612
+vendor/lib/librs_adreno.so|7f0fe9802d2bd832b98848d7436ae1aafbe52221
+vendor/lib/libRSDriver_adreno.so|2c9d23e4555f76c1aa28eb5aea2fa919081a8654
+vendor/lib/libsc-a3xx.so|a03fc9f0c929cb4adf013f8a463cfbef68d48090
+vendor/lib/libscale.so|972cbd87794b4ce0a5c23db946acbafd4cd6d073
+
+# Graphics firmware - from crackling
+etc/firmware/a300_pfp.fw|899dbfad4812084971cfc1ff30f06a4b45c2d34c
+etc/firmware/a300_pm4.fw|94529206b45b6e9f6ed30dadabe4244a88a60975
+etc/firmware/a420_pfp.fw|ceb61d9f1385b3f2956d72f33e0bd43cb12f72f0
+etc/firmware/a420_pm4.fw|96addc1f5cb6dd3a57fc40ef0a6ba8721d5b601f
+
+# Media
+vendor/lib/libOmxAacDec.so
+vendor/lib/libOmxEvrcDec.so
+vendor/lib/libOmxQcelp13Dec.so
+=======
 # DRM - from kipper
 bin/qseecomd|60849bd3fd521001a8cc25c96a93168d870ae3df
 lib/libdrmdecrypt.so|706b493d5247e8608f4b8cb3f83b5cf5f3479d48
@@ -1526,6 +1655,7 @@ vendor/lib/libOmxAacDec.so
 vendor/lib/libOmxEvrcDec.so
 vendor/lib/libOmxQcelp13Dec.so
 vendor/lib/libSHIMDivxDrm.so
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 # Perf
 bin/msm_irqbalance
@@ -1539,7 +1669,11 @@ bin/mm-pp-daemon
 vendor/lib64/libdisp-aba.so
 -vendor/lib64/libmm-abl.so
 vendor/lib64/libmm-abl-oem.so
+<<<<<<< HEAD
+vendor/lib64/libmm-disp-apis.so
+=======
 vendor/lib/libmm-qdcm.so
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 vendor/lib64/libmm-qdcm.so
 
 # Qualcomm framework
@@ -1578,18 +1712,32 @@ vendor/lib/libqmi.so
 vendor/lib/libsmemlog.so
 
 # Radio
+<<<<<<< HEAD
+global/ons/ons.bin
+-priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk|f46412bf5ca63d6e3f647a43ef06c2f83606a481
+#-app/shutdownlistener/shutdownlistener.apk|ae5141ba7ac7f9003ae71284da9bdd389542c6ad
+=======
 ons.bin
 -app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 #-app/shutdownlistener/shutdownlistener.apk
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 bin/imsqmidaemon
 bin/netmgrd
 bin/qmuxd
 bin/radish
+<<<<<<< HEAD
+bin/rmt_storage
+=======
 bin/rfs_access
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 etc/permissions/qcnvitems.xml
 etc/permissions/qcrilhook.xml
 -framework/qcnvitems.jar
 -framework/qcrilhook.jar
+<<<<<<< HEAD
+global/ons/ons.bin
+lib64/librmnetctl.so
+=======
 -lib/libhuawei_secure.so
 -lib/liboeminfo_oem_api.so
 -lib/liboeminfo.so
@@ -1602,6 +1750,7 @@ lib64/libqmi_nv_api.so
 -lib64/libqmi_oem_api.so
 lib64/librmnetctl.so
 lib64/libsecure_boot_keybox.so
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 vendor/lib/libmdmdetect.so
 vendor/lib64/libcneapiclient.so
 vendor/lib64/libconfigdb.so
@@ -1613,6 +1762,21 @@ vendor/lib64/libril-qc-qmi-1.so
 vendor/lib64/libril-qcril-hook-oem.so
 vendor/lib64/libsystem_health_mon.so
 vendor/lib64/libxml.so
+<<<<<<< HEAD
+vendor/lib/lib-imsdpl.so
+vendor/lib64/libvoice-svc.so
+vendor/lib64/libvcel.so
+
+# Ramdisk
+bin/huawei_version
+bin/libqmi_oem_main
+bin/rmt_oeminfo
+
+# Sensors
+lib64/hw/sensors.msm8916.so
+lib/libdmd.so
+lib64/libdmd.so
+=======
 
 # Radio - IMS
 bin/imscmservice
@@ -1646,6 +1810,7 @@ vendor/lib64/libvcel.so
 lib64/hw/sensors.msm8916.so
 lib/libdmd_report.so
 lib64/libdmd_report.so
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 vendor/etc/calmodule.cfg
 vendor/lib/libcalmodule_gyroscope.so
 vendor/lib/libcalmodule_akm.so
@@ -1654,6 +1819,13 @@ vendor/lib64/libcalmodule_gyroscope.so
 vendor/lib64/libcalmodule_akm.so
 vendor/lib64/libcalmodule_common.so
 
+<<<<<<< HEAD
+# Tee
+bin/teecd
+lib64/libteec.so
+
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 # Thermal
 vendor/bin/thermal-engine
 vendor/lib64/libthermalclient.so
@@ -1667,8 +1839,11 @@ bin/time_daemon
 -vendor/lib/libtime_genoff.so
 vendor/lib64/libTimeService.so
 vendor/lib/libTimeService.so
+<<<<<<< HEAD
+=======
 vendor/lib64/libNimsWrap.so
 vendor/lib/libNimsWrap.so
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 # Signed Venus (media) firmware
 etc/firmware/venus.b00
@@ -1679,6 +1854,22 @@ etc/firmware/venus.b04
 etc/firmware/venus.mbn
 etc/firmware/venus.mdt
 
+<<<<<<< HEAD
+# Huawei specific
+bin/oeminfo_server
+-lib/libhuawei_secure.so
+lib/lib_oeminfo_interface.so
+lib/liboeminfo.so
+lib/libqmi_nv_api.so
+-lib/libqmi_oem_api.so
+-lib64/libhuawei_secure.so
+lib64/lib_oeminfo_interface.so
+lib64/liboeminfo.so
+lib64/libqmi_nv_api.so
+-lib64/libqmi_oem_api.so
+lib64/libsecure_boot_keybox.so
+
+=======
 # Ramdisk
 /sbin/chargelog.sh
 /sbin/e2fsck_s
@@ -1694,11 +1885,14 @@ etc/firmware/venus.mdt
 
 # Huawei specific (other)
 bin/oeminfo_server
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 etc/firmware/a330_pfp.fw
 etc/firmware/a330_pm4.fw
 etc/firmware/ale-HB3742A0EBC+_ATL_SCUD.fw
 etc/firmware/ale-HB3742A0EBC+_LS_LS.fw
 etc/firmware/ale-HB3742A0EBC+_SDI_SWD.fw
+<<<<<<< HEAD
+=======
 etc/firmware/Alice_fw.bin
 etc/firmware/athena_boe_fw.img
 etc/firmware/athena_jdi_fw.img
@@ -1715,6 +1909,7 @@ etc/firmware/leia_pm4_470.fw
 etc/firmware/Rio_fw.bin
 etc/firmware/RIO_miniBoot.bin
 etc/firmware/RIO_TBM_Latour2.bin
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 etc/firmware/T2A_fw.bin
 etc/firmware/T2A_fw_new.bin
 etc/firmware/T27_fw.bin

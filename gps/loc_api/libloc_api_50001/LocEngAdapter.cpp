@@ -81,6 +81,10 @@ LocEngAdapter::LocEngAdapter(LOC_API_ADAPTER_EVENT_MASK_T mask,
 {
     memset(&mFixCriteria, 0, sizeof(mFixCriteria));
     mFixCriteria.mode = LOC_POSITION_MODE_INVALID;
+<<<<<<< HEAD
+    clearGnssSvUsedListData();
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     LOC_LOGD("LocEngAdapter created");
 }
 
@@ -194,9 +198,17 @@ void LocEngAdapter::setXtraUserAgent() {
                 fclose(file);
 
                 // remove trailing spaces
+<<<<<<< HEAD
+                char *s;
+                s = buf + strlen(buf);
+                while (--s >= buf) {
+                    if (!isspace(*s)) break;
+                    *s = 0;
+=======
                 size_t len = strlen(buf);
                 while (--len >= 0 && isspace(buf[len])) {
                     buf[len] = '\0';
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
                 }
             }
 
@@ -532,9 +544,14 @@ enum loc_api_adapter_err LocEngAdapter::setTime(GpsUtcTime time,
     if (mSupportsTimeInjection) {
         LOC_LOGD("%s:%d]: Injecting time", __func__, __LINE__);
         result = mLocApi->setTime(time, timeReference, uncertainty);
+<<<<<<< HEAD
+    }
+
+=======
     } else {
         mSupportsTimeInjection = true;
     }
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     return result;
 }
 
@@ -564,10 +581,17 @@ enum loc_api_adapter_err LocEngAdapter::setXtraVersionCheck(int check)
     return ret;
 }
 
+<<<<<<< HEAD
+void LocEngAdapter::reportGnssMeasurementData(GnssData &gnssMeasurementData)
+{
+    sendMsg(new LocEngReportGnssMeasurement(mOwner,
+                                           gnssMeasurementData));
+=======
 void LocEngAdapter::reportGpsMeasurementData(GpsData &gpsMeasurementData)
 {
     sendMsg(new LocEngReportGpsMeasurement(mOwner,
                                            gpsMeasurementData));
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 }
 
 /*

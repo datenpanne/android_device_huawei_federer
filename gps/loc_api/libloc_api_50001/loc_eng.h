@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+/* Copyright (c) 2009-2014, 2016 The Linux Foundation. All rights reserved.
+=======
 /* Copyright (c) 2009-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -67,7 +71,12 @@ typedef unsigned char boolean;
 #define FAILURE                 FALSE
 #define INVALID_ATL_CONNECTION_HANDLE -1
 
+<<<<<<< HEAD
+#define gps_conf ContextBase::mGps_conf
+#define sap_conf ContextBase::mSap_conf
+=======
 #define MAX_XTRA_SERVER_URL_LENGTH 256
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 enum loc_nmea_provider_e_type {
     NMEA_PROVIDER_AP = 0, // Application Processor Provider of NMEA
@@ -89,12 +98,22 @@ typedef struct loc_eng_data_s
     loc_sv_status_cb_ext           sv_status_cb;
     agps_status_extended           agps_status_cb;
     gps_nmea_callback              nmea_cb;
+<<<<<<< HEAD
+    loc_ni_notify_callback         ni_notify_cb;
+=======
     gps_ni_notify_callback         ni_notify_cb;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     gps_set_capabilities           set_capabilities_cb;
     gps_acquire_wakelock           acquire_wakelock_cb;
     gps_release_wakelock           release_wakelock_cb;
     gps_request_utc_time           request_utc_time_cb;
+<<<<<<< HEAD
+    gnss_set_system_info           set_system_info_cb;
+    gnss_sv_status_callback        gnss_sv_status_cb;
+    gnss_measurement_callback      gnss_measurement_cb;
+=======
     gps_measurement_callback       gps_measurement_cb;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     boolean                        intermediateFix;
     AGpsStatusValue                agps_status;
     loc_eng_xtra_data_s_type       xtra_module_data;
@@ -103,7 +122,10 @@ typedef struct loc_eng_data_s
     // AGPS state machines
     AgpsStateMachine*              agnss_nif;
     AgpsStateMachine*              internet_nif;
+<<<<<<< HEAD
+=======
     AgpsStateMachine*              wifi_nif;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     //State machine for Data Services
     AgpsStateMachine*              ds_nif;
 
@@ -119,7 +141,12 @@ typedef struct loc_eng_data_s
 
     // For nmea generation
     boolean generateNmea;
+<<<<<<< HEAD
+    uint32_t gps_used_mask;
+    uint32_t glo_used_mask;
+=======
     uint32_t sv_used_mask;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     float hdop;
     float pdop;
     float vdop;
@@ -139,6 +166,8 @@ typedef struct loc_eng_data_s
     loc_ext_parser sv_ext_parser;
 } loc_eng_data_s_type;
 
+<<<<<<< HEAD
+=======
 /* GPS.conf support */
 /* NOTE: the implementaiton of the parser casts number
    fields to 32 bit. To ensure all 'n' fields working,
@@ -200,6 +229,7 @@ extern loc_sap_cfg_s_type sap_conf;
 
 
 uint32_t getCarrierCapabilities();
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 //loc_eng functions
 int  loc_eng_init(loc_eng_data_s_type &loc_eng_data,

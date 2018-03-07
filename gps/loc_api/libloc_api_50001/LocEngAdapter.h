@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+/* Copyright (c) 2011-2016, The Linux Foundation. All rights reserved.
+=======
 /* Copyright (c) 2011-2015, The Linux Foundation. All rights reserved.
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -80,11 +84,21 @@ class LocEngAdapter : public LocAdapterBase {
     unsigned int mPowerVote;
     static const unsigned int POWER_VOTE_RIGHT = 0x20;
     static const unsigned int POWER_VOTE_VALUE = 0x10;
+<<<<<<< HEAD
+    /** Gnss sv used in position data */
+    GnssSvUsedInPosition mGnssSvIdUsedInPosition;
+    bool mGnssSvIdUsedInPosAvail;
+=======
 
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 public:
     bool mSupportsAgpsRequests;
     bool mSupportsPositionInjection;
     bool mSupportsTimeInjection;
+<<<<<<< HEAD
+    GnssSystemInfo mGnssInfo;
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
     LocEngAdapter(LOC_API_ADAPTER_EVENT_MASK_T mask,
                   void* owner, ContextBase* context,
@@ -105,8 +119,35 @@ public:
     inline bool hasCPIExtendedCapabilities() {
         return mContext->hasCPIExtendedCapabilities();
     }
+<<<<<<< HEAD
+    inline bool hasNativeXtraClient() {
+        return mContext->hasNativeXtraClient();
+    }
     inline const MsgTask* getMsgTask() { return mMsgTask; }
 
+    inline void clearGnssSvUsedListData() {
+        mGnssSvIdUsedInPosAvail = false;
+        memset(&mGnssSvIdUsedInPosition, 0, sizeof (GnssSvUsedInPosition));
+    }
+
+    inline void setGnssSvUsedListData(GnssSvUsedInPosition gnssSvUsedIds) {
+        mGnssSvIdUsedInPosAvail = true;
+        memcpy(&mGnssSvIdUsedInPosition, &gnssSvUsedIds,
+                                    sizeof(GnssSvUsedInPosition));
+    }
+
+    inline GnssSvUsedInPosition getGnssSvUsedListData() {
+        return mGnssSvIdUsedInPosition;
+    }
+
+    inline bool isGnssSvIdUsedInPosAvail() {
+        return mGnssSvIdUsedInPosAvail;
+    }
+
+=======
+    inline const MsgTask* getMsgTask() { return mMsgTask; }
+
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     inline enum loc_api_adapter_err
         startFix()
     {
@@ -187,6 +228,14 @@ public:
         return mLocApi->setSUPLVersion(version);
     }
     inline enum loc_api_adapter_err
+<<<<<<< HEAD
+        setNMEATypes (uint32_t typesMask)
+    {
+        return mLocApi->setNMEATypes(typesMask);
+    }
+    inline enum loc_api_adapter_err
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
         setLPPConfig(uint32_t profile)
     {
         return mLocApi->setLPPConfig(profile);
@@ -222,6 +271,16 @@ public:
                                                   algorithmConfig);
     }
     inline virtual enum loc_api_adapter_err
+<<<<<<< HEAD
+        setAGLONASSProtocol(unsigned long aGlonassProtocol)
+    {
+        return mLocApi->setAGLONASSProtocol(aGlonassProtocol);
+    }
+    inline virtual enum loc_api_adapter_err
+        setLPPeProtocol(unsigned long lppeCP, unsigned long lppeUP)
+    {
+        return mLocApi->setLPPeProtocol(lppeCP, lppeUP);
+=======
         setExtPowerConfig(int isBatteryCharging)
     {
         return mLocApi->setExtPowerConfig(isBatteryCharging);
@@ -230,6 +289,7 @@ public:
         setAGLONASSProtocol(unsigned long aGlonassProtocol)
     {
         return mLocApi->setAGLONASSProtocol(aGlonassProtocol);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     }
     inline virtual int initDataServiceClient()
     {
@@ -284,7 +344,11 @@ public:
     virtual bool requestSuplES(int connHandle);
     virtual bool reportDataCallOpened();
     virtual bool reportDataCallClosed();
+<<<<<<< HEAD
+    virtual void reportGnssMeasurementData(GnssData &gnssMeasurementData);
+=======
     virtual void reportGpsMeasurementData(GpsData &gpsMeasurementData);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
     inline const LocPosMode& getPositionMode() const
     {return mFixCriteria;}

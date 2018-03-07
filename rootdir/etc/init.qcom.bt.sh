@@ -1,5 +1,9 @@
 #!/system/bin/sh
+<<<<<<< HEAD
+# Copyright (c) 2009-2016, The Linux Foundation. All rights reserved.
+=======
 # Copyright (c) 2009-2013, The Linux Foundation. All rights reserved.
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -26,6 +30,11 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+<<<<<<< HEAD
+LOG_TAG="qcom-bluetooth"
+LOG_NAME="${0}:"
+
+=======
 #Read the arguments passed to the script
 config="$1"
 
@@ -35,6 +44,7 @@ LOG_NAME="${0}:"
 
 hciattach_pid=""
 
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 loge ()
 {
   /system/bin/log -t $LOG_TAG -p e "$LOG_NAME $@"
@@ -51,6 +61,8 @@ failed ()
   exit $2
 }
 
+<<<<<<< HEAD
+=======
 program_bdaddr ()
 {
   /system/bin/btnvtool -O
@@ -244,10 +256,14 @@ shift $(($OPTIND-1))
 BOARD=`getprop ro.board.platform`
 STACK=`getprop ro.qc.bluetooth.stack`
 
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 # BR/EDR & LE power class configurations
 POWER_CLASS=`getprop qcom.bt.dev_power_class`
 LE_POWER_CLASS=`getprop qcom.bt.le_dev_pwr_class`
 
+<<<<<<< HEAD
+setprop bluetooth.status off
+=======
 #find the transport type
 TRANSPORT=`getprop ro.qualcomm.bt.hci_transport`
 logi "Transport : $TRANSPORT"
@@ -261,6 +277,7 @@ case $STACK in
     ;;
 esac
 
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 case $POWER_CLASS in
   1) PWR_CLASS="-p 0" ;
@@ -291,6 +308,10 @@ eval $(/system/bin/hci_qcomm_init -e $PWR_CLASS $LE_PWR_CLASS && echo "exit_code
 case $exit_code_hci_qcomm_init in
   0) logi "Bluetooth QSoC firmware download succeeded, $BTS_DEVICE $BTS_TYPE $BTS_BAUD $BTS_ADDRESS";;
   *) failed "Bluetooth QSoC firmware download failed" $exit_code_hci_qcomm_init;
+<<<<<<< HEAD
+
+     setprop bluetooth.status off
+=======
      case $STACK in
          "bluez")
             logi "** Bluez stack **"
@@ -300,10 +321,14 @@ case $exit_code_hci_qcomm_init in
             setprop bluetooth.status off
         ;;
      esac
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
      exit $exit_code_hci_qcomm_init;;
 esac
 
+<<<<<<< HEAD
+setprop bluetooth.status on
+=======
 # init does SIGTERM on ctl.stop for service
 trap "kill_hciattach" TERM INT
 
@@ -337,5 +362,6 @@ case $TRANSPORT in
         logi "Bluetooth stopped"
      ;;
 esac
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 exit 0

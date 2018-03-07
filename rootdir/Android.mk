@@ -1,6 +1,17 @@
 LOCAL_PATH:= $(call my-dir)
 
 # Init scripts root
+<<<<<<< HEAD
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := init.qcom.mem.sh
+LOCAL_MODULE_TAGS  := optional eng
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := etc/init.qcom.mem.sh
+include $(BUILD_PREBUILT)
+
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 include $(CLEAR_VARS)
 LOCAL_MODULE       := fstab.qcom
 LOCAL_MODULE_TAGS  := optional eng
@@ -17,6 +28,15 @@ LOCAL_SRC_FILES    := etc/init.class_main.sh
 LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
+<<<<<<< HEAD
+include $(CLEAR_VARS)
+LOCAL_MODULE       := init.qcom.opengles.sh
+LOCAL_MODULE_TAGS  := optional eng
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := etc/init.qcom.opengles.sh
+include $(BUILD_PREBUILT)
+
+=======
 #include $(CLEAR_VARS)
 #LOCAL_MODULE       := init.huawei.charger.rc
 #LOCAL_MODULE_TAGS  := optional eng
@@ -49,6 +69,7 @@ include $(BUILD_PREBUILT)
 #LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 #include $(BUILD_PREBUILT)
 
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 include $(CLEAR_VARS)
 LOCAL_MODULE       := init.qcom.power.rc
 LOCAL_MODULE_TAGS  := optional eng
@@ -57,6 +78,9 @@ LOCAL_SRC_FILES    := etc/init.qcom.power.rc
 LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
+<<<<<<< HEAD
+# Init scripts
+=======
 include $(CLEAR_VARS)
 LOCAL_MODULE       := init.qcom.power.sh
 LOCAL_MODULE_TAGS  := optional eng
@@ -65,6 +89,7 @@ LOCAL_SRC_FILES    := etc/init.qcom.power.sh
 LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 include $(CLEAR_VARS)
 LOCAL_MODULE       := init.qcom.rc
 LOCAL_MODULE_TAGS  := optional eng
@@ -74,6 +99,8 @@ LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
+<<<<<<< HEAD
+=======
 LOCAL_MODULE       := init.qcom.sh
 LOCAL_MODULE_TAGS  := optional eng
 LOCAL_MODULE_CLASS := ETC
@@ -90,6 +117,7 @@ include $(BUILD_PREBUILT)
 #include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 LOCAL_MODULE       := init.qcom.usb.rc
 LOCAL_MODULE_TAGS  := optional eng
 LOCAL_MODULE_CLASS := ETC
@@ -106,6 +134,8 @@ LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
+<<<<<<< HEAD
+=======
 LOCAL_MODULE       := init.usb.configfs.rc
 LOCAL_MODULE_TAGS  := optional eng
 LOCAL_MODULE_CLASS := ETC
@@ -114,6 +144,7 @@ LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 LOCAL_MODULE       := init.target.rc
 LOCAL_MODULE_TAGS  := optional eng
 LOCAL_MODULE_CLASS := ETC
@@ -122,6 +153,8 @@ LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
+<<<<<<< HEAD
+=======
 LOCAL_MODULE       := init.target-from-init.rc
 LOCAL_MODULE_TAGS  := optional eng
 LOCAL_MODULE_CLASS := ETC
@@ -130,6 +163,7 @@ LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 LOCAL_MODULE       := ueventd.qcom.rc
 LOCAL_MODULE_TAGS  := optional eng
 LOCAL_MODULE_CLASS := ETC
@@ -145,6 +179,8 @@ LOCAL_SRC_FILES    := etc/init.qcom.bt.sh
 LOCAL_MODULE_PATH  := $(TARGET_OUT_ETC)
 include $(BUILD_PREBUILT)
 
+<<<<<<< HEAD
+=======
 include $(CLEAR_VARS)
 LOCAL_MODULE       := init.qcom.fm.sh
 LOCAL_MODULE_TAGS  := optional eng
@@ -153,3 +189,4 @@ LOCAL_SRC_FILES    := etc/init.qcom.fm.sh
 LOCAL_MODULE_PATH  := $(TARGET_OUT_ETC)
 include $(BUILD_PREBUILT)
 
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e

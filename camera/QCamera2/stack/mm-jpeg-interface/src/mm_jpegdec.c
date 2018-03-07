@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+/* Copyright (c) 2013-2015, The Linux Foundation. All rights reserved.
+=======
 /* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -882,13 +886,21 @@ int32_t mm_jpegdec_destroy_session(mm_jpeg_obj *my_obj,
 {
   int32_t rc = 0;
   mm_jpeg_job_q_node_t *node = NULL;
+<<<<<<< HEAD
+  uint32_t session_id = 0;
+=======
   uint32_t session_id = p_session->sessionId;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
   if (NULL == p_session) {
     CDBG_ERROR("%s:%d] invalid session", __func__, __LINE__);
     return rc;
   }
 
+<<<<<<< HEAD
+  session_id = p_session->sessionId;
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
   pthread_mutex_lock(&my_obj->job_lock);
 
   /* abort job if in todo queue */

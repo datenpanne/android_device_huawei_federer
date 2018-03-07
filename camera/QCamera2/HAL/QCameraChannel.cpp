@@ -667,6 +667,28 @@ int32_t QCameraPicChannel::cancelPicture()
 }
 
 /*===========================================================================
+<<<<<<< HEAD
+ * FUNCTION   : stopAdvancedCapture
+ *
+ * DESCRIPTION: stop advanced capture based on advanced capture type.
+ *
+ * PARAMETERS :
+ *   @type : advanced capture type.
+ *
+ * RETURN     : int32_t type of status
+ *              NO_ERROR  -- success
+ *              none-zero failure code
+ *==========================================================================*/
+int32_t QCameraPicChannel::stopAdvancedCapture(mm_camera_advanced_capture_t type)
+{
+    int32_t rc = m_camOps->process_advanced_capture(m_camHandle, type,
+            m_handle, 0);
+    return rc;
+}
+
+/*===========================================================================
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
  * FUNCTION   : startAdvancedCapture
  *
  * DESCRIPTION: start advanced capture based on advanced capture type.
@@ -681,7 +703,11 @@ int32_t QCameraPicChannel::cancelPicture()
 int32_t QCameraPicChannel::startAdvancedCapture(mm_camera_advanced_capture_t type)
 {
     int32_t rc = m_camOps->process_advanced_capture(m_camHandle, type,
+<<<<<<< HEAD
+            m_handle, 1);
+=======
                                               m_handle, 1);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     return rc;
 }
 
@@ -868,6 +894,8 @@ int32_t QCameraReprocessChannel::addReprocStreamsFromSource(
                 continue;
             }
 
+<<<<<<< HEAD
+=======
             if (pStream->isTypeOf(CAM_STREAM_TYPE_POSTVIEW) ||
                 pStream->isTypeOf(CAM_STREAM_TYPE_PREVIEW)) {
                 // Skip postview: in non zsl case, dont want to send
@@ -876,12 +904,15 @@ int32_t QCameraReprocessChannel::addReprocStreamsFromSource(
                 continue;
             }
 
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
             if (pStream->isTypeOf(CAM_STREAM_TYPE_PREVIEW) ||
                     pStream->isTypeOf(CAM_STREAM_TYPE_POSTVIEW) ||
                     pStream->isOrignalTypeOf(CAM_STREAM_TYPE_PREVIEW) ||
                     pStream->isOrignalTypeOf(CAM_STREAM_TYPE_POSTVIEW)) {
                 uint32_t feature_mask = config.feature_mask;
 
+<<<<<<< HEAD
+=======
                 if ((feature_mask & ~CAM_QCOM_FEATURE_HDR) == 0
                         && param.isHDREnabled()
                         && !param.isHDRThumbnailProcessNeeded()) {
@@ -891,11 +922,15 @@ int32_t QCameraReprocessChannel::addReprocStreamsFromSource(
                     continue;
                 }
 
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
                 // skip thumbnail reprocessing if not needed
                 if (!param.needThumbnailReprocess(&feature_mask)) {
                     continue;
                 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
                 //Don't do WNR for thumbnail
                 feature_mask &= ~CAM_QCOM_FEATURE_DENOISE2D;
                 if (!feature_mask) {
@@ -916,7 +951,17 @@ int32_t QCameraReprocessChannel::addReprocStreamsFromSource(
             memset(streamInfo, 0, sizeof(cam_stream_info_t));
             streamInfo->stream_type = CAM_STREAM_TYPE_OFFLINE_PROC;
             rc = pStream->getFormat(streamInfo->fmt);
+<<<<<<< HEAD
+            if (pStream->isTypeOf(CAM_STREAM_TYPE_POSTVIEW) ||
+                    pStream->isTypeOf(CAM_STREAM_TYPE_PREVIEW)) {
+                param.getThumbnailSize(&(streamInfo->dim.width), &(streamInfo->dim.height));
+            }
+            else {
+                rc = pStream->getFrameDimension(streamInfo->dim);
+            }
+=======
             rc = pStream->getFrameDimension(streamInfo->dim);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
             //FSSR generates 4x output
             uint32_t feature_mask = config.feature_mask;
@@ -960,9 +1005,23 @@ int32_t QCameraReprocessChannel::addReprocStreamsFromSource(
 
             if (!(pStream->isTypeOf(CAM_STREAM_TYPE_SNAPSHOT) ||
                 pStream->isOrignalTypeOf(CAM_STREAM_TYPE_SNAPSHOT))) {
+<<<<<<< HEAD
+                // CAC, SHARPNESS, FLIP and WNR would have been already applied -
+                // on preview/postview stream in realtime. Need not apply again.
+                streamInfo->reprocess_config.pp_feature_config.feature_mask &=
+                        ~CAM_QCOM_FEATURE_CAC;
+                streamInfo->reprocess_config.pp_feature_config.feature_mask &=
+                        ~CAM_QCOM_FEATURE_SHARPNESS;
+                streamInfo->reprocess_config.pp_feature_config.feature_mask &=
+                        ~CAM_QCOM_FEATURE_FLIP;
+                //Don't do WNR for thumbnail
+                streamInfo->reprocess_config.pp_feature_config.feature_mask &=
+                        ~CAM_QCOM_FEATURE_DENOISE2D;
+=======
                 streamInfo->reprocess_config.pp_feature_config.feature_mask &= ~CAM_QCOM_FEATURE_CAC;
                 //Don't do WNR for thumbnail
                 streamInfo->reprocess_config.pp_feature_config.feature_mask &= ~CAM_QCOM_FEATURE_DENOISE2D;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
                 if (param.isHDREnabled()
                   && !param.isHDRThumbnailProcessNeeded()){
@@ -973,7 +1032,11 @@ int32_t QCameraReprocessChannel::addReprocStreamsFromSource(
 
             uint32_t mask;
             mask = streamInfo->reprocess_config.pp_feature_config.feature_mask;
+<<<<<<< HEAD
+            if (mask & CAM_QCOM_FEATURE_ROTATION) {
+=======
             if (mask & CAM_QCOM_FEATURE_CPP) {
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
                 if (streamInfo->reprocess_config.pp_feature_config.rotation == ROTATE_90 ||
                     streamInfo->reprocess_config.pp_feature_config.rotation == ROTATE_270) {
                     // rotated by 90 or 270, need to switch width and height
@@ -1001,7 +1064,11 @@ int32_t QCameraReprocessChannel::addReprocStreamsFromSource(
                 //we only Scale Snapshot frame
                 if(pStream->isTypeOf(CAM_STREAM_TYPE_SNAPSHOT)){
                     //also check whether rotation is needed
+<<<<<<< HEAD
+                    if((mask & CAM_QCOM_FEATURE_ROTATION) &&
+=======
                     if((mask & CAM_QCOM_FEATURE_CPP) &&
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
                        (streamInfo->reprocess_config.pp_feature_config.rotation == ROTATE_90 ||
                         streamInfo->reprocess_config.pp_feature_config.rotation == ROTATE_270)){
                         //need swap
@@ -1064,7 +1131,11 @@ QCameraStream * QCameraReprocessChannel::getStreamBySrouceHandle(uint32_t srcHan
 /*===========================================================================
  * FUNCTION   : stop
  *
+<<<<<<< HEAD
+ * DESCRIPTION: stop channel and unmap offline buffers
+=======
  * DESCRIPTION: Unmap offline buffers and stop channel
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
  *
  * PARAMETERS : none
  *
@@ -1074,6 +1145,11 @@ QCameraStream * QCameraReprocessChannel::getStreamBySrouceHandle(uint32_t srcHan
  *==========================================================================*/
 int32_t QCameraReprocessChannel::stop()
 {
+<<<<<<< HEAD
+    int32_t rc = QCameraChannel::stop();
+
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     if (!mOfflineBuffers.empty()) {
         QCameraStream *stream = NULL;
         List<OfflineBuffer>::iterator it = mOfflineBuffers.begin();
@@ -1093,7 +1169,11 @@ int32_t QCameraReprocessChannel::stop()
         mOfflineBuffers.clear();
     }
 
+<<<<<<< HEAD
+    return rc;
+=======
     return QCameraChannel::stop();
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 }
 
 /*===========================================================================
@@ -1187,6 +1267,10 @@ int32_t QCameraReprocessChannel::doReprocessOffline(
             memset(&param, 0, sizeof(cam_stream_parm_buffer_t));
             param.type = CAM_STREAM_PARAM_TYPE_DO_REPROCESS;
             param.reprocess.buf_index = buf_index;
+<<<<<<< HEAD
+            param.reprocess.frame_idx = frame->bufs[i]->frame_idx;
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
             param.reprocess.frame_pp_config.uv_upsample =
                             frame->bufs[i]->is_uv_subsampled;
             if (NULL != meta_buf) {
@@ -1270,6 +1354,8 @@ int32_t QCameraReprocessChannel::doReprocess(mm_camera_super_buf_t *frame)
                 continue;
             }
 
+<<<<<<< HEAD
+=======
             if (pStream->isTypeOf(CAM_STREAM_TYPE_POSTVIEW) ||
                 pStream->isTypeOf(CAM_STREAM_TYPE_PREVIEW)) {
                 // Skip postview: In non zsl case, dont want to send
@@ -1278,6 +1364,7 @@ int32_t QCameraReprocessChannel::doReprocess(mm_camera_super_buf_t *frame)
                 continue;
             }
 
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
             cam_stream_parm_buffer_t param;
             memset(&param, 0, sizeof(cam_stream_parm_buffer_t));
             param.type = CAM_STREAM_PARAM_TYPE_DO_REPROCESS;

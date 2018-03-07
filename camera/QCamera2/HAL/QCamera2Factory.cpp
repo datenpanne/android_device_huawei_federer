@@ -40,6 +40,14 @@ namespace qcamera {
 
 QCamera2Factory gQCamera2Factory;
 
+<<<<<<< HEAD
+pthread_mutex_t gCamLock = PTHREAD_MUTEX_INITIALIZER;
+//Total number of cameras opened simultaneously.
+//This variable updation is protected by gCamLock.
+uint8_t gNumCameraSessions = 0;
+
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 /*===========================================================================
  * FUNCTION   : QCamera2Factory
  *

@@ -1,11 +1,26 @@
 type oeminfo, domain;
 type oeminfo_exec, exec_type, file_type;
+<<<<<<< HEAD
+
+=======
 type oeminfo_partition_device, dev_type;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 init_daemon_domain(oeminfo)
 
 allow oeminfo oem_block_device:blk_file rw_file_perms;
 allow oeminfo self:capability { fowner chown fsetid };
 
+<<<<<<< HEAD
+allow oeminfo log_device:dir r_dir_perms;
+allow oeminfo log_device:chr_file w_file_perms;
+allow oeminfo proc_app_info:file r_file_perms;
+allow oeminfo self:socket { read bind create write ioctl };
+
+allow oeminfo socket_device:dir { add_name write };
+allow oeminfo socket_device:sock_file { create setattr };
+
+r_dir_file(oeminfo, sysfs);
+=======
 allow oeminfo oeminfo_partition_device:blk_file { read write open };
 allow oeminfo self:socket { read bind create write ioctl };
 allow oeminfo smem_log_device:chr_file { read write ioctl open };
@@ -15,6 +30,7 @@ allow oeminfo log_device:chr_file { write open };
 allow oeminfo rootfs:file entrypoint;
 
 allow oeminfo log_device:dir search;
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 set_prop(oeminfo, hw_version_prop);
 unix_socket_connect(oeminfo, qmuxd, libqmi_oem_main);

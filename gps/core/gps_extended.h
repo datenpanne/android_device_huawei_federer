@@ -33,7 +33,10 @@
 extern "C" {
 #endif /* __cplusplus */
 
+<<<<<<< HEAD
+=======
 #include <string.h>
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 #include <gps_extended_c.h>
 
 struct LocPosMode

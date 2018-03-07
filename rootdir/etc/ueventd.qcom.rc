@@ -48,10 +48,17 @@
 /dev/rmnet_ctrl           0660   usb        usb
 /dev/dpl_ctrl             0660   usb        usb
 
+<<<<<<< HEAD
+# Permissions for CSVT
+/dev/smd11                0660   radio      radio
+
+/dev/radio0               0640   system     system
+=======
 #permissions for CSVT
 /dev/smd11                0660   radio      radio
 
 /dev/radio0               0644   system     audio
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 /dev/rfcomm0              0660   bluetooth  bluetooth
 /dev/ttyUSB0              0660   bluetooth  bluetooth
 /dev/smdcntl0             0640   radio      radio
@@ -125,7 +132,11 @@
 /dev/hw_random            0600   root       root
 /dev/adsprpc-smd          0664   system     system
 
+<<<<<<< HEAD
+# Permissions for audio
+=======
 #permissions for audio
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 /dev/audio_slimslave      0660   system     audio
 /dev/msm_qcelp            0660   system     audio
 /dev/msm_evrc             0660   system     audio
@@ -173,7 +184,11 @@
 /dev/tsc_mux0             0660   media       media
 /dev/tsc_ci0              0660   media       media
 
+<<<<<<< HEAD
+# Sensors
+=======
 # sensors
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 /sys/devices/i2c-12/12-*  pollrate_ms 0664 system system
 /sys/devices/f9925000.i2c/i2c-0/0-*                 enable         0660    input    system
 /sys/devices/f9925000.i2c/i2c-0/0-*                 poll_delay     0660    input    system
@@ -203,16 +218,29 @@
 /sys/devices/soc.0/78b5000.i2c/i2c-1/1-0045/leds/green		blink	0660	input	system
 /sys/devices/soc.0/78b5000.i2c/i2c-1/1-0045/leds/blue		blink	0660	input	system
 
+<<<<<<< HEAD
+# FM
+/sys/module/radio_iris_transport/parameters/fmsmd_set 0660 system system
+
+=======
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 # vm_bms
 /dev/vm_bms               0660   system     system
 /dev/battery_data         0660   system     system
 
+<<<<<<< HEAD
+# WLAN
+/dev/wcnss_wlan           0660   system     system
+/dev/wcnss_ctrl           0660   system     system
+/dev/rfkill               0660   root       wifi
+=======
 # wlan
 /dev/wcnss_wlan           0660   system     system
 /dev/wcnss_ctrl           0660   system     system
 #nfc permissions
 /dev/nfc-nci              0660    nfc         nfc
 /dev/assd                 0660    nfc         nfc
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
 
 # UIO devices
 /dev/uio0                 0660   system     system

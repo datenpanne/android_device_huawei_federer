@@ -189,7 +189,11 @@ void loc_eng_ni_request_handler(loc_eng_data_s_type &loc_eng_data,
         }
 
         CALLBACK_LOG_CALLFLOW("ni_notify_cb - id", %d, notif->notification_id);
+<<<<<<< HEAD
+        loc_eng_data.ni_notify_cb((GpsNiNotification*)notif, gps_conf.SUPL_ES != 0);
+=======
         loc_eng_data.ni_notify_cb((GpsNiNotification*)notif);
+>>>>>>> 1034efacafbf2fd700cf5144397d135d2148285e
     }
     EXIT_LOG(%s, VOID_RET);
 }
