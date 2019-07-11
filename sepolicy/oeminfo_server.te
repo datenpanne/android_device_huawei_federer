@@ -1,0 +1,17 @@
+type oeminfo_server, domain;
+type oeminfo_server_exec, exec_type, file_type;
+type oeminfo_server_partition_device, dev_type;
+init_daemon_domain(oeminfo_server)
+
+allow oeminfo_server oeminfo_partition_device:blk_file rw_file_perms;
+allow oeminfo_server block_device:dir search;
+allow oeminfo_server self:capability { chown fowner fsetid };
+allow oeminfo_server socket_device:dir { add_name write };
+allow oeminfo_server socket_device:sock_file { create setattr };
+
+allow oeminfo_server device:dir { add_name create setattr write };
+allow oeminfo_server device:file { create open setattr write };
+allow oeminfo_server properties_device:dir { open read };
+allow oeminfo_server sysfs:dir { open read };
+allow oeminfo_server sysfs:file { getattr open read };
+allow oeminfo_server device:dir { open read remove_name rmdir };

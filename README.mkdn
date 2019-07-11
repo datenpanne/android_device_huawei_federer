@@ -1,0 +1,26 @@
+Copyright (C) 2017 The LineageOS Project
+
+Device configuration for Huawei MediaPad T2 PRO 10
+=========================================
+
+The Huawei MediaPad T2 PRO 10 (codenamed _"Federer"_) is a mid range tablet from Huawei.
+
+Release date was November 2016.
+
+## Device specifications
+
+Basic   | Spec Sheet
+-------:|:-------------------------
+CPU     | Octa-core (4 x 1,5 GHz, 4 x 1,2 GHz)
+Chipset | Qualcomm MSM8939 Snapdragon 615
+GPU     | Adreno 405
+Memory  | 2/3 GB RAM
+Shipped Android Version | 5.1 EMUI 3.1
+Storage | 16/32 GB
+Battery | Li-Po 6660 mAh battery
+Display | 1920 x 1200 Pixel pixels, 10.1 inches, LCD (~224 ppi pixel density)
+Camera  | Front 2 MP / Rear 8 MP, f/2.0, autofocus, LED flash
+
+## Device picture
+
+![Huawei MediaPad T2 10.0 Pro](https://consumer-img.huawei.com/content/dam/huawei-cbg-site/en/mkt/pdp/tablets/specificationimages/huawei-mediapad-t2-10-pro-en.jpg "Huawei MediaPad T2 10.0 Pro")

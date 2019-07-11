@@ -1,0 +1,5 @@
+# TODO - root cause why the kernel generating this denial.
+allow kernel domain:process setsched;
+
+allow kernel untrusted_app:fd use;
+#allow kernel untrusted_app_tmpfs:file write;

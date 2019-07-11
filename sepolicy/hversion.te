@@ -1,0 +1,13 @@
+type hversion, domain;
+type hversion_exec, exec_type, file_type;
+init_daemon_domain(hversion)
+
+set_prop(hversion, hw_version_prop);
+
+allow hversion libqmi_oem_main:unix_stream_socket connectto;
+allow hversion proc_appinfo:file { getattr open read };
+allow hversion properties_device:dir { open read };
+
+# ioctlcmd
+allow hversion self:socket create_socket_perms;
+allowxperm hversion self:socket ioctl msm_sock_ipc_ioctls;

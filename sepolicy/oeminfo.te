@@ -1,0 +1,37 @@
+type oeminfo, domain;
+type oeminfo_exec, exec_type, file_type;
+type oeminfo_partition_device, dev_type;
+type oeminfo_device, dev_type;
+type oeminfo_socket, file_type;
+init_daemon_domain(oeminfo)
+
+allow oeminfo oeminfo_partition_device:blk_file rw_file_perms;
+allow oeminfo properties_device:dir r_dir_perms;
+allow oeminfo block_device:dir search;
+
+allow oeminfo sysfs:dir { open read };
+allow oeminfo sysfs:file { getattr open read };
+
+allow oeminfo self:capability { fowner chown fsetid };
+
+r_dir_file(oeminfo, sysfs);
+
+set_prop(oeminfo, hw_version_prop);
+set_prop(oeminfo, modem_block_device);
+
+unix_socket_connect(oeminfo, qmuxd, libqmi_oem_main);
+
+allow oeminfo device:dir rw_dir_perms;
+allow oeminfo device:dir { create rmdir };
+allow oeminfo proc_appinfo:file { getattr open read };
+allow oeminfo socket_device:dir { add_name write };
+allow oeminfo socket_device:sock_file { create setattr };
+
+allow oeminfo oeminfo_device:dir { getattr open read rmdir };
+
+allow oeminfo device:dir setattr;
+allow oeminfo device:file { create open setattr write };
+
+# ioctlcmd=c304
+allow oeminfo self:socket create_socket_perms;
+allowxperm oeminfo self:socket ioctl msm_sock_ipc_ioctls;
