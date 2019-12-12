@@ -1,0 +1,16 @@
+LOCAL_PATH:= $(call my-dir)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := pp_calib_data_BOE_NT51021_10_1200P_VIDEO.xml
+LOCAL_MODULE_TAGS  := optional
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := pp_calib_data_BOE_NT51021_10_1200P_VIDEO.xml
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := pp_calib_data_CMI_NT51021_10_1200P_VIDEO.xml
+LOCAL_MODULE_TAGS  := optional
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := pp_calib_data_CMI_NT51021_10_1200P_VIDEO.xml
+include $(BUILD_PREBUILT)
+

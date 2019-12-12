@@ -1,0 +1,108 @@
+
+mbox@mintdskt:~/android/la16$ adb shell dmesg | ./external/selinux/prebuilts/bin/audit2allow -p out/target/product/federer/root/sepolicy
+
+
+#============= hal_light_default ==============
+
+
+#============= init ==============
+allow init block_device:blk_file write;
+allow init libqmi_oem_main:unix_stream_socket connectto;
+allow init proc:file { getattr open read };
+allow init self:socket { bind create ioctl read write };
+allow init socket_device:sock_file { create setattr };
+allow init sysfs:file { open read setattr };
+allow init vendor_file:file execute_no_trans;
+
+#============= kernel ==============
+allow kernel self:capability dac_override;
+
+#============= sysinit ==============
+allow sysinit shell_exec:file { getattr read };
+allow sysinit system_file:dir { open read };
+allow sysinit toolbox_exec:file { execute execute_no_trans getattr open read };
+
+#============= system_app ==============
+allow system_app proc_pagetypeinfo:file { getattr open read };
+allow system_app sysfs_zram:dir search;
+allow system_app sysfs_zram:file { open read };
+
+#============= vendor_init ==============
+allow vendor_init block_device:blk_file setattr;
+allow vendor_init rootfs:dir { add_name create write };
+allow vendor_init sysfs:lnk_file setattr;
+mbox@mintdskt:~/android/la16$ adb logcat -b all -d | ./external/selinux/prebuilts/bin/audit2allow -p out/target/product/federer/root/sepolicy
+
+
+#============= hal_light_default ==============
+
+
+#============= init ==============
+allow init block_device:blk_file write;
+allow init libqmi_oem_main:unix_stream_socket connectto;
+allow init proc:file { getattr open read };
+allow init self:socket { bind create ioctl read write };
+allow init socket_device:sock_file { create setattr };
+allow init sysfs:file { open read setattr };
+allow init vendor_file:file execute_no_trans;
+
+#============= kernel ==============
+allow kernel self:capability dac_override;
+
+#============= sysinit ==============
+allow sysinit shell_exec:file { getattr read };
+allow sysinit system_file:dir { open read };
+allow sysinit toolbox_exec:file { execute execute_no_trans getattr open read };
+
+#============= system_app ==============
+allow system_app proc_pagetypeinfo:file { getattr open read };
+allow system_app sysfs_zram:dir search;
+allow system_app sysfs_zram:file { open read };
+
+#============= vendor_init ==============
+allow vendor_init block_device:blk_file setattr;
+allow vendor_init rootfs:dir { add_name create write };
+allow vendor_init sysfs:lnk_file setattr;
+
+
+
+
+
+mbox@mintdskt:~/android/la16$ adb shell dmesg | ./external/selinux/prebuilts/bin/audit2allow -p out/target/product/federer/root/sepolicy
+
+
+#============= hal_light_default ==============
+allow hal_light_default sysfs:file { getattr open write };
+
+#============= init ==============
+allow init self:socket read;
+
+#============= webview_zygote ==============
+allow webview_zygote zygote:unix_dgram_socket write;
+mbox@mintdskt:~/android/la16$ adb logcat -b all -d | ./external/selinux/prebuilts/bin/audit2allow -p out/target/product/federer/root/sepolicy
+
+
+#============= hal_light_default ==============
+
+
+#============= init ==============
+allow init proc:file { getattr open read };
+allow init qmuxd:unix_stream_socket connectto;
+allow init qmuxd_socket:sock_file write;
+allow init self:socket { bind create ioctl read };
+allow init sysfs:file { open read setattr };
+allow init vendor_file:file execute_no_trans;
+
+#============= sysinit ==============
+allow sysinit shell_exec:file { getattr read };
+allow sysinit system_file:dir { open read };
+allow sysinit toolbox_exec:file { execute execute_no_trans getattr open read };
+
+#============= vendor_init ==============
+allow vendor_init block_device:blk_file setattr;
+allow vendor_init rootfs:dir { add_name create write };
+allow vendor_init sysfs:lnk_file setattr;
+
+#============= webview_zygote ==============
+
+

@@ -1,0 +1,12 @@
+allow init proc_appinfo:file r_file_perms;
+allow init libqmi_oem_main:unix_stream_socket connectto;
+allow init self:socket { bind create ioctl read };
+allow init sysfs:file { read setattr };
+allow init vendor_file:file execute_no_trans;
+allow init vndbinder_device:chr_file { ioctl open read write };
+allow init vndservicemanager:binder { call transfer };
+allow init default_android_vndservice:service_manager add;
+allow init proc:file { getattr open read };
+
+# required for LD_SHIM_LIBS
+allow init { domain -lmkd -crash_dump }:process noatsecure;

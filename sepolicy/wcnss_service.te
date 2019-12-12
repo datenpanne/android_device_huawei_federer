@@ -1,0 +1,7 @@
+allow wcnss_service socket_device:dir write;
+allow wcnss_service socket_device:sock_file write;
+
+allow wcnss_service device:file { getattr open read };
+allow wcnss_service device:file unlink;
+allow wcnss_service oeminfo:unix_stream_socket connectto;
+allow wcnss_service device:dir { remove_name write };
