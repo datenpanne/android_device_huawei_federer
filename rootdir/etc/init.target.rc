@@ -52,7 +52,7 @@ on post-fs-data
     setprop persist.service.hdb.enable true
 
 on init
-    mkdir /cust
+#    mkdir /cust
 
 # Create cgroup mount point for freezer
     mkdir /dev/frz
@@ -63,6 +63,12 @@ on init
 
     chown root system /dev/block/mmcblk0p8
     chmod 0660 /dev/block/mmcblk0p8
+
+service oeminfo_nvm /vendor/bin/oeminfo_nvm_server
+    class core
+    user root
+#    ioprio rt 4
+    writepid /dev/cpuset/system-background/tasks
 
 on post-fs
     swapon_all /vendor/etc/fstab.qcom
@@ -130,16 +136,24 @@ on post-fs-data
     chown system system /sys/class/power_supply/battery/input_current_max
 
     chown system system /sys/class/leds/torch-light/brightness
-    chown system system /sys/devices/8789.huawei_hall_sensor/enable_hall_sensor
+
     chown system system /sys/devices/8789.huawei_hall_sensor/camera_overturn_num
     chown system system /sys/devices/8789.huawei_hall_sensor/get_camera_status
     chown system system /sys/devices/8789.huawei_hall_sensor/mmi_camera_hall_status
+    chown system system /sys/devices/8789.huawei_hall_sensor/get_hall_status
+
+    chown system system /sys/devices/8789.huawei_hall_sensor/enable_hall_sensor
+    chmod 000 /sys/devices/8789.huawei_hall_sensor/enable_hall_sensor
+
     chown root system /sys/devices/soc0/huawei_product
 
     # Create directory used by display clients
     mkdir /data/misc/display 0770 system graphics
     mkdir /persist/display 0770 system graphics
 
+    #Create FM dir for patchdownloader
+    mkdir /data/misc/fm 0770 system system
+    chmod 0770 /data/misc/fm
 
 on charger
     wait /dev/block/bootdevice/by-name/system
@@ -164,16 +178,6 @@ on charger-fs
     write /sys/class/android_usb/android0/f_ffs/aliases adb
     mount vfat /dev/block/bootdevice/by-name/log /log uid=1000,gid=1007
 
-service teecd /system/bin/teecd
-    class core
-    user system
-    group system
-
-service signinfolistener /system/bin/signinfolistener
-    class core
-    user system
-    group system readproc
-
 service rmt_oeminfo /vendor/bin/rmt_oeminfo
     class core
     user root
@@ -190,32 +194,27 @@ service huawei_version /vendor/bin/huawei_version
     oneshot
     writepid /dev/cpuset/system-background/tasks
 
-service oeminfo_nvm /vendor/bin/oeminfo_nvm_server
-    class core
-    user root
-    writepid /dev/cpuset/system-background/tasks
-
 # access permission for secure touch
-    chmod 0660 /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0020/secure_touch_enable
-    chmod 0440 /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0020/secure_touch
-    chmod 0660 /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0070/secure_touch_enable
-    chmod 0440 /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0070/secure_touch
-    chown system drmrpc /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0020/secure_touch_enable
-    chown system drmrpc /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0020/secure_touch
-    chown system drmrpc /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0070/secure_touch_enable
-    chown system drmrpc /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0070/secure_touch
+#    chmod 0660 /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0020/secure_touch_enable
+#    chmod 0440 /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0020/secure_touch
+#    chmod 0660 /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0070/secure_touch_enable
+#    chmod 0440 /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0070/secure_touch
+#    chown system drmrpc /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0020/secure_touch_enable
+#    chown system drmrpc /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0020/secure_touch
+#    chown system drmrpc /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0070/secure_touch_enable
+#    chown system drmrpc /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0070/secure_touch
 
 service imsqmidaemon /system/vendor/bin/imsqmidaemon
     class main
-    user system
+    user radio
     socket ims_qmid stream 0660 system radio
     group radio net_raw log oem_2950
 
 service imsdatadaemon /vendor/bin/imsdatadaemon
     class main
-    user system
+    user radio
     socket ims_datad stream 0660 system radio
-    group system wifi radio inet net_raw log qcom_diag net_admin
+    group system wifi radio inet net_raw log diag net_admin
     disabled
 
 on property:sys.ims.QMI_DAEMON_STATUS=1
@@ -223,51 +222,20 @@ on property:sys.ims.QMI_DAEMON_STATUS=1
 
 service ims_rtp_daemon /vendor/bin/ims_rtp_daemon
    class main
-   user system
+   user radio
    socket ims_rtpd stream 0660 system radio
-   group radio net_raw diag qcom_diag log
+   group radio net_raw diag log
    disabled
 
 service imscmservice /vendor/bin/imscmservice
    class main
-   user system
-   group radio net_raw diag qcom_diag log
+   user radio
+   group radio net_raw diag log
    disabled
 
 on property:sys.ims.DATA_DAEMON_STATUS=1
     start ims_rtp_daemon
     start imscmservice
-
-service ppd /system/vendor/bin/mm-pp-daemon
-    class late_start
-    disabled
-    user system
-    socket pps stream 0660 system system
-    group system graphics
-
-on property:init.svc.surfaceflinger=stopped
-    stop ppd
-
-on property:init.svc.surfaceflinger=running
-    start ppd
-
-on property:init.svc.surfaceflinger=restarting
-    stop ppd
-
-on property:init.svc.zygote=stopped
-    stop ppd
-
-on property:init.svc.zygote=running
-    start ppd
-
-on property:init.svc.zygote=restarting
-    stop ppd
-
-service wcnss-service /vendor/bin/wcnss_service
-    class main
-    user system
-    group system wifi radio
-    oneshot
 
 on property:hw.accel.calib="true"
     chmod 0664 /dev/input/event*

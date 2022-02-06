@@ -1,3 +1,0 @@
-allow vndservicemanager init:dir search;
-allow vndservicemanager init:file { open read };
-allow vndservicemanager init:process getattr;

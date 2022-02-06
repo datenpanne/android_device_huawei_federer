@@ -22,7 +22,7 @@
 #include <dirent.h>
 #include <sys/select.h>
 #include <linux/akm8975.h>
-#include <cutils/log.h>
+#include <log/log.h>
 #include "AkmSensor.h"
 #include "sensors.h"
 

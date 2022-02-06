@@ -35,7 +35,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <dirent.h>
 #include <float.h>
 #include <sys/select.h>
-#include <cutils/log.h>
+#include <log/log.h>
 
 #include "VirtualSensor.h"
 #include "sensors.h"

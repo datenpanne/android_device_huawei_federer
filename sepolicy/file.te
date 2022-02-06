@@ -1,5 +1,0 @@
-type bluetooth_device, dev_type;
-type proc_kernel_sched, fs_type;
-type proc_appinfo, proc_type, fs_type;
-type sysfs_touchscreen, sysfs_type, fs_type;
-type proc_printk, fs_type, proc_type;

@@ -12,7 +12,6 @@
     * Neither the name of The Linux Foundation nor the names of its
       contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
-
    THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
    WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
@@ -26,22 +25,30 @@
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <android-base/logging.h>
-#include <cstdlib>
-#include <fstream>
-#include <string>
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
 
-#include "property_service.h"
+#include <android-base/logging.h>
+#include <android-base/properties.h>
+#include <android-base/file.h>
+#include <android-base/strings.h>
+#include <iostream>
+#include <fstream>
+#include <string>
+
 #include "vendor_init.h"
+#include "property_service.h"
 
-#include "init_msm8916.h"
-
-using android::init::property_set;
+using android::base::GetProperty;
 using namespace std;
 
-const char *APP_INFO = "/proc/app_info";
+typedef struct {
+    string model;
+    string description;
+    string fingerprint;
+    string default_network;
+    bool is_wifi;
+} match_t;
 
 void property_override(char const prop[], char const value[])
 {
@@ -54,67 +61,105 @@ void property_override(char const prop[], char const value[])
         __system_property_add(prop, strlen(prop), value, strlen(value));
 }
 
-void property_override_dual(char const system_prop[], char const vendor_prop[], char const value[])
+static match_t matches[] = {
+    {
+        "FDR-A01L",
+        "FDR-user 5.1.1 HuaweiMediaPad C100B006 release-keys",
+        "HUAWEI/FDR/HWFDR:5.1.1/HuaweiMediaPad/FDR-A01LC100B006:user/release-keys",
+        "9",
+        false
+    },
+    {
+        "FDR-A01L",
+        "FDR-user 5.1.1 HuaweiMediaPad C100B006 release-keys",
+        "HUAWEI/FDR/HWFDR:5.1.1/HuaweiMediaPad/FDR-A01LC100B006:user/release-keys",
+        "9",
+        false
+    },
+    {
+        "FDR-A01W",
+        "FDR-user 5.1.1 HuaweiMediaPad C233B011 release-keys",
+        "HUAWEI/FDR/HWFDR:5.1.1/HuaweiMediaPad/FDR-A01wC233B011:user/release-keys",
+        "0",
+        true
+    },
+    {
+        "FDR-A03",
+        "FDR-user 5.1.1 HuaweiMediaPadC233B010 release-keys",
+        "HUAWEI/FDR/HWFDR:5.1.1/HuaweiMediaPad/FDR-A03LC233B010:user/release-keys",
+        "9",
+        false
+    },
+    {
+        "FDR-A04LC00",
+        "FDR-user 5.1.1 Federer C001B029 release-keys",
+        "Huawei/HWT31_jp_kdi/hwfdra04l:5.1.1/Federer/FDR-A04LC001B029:user/release-keys",
+        "20",
+        false
+    },
+};
+
+static const int n_matches = sizeof(matches) / sizeof(matches[0]);
+
+static void property_set(const char *key, string value)
 {
-    property_override(system_prop, value);
-    property_override(vendor_prop, value);
+    property_override(key, value.c_str());
 }
 
-void set_model(const char *model) {
-    property_override("ro.build.product", model);
-    property_override_dual("ro.product.device", "ro.vendor.product.device", model);
-    property_override_dual("ro.product.model", "ro.vendor.product.model", model);
+static bool contains(string str, string substr)
+{
+    return str.find(substr) != string::npos;
 }
 
-void init_target_properties()
+void vendor_load_properties()
 {
-    ifstream fin;
-    string buf;
+    string model;
+    string hwsim;
+    match_t *match;
 
-    fin.open(APP_INFO, ios::in);
-    if (!fin) {
-        LOG(ERROR) << __func__ << ": Failed to open " << APP_INFO;
+    ifstream app_info("/proc/app_info");
+    if (app_info.is_open()) {
+        while (getline(app_info, model) && !contains(model, "huawei_fac_product_name")) {
+        }
+        app_info.close();
+    }
+
+    for (match = matches; match - matches < n_matches && !contains(model, match->model); match++) {
+    }
+
+    if (!match) {
+        LOG(WARNING) << "Unknown variant: " << model.c_str();
         return;
     }
 
-    while (getline(fin, buf))
-        if (buf.find("huawei_fac_product_name") != string::npos)
-            break;
-    fin.close();
+    property_set("ro.build.product", "federer");
+    property_set("ro.product.device", "federer");
+    property_set("ro.product.model", match->model);
+    property_set("ro.build.description", match->description);
+    property_set("ro.build.fingerprint", match->fingerprint);
 
-    /* FDR-A01 */
-    if (buf.find("FDR-A01L") != string::npos) {
-        set_model("FDR-A01L");
-        property_set("ro.telephony.default_network", "9");
-        property_override("ro.build.description", "FDR-user 5.1.1 HuaweiMediaPad C100B006 release-keys");
-        property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint",
-                               "HUAWEI/FDR/HWFDR:5.1.1/HuaweiMediaPad/FDR-A01LC100B006:user/release-keys");
-    }
-    /* FDR-A01W */
-    else if (buf.find("FDR-A01W") != string::npos) {
-        set_model("FDR-A01W");
+    // Also write vendor properties to avoid mismatch
+    property_set("ro.vendor.product.device", "federer");
+    property_set("ro.vendor.product.model", match->model);
+    property_set("ro.vendor.product.name", match->model);
+    property_set("ro.vendor.build.fingerprint", match->fingerprint);
+
+    if (match->is_wifi) {
         property_set("ro.radio.noril" , "yes");
-        property_override("ro.build.description", "FDR-user 5.1.1 HuaweiMediaPad C233B011 release-keys");
-        property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint",
-                               "HUAWEI/FDR/HWFDR:5.1.1/HuaweiMediaPad/FDR-A01wC233B011:user/release-keys");
     }
-    /* FDR-A03 */
-    else if (buf.find("FDR-A03L") != string::npos) {
-        set_model("FDR-A03L");
-        property_set("ro.telephony.default_network", "9");
-        property_override("ro.build.description", "FDR-user 5.1.1 HuaweiMediaPadC233B010 release-keys");
-        property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint",
-                               "HUAWEI/FDR/HWFDR:5.1.1/HuaweiMediaPad/FDR-A03LC233B010:user/release-keys");
+
+    // Fix single sim variant based on property set by the bootloader
+    hwsim = GetProperty("ro.boot.hwsim", "");
+
+    if (hwsim == "single") {
+        property_set("ro.telephony.default_network", match->default_network);
+    } else {
+        property_set("persist.radio.multisim.config", "dsds");
+        property_set("ro.telephony.ril.config", "simactivation,sim2gsmonly");
+        property_set("ro.telephony.default_network", match->default_network + "," +
+                match->default_network);
     }
-    /* FDR-A04 Japan*/
-    else if (buf.find("FDR-A04LC00") != string::npos) {
-        set_model("HWT31");
-        property_set("ro.telephony.default_network", "20");
-        property_override("ro.build.description", "FDR-user 5.1.1 Federer C001B029 release-keys");
-        property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint",
-                               "Huawei/HWT31_jp_kdi/hwfdra04l:5.1.1/Federer/FDR-A04LC001B029:user/release-keys");
-    }
-    else {
-        LOG(ERROR) << __func__ << ": unexcepted huawei_fac_product_name!";
-    }
+
+    // Init a dummy BT MAC address, will be overwritten later
+    property_set("ro.boot.btmacaddr", "00:00:00:00:00:00");
 }

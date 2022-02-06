@@ -19,28 +19,44 @@ LOCAL_COPY_HEADERS := 	\
 		sensors_extension.h \
 		sensors.h
 
-LOCAL_SRC_FILES :=	\
-		sensors.cpp 			\
-		SensorBase.cpp			\
-		LightSensor.cpp			\
-		ProximitySensor.cpp		\
-		CompassSensor.cpp		\
-		Accelerometer.cpp				\
-		Gyroscope.cpp				\
-		Bmp180.cpp				\
-		InputEventReader.cpp \
-		CalibrationManager.cpp \
-		NativeSensorManager.cpp \
-		VirtualSensor.cpp	\
-		sensors_XML.cpp \
-		SignificantMotion.cpp
+LOCAL_SRC_FILES := \
+	sensors.cpp \
+	SensorBase.cpp \
+	LightSensor.cpp \
+	ProximitySensor.cpp \
+	CompassSensor.cpp \
+	Accelerometer.cpp \
+	Gyroscope.cpp \
+	InputEventReader.cpp \
+	CalibrationManager.cpp \
+	NativeSensorManager.cpp \
+	VirtualSensor.cpp \
+	sensors_XML.cpp
 
+LOCAL_SHARED_LIBRARIES := \
+	libbase \
+	libcutils \
+	libdl \
+	libhidlbase \
+	libhidltransport \
+	liblog \
+	libutils \
+	libxml2 \
+	libhardware \
+	android.hardware.sensors@1.0
 
 LOCAL_C_INCLUDES += \
     external/libxml2/include \
     external/icu/icu4c/source/common
 
 LOCAL_SHARED_LIBRARIES := liblog libcutils libdl libxml2 libutils
+
+LOCAL_HEADER_LIBRARIES += media_plugin_headers
+LOCAL_HEADER_LIBRARIES += libandroid_sensor_headers
+#LOCAL_HEADER_LIBRARIES += libcutils_headers
+LOCAL_HEADER_LIBRARIES += libsystem_headers
+LOCAL_HEADER_LIBRARIES += libhardware_headers
+LOCAL_HEADER_LIBRARIES += libutils_headers
 
 include $(BUILD_SHARED_LIBRARY)
 
@@ -49,13 +65,14 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := libcalmodule_common
 
 LOCAL_SRC_FILES := \
-		   algo/common/common_wrapper.c \
-		   algo/common/compass/AKFS_AOC.c \
-		   algo/common/compass/AKFS_Device.c \
-		   algo/common/compass/AKFS_Direction.c \
-		   algo/common/compass/AKFS_VNorm.c
+    algo/common/common_wrapper.c \
+    algo/common/compass/AKFS_AOC.c \
+    algo/common/compass/AKFS_Device.c \
+    algo/common/compass/AKFS_Direction.c \
+    algo/common/compass/AKFS_VNorm.c
 
 LOCAL_SHARED_LIBRARIES := liblog libcutils
+LOCAL_HEADER_LIBRARIES += libcutils_headers
 LOCAL_MODULE_TAGS := optional
 LOCAL_PROPRIETARY_MODULE := true
 
