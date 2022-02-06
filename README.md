@@ -19,4 +19,4 @@ Rear Camera  | 8.0 MP, LED flash
 Front Camera | 2.0 MP
 Release Date | 2016 September
 
-![Huawei MediaPad T2 Pro 10](http://cdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-redmi-3-0.jpg "Huawei MediaPad T2 Pro 10")
+![Huawei MediaPad T2 Pro 10](https://fdn2.gsmarena.com/vv/pics/huawei/huawei-mediapad-t2-10-pro1.jpg "Huawei MediaPad T2 Pro 10")
