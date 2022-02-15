@@ -31,19 +31,12 @@ PRODUCT_SOONG_NAMESPACES += device/huawei/federer
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/acdb/workspaceFile.qwsp:system/etc/workspaceFile.qwsp \
     $(LOCAL_PATH)/audio/acdb/Bluetooth_cal.acdb:system/etc/QRD_Bluetooth_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/Bluetooth_cal_ce.acdb:system/etc/Bluetooth_cal_ce.acdb \
     $(LOCAL_PATH)/audio/acdb/General_cal.acdb:system/etc/QRD_General_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/General_cal_ce.acdb:system/etc/QRD_General_cal_ce.acdb \
     $(LOCAL_PATH)/audio/acdb/Global_cal.acdb:system/etc/QRD_Global_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/Global_cal_ce.acdb:system/etc/QRD_Global_cal_ce.acdb \
     $(LOCAL_PATH)/audio/acdb/Handset_cal.acdb:system/etc/QRD_Handset_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/Handset_cal_ce.acdb:system/etc/QRD_Handset_cal_ce.acdb \
     $(LOCAL_PATH)/audio/acdb/Hdmi_cal.acdb:system/etc/QRD_Hdmi_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/Hdmi_cal_ce.acdb:system/etc/QRD_Hdmi_cal_ce.acdb \
     $(LOCAL_PATH)/audio/acdb/Headset_cal.acdb:system/etc/QRD_Headset_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/Headset_cal_ce.acdb:system/etc/QRD_Headset_cal_ce.acdb \
-    $(LOCAL_PATH)/audio/acdb/Speaker_cal.acdb:system/etc/QRD_Speaker_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/Speaker_cal_ce.acdb:system/etc/QRD_Speaker_cal_ce.acdb
+    $(LOCAL_PATH)/audio/acdb/Speaker_cal.acdb:system/etc/QRD_Speaker_cal.acdb
 
 # Audio configuration
 PRODUCT_COPY_FILES += \

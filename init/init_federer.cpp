@@ -70,13 +70,6 @@ static match_t matches[] = {
         false
     },
     {
-        "FDR-A01L",
-        "FDR-user 5.1.1 HuaweiMediaPad C100B006 release-keys",
-        "HUAWEI/FDR/HWFDR:5.1.1/HuaweiMediaPad/FDR-A01LC100B006:user/release-keys",
-        "9",
-        false
-    },
-    {
         "FDR-A01W",
         "FDR-user 5.1.1 HuaweiMediaPad C233B011 release-keys",
         "HUAWEI/FDR/HWFDR:5.1.1/HuaweiMediaPad/FDR-A01wC233B011:user/release-keys",
@@ -91,7 +84,7 @@ static match_t matches[] = {
         false
     },
     {
-        "FDR-A04LC00",
+        "FDR-A04L",
         "FDR-user 5.1.1 Federer C001B029 release-keys",
         "Huawei/HWT31_jp_kdi/hwfdra04l:5.1.1/Federer/FDR-A04LC001B029:user/release-keys",
         "20",

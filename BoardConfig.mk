@@ -18,7 +18,7 @@ DEVICE_PATH := device/huawei/federer
 
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 
-# inherit from common g4
+# inherit from common t2
 -include device/huawei/t2-common/BoardConfigCommon.mk
 
 # Camera
@@ -44,6 +44,7 @@ TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_federer
 TARGET_RECOVERY_DEVICE_MODULES := libinit_federer
 
 # Kernel
+#BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 TARGET_KERNEL_CONFIG := federer_defconfig
 
 # Partitios

@@ -86,6 +86,7 @@
     <ctl name="EAR_S" value="ZERO" />
     <ctl name="HPHL" value="ZERO" />
     <ctl name="HPHR" value="ZERO" />
+    <ctl name="HAC" value="OFF" />
     <ctl name="SPK DAC Switch" value="0" />
     <ctl name="Speaker Boost" value="DISABLE" />
     <ctl name="MICBIAS CAPLESS Switch" value="0" />
@@ -546,14 +547,17 @@
     <!-- These are actual sound device specific mixer settings -->
     <path name="adc1">
         <ctl name="DEC1 MUX" value="ADC1" />
+        <ctl name="MICBIAS CAPLESS Switch" value="1" />
     </path>
 
     <path name="adc2">
         <ctl name="DEC1 MUX" value="ADC2" />
+        <ctl name="MICBIAS CAPLESS Switch" value="1" />
     </path>
 
     <path name="adc3">
         <ctl name="DEC1 MUX" value="ADC2" />
+        <ctl name="MICBIAS CAPLESS Switch" value="0" />
         <ctl name="ADC2 MUX" value="INP3" />
     </path>
 
@@ -573,12 +577,7 @@
 	
     <path name="speaker">
     	<ctl name="SPK PA Switch VDD" value="ON" />
-        <ctl name="MI2S_RX Channels" value="Two" />
-        <ctl name="RX1 MIX1 INP1" value="RX1" />
-        <ctl name="RX2 MIX1 INP1" value="RX2" />
-        <ctl name="RDAC2 MUX" value="RX2" />
-        <ctl name="HPHL" value="Switch" />
-        <ctl name="HPHR" value="Switch" />
+	<path name="headphones" />
         <ctl name="SPK PA Switch IN" value="ON" />
         <ctl name="SPK PA Boost" value="ON" />
         <ctl name="SPK PA Enable" value="ON" />
@@ -634,6 +633,8 @@
         <path name="adc2" />
         <ctl name="ADC2 MUX" value="INP2" />
         <ctl name="IIR1 INP1 MUX" value="DEC1" />
+        <ctl name="ADC2 Volume" value="6" />
+        <ctl name="DEC1 Volume" value="84" />
     </path>
 
     <path name="sidetone-iir">
@@ -660,6 +661,7 @@
     <path name="voice-handset">
         <path name="handset" />
         <ctl name="EAR PA Gain" value="POS_6_DB" />
+        <ctl name="RX1 Digital Volume" value="84" />
     </path>
 
     <path name="HAC Earpiece">
@@ -672,6 +674,7 @@
 
     <path name="voice-speaker">
         <path name="speaker" />
+        <ctl name="RX3 Digital Volume" value="84" />
     </path>
 
     <path name="voice-speaker-mic">
@@ -914,14 +917,6 @@
     <path name="listen-handset-mic">
         <path name="adc1" />
         <ctl name="ADC1 Volume" value="6" />
-    </path>
-
-    <path name="unprocessed-handset-mic">
-        <path name="handset-mic" />
-    </path>
-
-    <path name="unprocessed-mic">
-        <path name="unprocessed-handset-mic" />
     </path>
 
     <path name="ADSP testfwk">
